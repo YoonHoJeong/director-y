@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create</title>
+</head>
+
+<body>
+    <form method="POST" action="{% url 'create' %}">
+        {% csrf_token %}
+        <h1>Portfolio data</h1>
+        <input type="text" name="title">
+
+
+        <br />
+        <br />
+        <h1>Section data</h1>
+        <!-- section data -->
+        section-title
+        <input type="text" name="section-title">
+        <br />
+        section-image
+        <input type="file" name="section-image">
+        <br />
+        section-text
+        <input type="text" name="section-text">
+        <br />
+        <input type="submit" value="제출">
+    </form>
+</body>
+
+</html>
