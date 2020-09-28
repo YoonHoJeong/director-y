@@ -5,8 +5,6 @@ from django.db import models
 
 class Portfolio(models.Model):
     """
-        section_list : 하위 섹션들에 대한 값을 갖고 있음.
-        -> Section model에서 foreign key로 연결한다.
         one(Portfolio) - many(Section) 관계.
 
         title
@@ -20,6 +18,44 @@ class Portfolio(models.Model):
 
     def __str__(self):
         return self.title
+
+# Director's Portfolio
+
+
+class DPortfolio(Portfolio):
+    """ 
+        Fields
+            1. title(kor) - CharField
+            2. title(eng) - CharField
+            3. poster - ImageField
+            4. trailer - URLField
+            5. trailer-thumbnail- ImageField
+            6. genre - CharField
+            7. summary - TextField
+    """
+
+# Actor's Portfolio
+
+
+class APortfolio(Portfolio):
+    """ 
+        Fields
+            1. image - ImageField
+            2. Filmography - TextField
+            3. video-title - CharField
+            4. video-url - URLField
+
+    """
+
+# Staff's Portfolio
+
+
+class SPortfolio(Portfolio):
+    """ 
+        Fields
+            1. 
+
+    """
 
 
 class Section(models.Model):

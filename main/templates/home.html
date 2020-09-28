@@ -1,21 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-</head>
+{% block title %}
+DIRECTORY - Home
+{% endblock %}
 
-<body>
-    <div>
-        Home
+{% block content %}
+<div class="home">
+    <div class="welcome-box">
+
     </div>
-    {% for portfolio in all_portfolio %}
-    <div>
-        {{portfolio.title}}
-    </div>
-    {% endfor %}
-</body>
+    <ul class="directors">
+        <h2>HOT DIRECTOR</h1>
+            {% for portfolio in all_portfolio %}
+            <div>
+                {{portfolio.title}}
+            </div>
+            {% endfor %}
+    </ul>
 
-</html>
+</div>
+{% endblock %}

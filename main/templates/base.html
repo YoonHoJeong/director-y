@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        {% block title%}
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="nav-bar__icon">DIRECTORY</div>
+            <div class="nav-bar__category">
+                <div class="category-item">DIRECTOR</div>
+                <div class="category-item">STAFF</div>
+                <div class="category-item">ACTOR</div>
+                <div class="category-item">MYPAGE</div>
+                <!-- <div class="category-item">FESTIVAL</div> -->
+            </div>
+        </nav>
+    </header>
+    <main>
+        {% block content%}
+        {% endblock %}
+    </main>
+    <footer>
+        footer
+    </footer>
+</body>
+
+</html>
