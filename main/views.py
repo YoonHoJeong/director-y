@@ -1,14 +1,23 @@
 from django.shortcuts import render, redirect
 # Create your views here.
 
-from .models import Portfolio, Section
-
+from .models import Portfolio, DPortfolio, APortfolio, SPortfolio, Section
+from accounts.models import Actor
 
 def home(request):
-    all_portfolio = Portfolio.objects.all()
+    all_portfolio = DPortfolio.objects.all()
 
     return render(request, "home.html", {"all_portfolio": all_portfolio})
 
+def home_actor(request):
+    all_portfolio = Actor.objects.all()
+
+    return render(request, "home.html", {"all_portfolio": all_portfolio})
+
+def home_staff(request):
+    all_portfolio = SPortfolio.objects.all()
+
+    return render(request, "home.html", {"all_portfolio": all_portfolio})    
 
 def new(request):
     return render(request, 'create.html')

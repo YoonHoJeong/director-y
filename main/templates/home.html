@@ -8,16 +8,20 @@ DIRECTORY - Home
 {% block content %}
 <div class="home">
     <div class="welcome-box">
-
+        <h1>Welcome,</h1> <br />
+        <h1>Director 김멋사</h1>
     </div>
+    <br />
+    <br />
     <ul class="directors">
-        <h2>HOT DIRECTOR</h1>
+        <h2>HOT DIRECTOR</h2>
+        <div class="dportfolios">
             {% for portfolio in all_portfolio %}
-            <div>
-                {{portfolio.title}}
+            <div class="poster-container">
+                <img src="{{portfolio.poster.url}}" width="100px" height="100px" />
             </div>
             {% endfor %}
+        </div>
     </ul>
-
 </div>
 {% endblock %}
