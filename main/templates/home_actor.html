@@ -4,3 +4,23 @@
 {% block title %}
 DIRECTORY - Home-Actor
 {% endblock %}
+
+{% block content %}
+<div class="home">
+    <div class="welcome-box">
+        <h1>Welcome,</h1> <br />
+        <h1>Director 김멋사</h1>
+    </div>
+    <br />
+    <br />
+    <ul class="directors">
+        <h2>HOT DIRECTOR</h2>
+        {% for portfolio in all_portfolio %}
+        <div>
+            {{portfolio.title}}
+        </div>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
