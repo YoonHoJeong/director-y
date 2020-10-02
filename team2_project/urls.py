@@ -22,9 +22,11 @@ from django.conf.urls.static import static
 from main import views
 from accounts.views import (
     registration_view,
+    logout_view,
 )
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', registration_view, name="register"),
+    path('logout/', logout_view, name="logout"),
     path('', include('main.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
