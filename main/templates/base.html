@@ -31,11 +31,10 @@
         <nav class="nav-bar">
             <div class="nav-bar__icon">DIRECTORY</div>
             <div class="nav-bar__category">
-                <div class="category-item">DIRECTOR</div>
-                <div class="category-item">STAFF</div>
-                <div class="category-item">ACTOR</div>
-                <div class="category-item">MYPAGE</div>
-                <!-- <div class="category-item">FESTIVAL</div> -->
+                <div class="category-item"><a href="{% url 'directors' %}"></a> DIRECTOR</div>
+                <div class="category-item"><a href="{% url 'staffs' %}"></a> STAFF</div>
+                <div class="category-item"><a href="{% url 'actors' %}"></a> ACTOR</div>
+                <div class="category-item"><a href="{% url 'mypage' %}"></a> MYPAGE</div>
             </div>
         </nav>
     </header>

@@ -7,20 +7,31 @@ from accounts.models import Actor
 
 def home(request):
     all_portfolio = Movie.objects.all()
+    print(request.user._meta.model_name)
 
     return render(request, "home.html", {"all_portfolio": all_portfolio})
 
 
-def home_actor(request):
+def actors(request):
     all_portfolio = Actor.objects.all()
 
     return render(request, "home.html", {"all_portfolio": all_portfolio})
 
 
-def home_staff(request):
+def staffs(request):
     all_portfolio = SPortfolio.objects.all()
 
     return render(request, "home.html", {"all_portfolio": all_portfolio})
+
+
+def directors(request):
+    all_portfolio = Movie.objects.all()
+
+    return render(request, "home.html", {"all_portfolio": all_portfolio})
+
+
+def mypage(request):
+    return render(request, "mypage.html")
 
 
 def new(request):

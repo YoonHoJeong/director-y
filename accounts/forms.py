@@ -29,5 +29,4 @@ class ProfileAuthenticationForm(forms.ModelForm):
             email = self.cleaned_data['email']
             password = self.cleaned_data['password']
             if not authenticate(email=email, password=password):
-                print("non")
                 raise forms.ValidationError("Invaild login")

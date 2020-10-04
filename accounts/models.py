@@ -112,7 +112,7 @@ class Profile(AbstractBaseUser):
 class Director(Profile):
     # 추가로 들어갈 field
     # awards - 수상 내역
-    award = models.TextField()
+    awards = models.TextField()
 
 
 class Actor(Profile):
