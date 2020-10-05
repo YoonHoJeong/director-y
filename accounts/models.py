@@ -72,6 +72,11 @@ class Profile(AbstractBaseUser):
     #     return json.loads(self.tag_list)
 
     education = models.CharField(max_length=20, null=True, blank=True)
+
+    is_director = models.BooleanField(default=False)
+    is_actor = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+
     date_joined = models.DateTimeField(
         verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
@@ -109,13 +114,15 @@ class Profile(AbstractBaseUser):
     """
 
 
-class Director(Profile):
+class Director(models.Model):
     # 추가로 들어갈 field
     # awards - 수상 내역
     awards = models.TextField()
+    profile = models.OneToOneField(
+        Profile, on_delete=models.CASCADE, primary_key=True)
 
 
-class Actor(Profile):
+class Actor(models.Model):
     """
         company
         height
@@ -125,6 +132,9 @@ class Actor(Profile):
         profile_video_title
         profile_video_url
     """
+    profile = models.OneToOneField(
+        Profile, on_delete=models.CASCADE, primary_key=True)
+
     company = models.CharField(max_length=30)
     height = models.PositiveIntegerField(null=True, blank=True)
     weight = models.PositiveIntegerField(null=True, blank=True)
@@ -139,7 +149,7 @@ class Actor(Profile):
 # profile_video_url = models.URLField(null=True, blank=False)
 
 
-class Staff(Profile):
+class Staff(models.Model):
     """
         role
         profile_img_title
@@ -147,6 +157,8 @@ class Staff(Profile):
     """
 
     # profile_... 들은 프로필에 보여질 대표 포토폴리오의 이미지,영상,제목
+    profile = models.OneToOneField(
+        Profile, on_delete=models.CASCADE, primary_key=True)
 
     role = models.CharField(max_length=30)
 

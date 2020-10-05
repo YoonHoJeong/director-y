@@ -21,14 +21,21 @@ from django.conf.urls.static import static
 
 from main import views
 from accounts.views import (
+    register,
     registration_view,
     logout_view,
     login_view,
+    actor_register,
+    director_register,
+    staff_register,
 )
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', registration_view, name="register"),
+    path('register/', register, name="register"),
     path('logout/', logout_view, name="logout"),
     path('login/', login_view, name="login"),
     path('', include('main.urls')),
+    path('actor_register/', actor_register.as_view(), name="actor_register"),
+    path('director_register/', director_register.as_view(), name="director_register"),
+    path('staff_register/', staff_register.as_view(), name="staff_register"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

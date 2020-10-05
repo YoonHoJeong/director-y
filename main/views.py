@@ -7,7 +7,10 @@ from accounts.models import Actor
 
 def home(request):
     all_portfolio = Movie.objects.all()
-    print(request.user._meta.model_name)
+    # print(request.user._type())
+
+    d = Actor()
+    print(d.__class__.__name__)
 
     return render(request, "home.html", {"all_portfolio": all_portfolio})
 

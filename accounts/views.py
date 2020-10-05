@@ -1,13 +1,53 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from accounts.forms import RegistrationForm, ProfileAuthenticationForm
+from .forms import RegistrationForm, StaffRegistraionForm, ActorRegistraionForm, DirectorRegistraionForm, ProfileAuthenticationForm
+from django.views.generic import CreateView
+from .models import Profile
+
 # Create your views here.
+
+
+def register(request):
+    return render(request, '../templates/register.html')
+
+
+class director_register(CreateView):
+    model = Profile
+    form_class = DirectorRegistraionForm
+    template_name = "../templates/director_register.html"
+
+    def form_valid(self, form):
+        profile = form.save()
+        login(self.request, profile)
+        return redirect('/')
+
+
+class actor_register(CreateView):
+    model = Profile
+    form_class = ActorRegistraionForm
+    template_name = "../templates/actor_register.html"
+
+    def form_valid(self, form):
+        profile = form.save()
+        login(self.request, profile)
+        return redirect('/')
+
+
+class staff_register(CreateView):
+    model = Profile
+    form_class = StaffRegistraionForm
+    template_name = "../templates/staff_register.html"
+
+    def form_valid(self, form):
+        profile = form.save()
+        login(self.request, profile)
+        return redirect('/')
 
 
 def registration_view(request):
     context = {}
     if request.POST:
-        form = RegistrationForm(request.POST)
+        form = ActorRegistraionForm(request.POST)
         if form.is_valid():
             form.save()
 
@@ -20,7 +60,7 @@ def registration_view(request):
         else:
             context['registration_form'] = form
     else:  # GET request
-        form = RegistrationForm()
+        form = ActorRegistraionForm()
         context['registration_form'] = form
     return render(request, 'accounts/register.html', context)
 
