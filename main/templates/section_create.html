@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form enctype="multipart/form-data" method="POST">{% csrf_token %}
+    <table style="width:100%;">
+        {{section_form.as_table | safe}}
+    </table>
+    
+    <input type="submit" value="제출">
+</form>
+{% endblock %}

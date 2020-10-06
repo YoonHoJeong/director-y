@@ -8,4 +8,6 @@ urlpatterns = [
     path('actors/', views.actors, name='actors'),
     path('mypage/', views.mypage, name='mypage'),
     path('new/', views.new, name="new"),
+    path('section_create/', views.section_create, name="section_create"),
+    path('section/', views.section, name="section"),
 ]

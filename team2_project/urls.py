@@ -36,6 +36,8 @@ urlpatterns = [
     path('login/', login_view, name="login"),
     path('', include('main.urls')),
     path('actor_register/', actor_register.as_view(), name="actor_register"),
-    path('director_register/', director_register.as_view(), name="director_register"),
+    path('director_register/', director_register.as_view(),
+         name="director_register"),
     path('staff_register/', staff_register.as_view(), name="staff_register"),
+    path('summernote/', include('django_summernote.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

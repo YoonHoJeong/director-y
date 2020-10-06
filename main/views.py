@@ -3,6 +3,24 @@ from django.shortcuts import render, redirect
 
 from .models import Movie, Festival, Section, SPortfolio, ActorImage, ActorVideo
 from accounts.models import Actor
+from .forms import SectionForm
+
+
+def section(request):
+    all_sections = Section.objects.all()
+    return render(request, "section.html", {"all_sections": all_sections})
+
+
+def section_create(request):
+    if request.method == "POST":
+        filled_form = SectionForm(request.POST, request.FILES)
+
+        if filled_form.is_valid():
+            filled_form.save()
+            return redirect('/')
+
+    section_form = SectionForm()
+    return render(request, "section_create.html", {"section_form": section_form})
 
 
 def home(request):
