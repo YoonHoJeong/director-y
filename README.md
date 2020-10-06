@@ -24,18 +24,29 @@ logout, login, signup 등의 기능을 수행.
 
 1. Profile
 
-   - Actor, Director, Staff가 상속하는 모델.
-   - 3가지 모델이 모두 갖고있는 기본 정보들
+   - 로그인 / 인증에 사용하는 기본 모델.
+   - Actor, Director, Staff가 연결된 모델.
+   - 위 3가지 모델이 모두 갖고있는 기본 정보들
      - email, name, username, 등.
+   - u_type을 통해 위 3가지 모델 타입을 구분 (1: director, 2: actor, 3: staff)
 
 2. Actor
-   : 배우 모델 - Profile 모델을 상속. - company, height, weight, specialty, 등. - ActorImage, ActorVideo, Movie 모델이 Actor로 연결되어 있음(foreign key).
+   : 배우 모델
+
+   - Profile 모델과 one-to-one relationship.
+   - company, height, weight, specialty, 등. - ActorImage, ActorVideo, Movie 모델이 Actor로 연결되어 있음(foreign key).
 
 3. Director
-   : 감독 모델 - Profile 모델을 상속. - Movie 모델이 Director로 연결되어 있음(foreign key).
+   : 감독 모델
+
+   - Profile 모델과 one-to-one relationship.
+   - Movie 모델이 Director로 연결되어 있음(foreign key).
 
 4. Staff
-   : 스탭 모델 - Profile 모델을 상속. - SPortfolio, Movie 모델이 Staff로 연결되어 있음(foreign key). - 다양한 스탭 역할별 role(조명, 분장 등), 사용하는 tool(에프터이펙트, 포토샵, 카메라 기종 등).
+   : 스탭 모델
+   - Profile 모델과 one-to-one relationship.
+   - SPortfolio, Movie 모델이 Staff로 연결되어 있음(foreign key).
+   - 다양한 스탭 역할별 role(조명, 분장 등), 사용하는 tool(에프터이펙트, 포토샵, 카메라 기종 등).
 
 ## 2. main
 
