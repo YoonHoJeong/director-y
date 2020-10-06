@@ -28,9 +28,9 @@ class DirectorRegistraionForm(UserCreationForm):
     @transaction.atomic  # 모든 함수가 한번에 처리됨.
     def save(self):
         profile = super().save(commit=False)
-        # commit=False 바로 저장하지 않고 is_actor를 설정하고 저장
+        # commit=False 바로 저장하지 않고 u_type을 설정하고 저장
 
-        profile.is_director = True
+        profile.u_type = 1
         profile.save()
         director = Director.objects.create(profile=profile)
         director.awards = self.cleaned_data.get('awards')
@@ -54,9 +54,8 @@ class ActorRegistraionForm(UserCreationForm):
     @transaction.atomic  # 모든 함수가 한번에 처리됨.
     def save(self):
         profile = super().save(commit=False)
-        # commit=False 바로 저장하지 않고 is_actor를 설정하고 저장
 
-        profile.is_actor = True
+        profile.u_type = 2
         profile.save()
         actor = Actor.objects.create(profile=profile)
         actor.company = self.cleaned_data.get('company')
@@ -79,9 +78,8 @@ class StaffRegistraionForm(UserCreationForm):
     @transaction.atomic  # 모든 함수가 한번에 처리됨.
     def save(self):
         profile = super().save(commit=False)
-        # commit=False 바로 저장하지 않고 is_actor를 설정하고 저장
 
-        profile.is_staff = True
+        profile.u_type = 3
         profile.save()
         staff = Staff.objects.create(profile=profile)
         staff.role = self.cleaned_data.get('role')

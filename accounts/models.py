@@ -72,10 +72,7 @@ class Profile(AbstractBaseUser):
     #     return json.loads(self.tag_list)
 
     education = models.CharField(max_length=20, null=True, blank=True)
-
-    is_director = models.BooleanField(default=False)
-    is_actor = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
+    u_type = models.PositiveSmallIntegerField(null=True)
 
     date_joined = models.DateTimeField(
         verbose_name='date joined', auto_now_add=True)
@@ -102,16 +99,17 @@ class Profile(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
-    """
-        introduction
-        birth
-        education
-        awards
-        sns link
-        profile image
-        
+    def user_type(self):
+        type = self.u_type
 
-    """
+        if type == 1:
+            return "director"
+        elif type == 2:
+            return "actor"
+        elif type == 3:
+            return "staff"
+        else:
+            return "unknown"
 
 
 class Director(models.Model):
