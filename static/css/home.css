@@ -1,0 +1,84 @@
+.welcome-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-box h1 {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.auth {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+/* lower container */
+
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+}
+.movies .movie {
+  margin-right: 20px;
+}
+
+.movie .movie-info {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.movie-thumbnail img {
+  /* 가로세로 1:1.3비율 */
+  width: 150px;
+  height: 195px;
+}
+
+.lower-container .lower-container__title {
+  font-size: 18px;
+}
+
+.lower-container .lower-container__content {
+  margin-top: 20px;
+}
+
+.box-frame {
+  position: absolute;
+
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(0, 0, 0, 1);
+}
+
+.box-frame.top-left {
+  top: 0;
+  left: 0;
+
+  border-right: none;
+  border-bottom: none;
+}
+.box-frame.top-right {
+  top: 0;
+  right: 0;
+
+  border-left: none;
+  border-bottom: none;
+}
+.box-frame.bottom-left {
+  bottom: 0;
+  left: 0;
+
+  border-right: none;
+  border-top: none;
+}
+.box-frame.bottom-right {
+  bottom: 0;
+  right: 0;
+
+  border-left: none;
+  border-top: none;
+}

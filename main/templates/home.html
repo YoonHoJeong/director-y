@@ -11,6 +11,10 @@ DIRECTORY - Home
 
 {% block upper-container %}
 <div class="welcome-box">
+    <div class="box-frame top-left"></div>
+    <div class="box-frame top-right"></div>
+    <div class="box-frame bottom-left"></div>
+    <div class="box-frame bottom-right"></div>
     <h1>Welcome,</h1>
     {% if request.user.is_authenticated %}
     <h1>
