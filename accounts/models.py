@@ -55,21 +55,6 @@ class Profile(AbstractBaseUser):
                                blank=True,
                                upload_to='image/avatar')
     intro = models.TextField(default="")  # 소개글
-    # sns = models.URLFied() - 여러개 선택 가능
-    # sns_list = models.CharField(max_length=200)
-    # def set_sns_list(self, x):
-    #     self.sns_list = json.dumps(x)
-
-    # def get_sns_list(self):
-    #     return json.loads(self.sns_list)
-
-    # tag_list = models.CharField(max_length=200)
-
-    # def set_tag_list(self, x):
-    #     self.tag_list = json.dumps(x)
-
-    # def get_tag_list(self):
-    #     return json.loads(self.tag_list)
 
     education = models.CharField(max_length=20, null=True, blank=True)
     u_type = models.PositiveSmallIntegerField(null=True)
@@ -113,23 +98,12 @@ class Profile(AbstractBaseUser):
 
 
 class Director(models.Model):
-    # 추가로 들어갈 field
-    # awards - 수상 내역
     awards = models.TextField()
     profile = models.OneToOneField(
         Profile, on_delete=models.CASCADE, primary_key=True)
 
 
 class Actor(models.Model):
-    """
-        company
-        height
-        weight
-        favorite_character_img
-        favorite_character_title
-        profile_video_title
-        profile_video_url
-    """
     profile = models.OneToOneField(
         Profile, on_delete=models.CASCADE, primary_key=True)
 
@@ -142,18 +116,8 @@ class Actor(models.Model):
     favorite_image = models.ImageField(null=True, blank=True)
     specialty = models.CharField(max_length=30)
 
-# profile_video_title = models.CharField(
-#     max_length=20, null=True, blank=False)
-# profile_video_url = models.URLField(null=True, blank=False)
-
 
 class Staff(models.Model):
-    """
-        role
-        profile_img_title
-        profile_img
-    """
-
     # profile_... 들은 프로필에 보여질 대표 포토폴리오의 이미지,영상,제목
     profile = models.OneToOneField(
         Profile, on_delete=models.CASCADE, primary_key=True)
@@ -162,11 +126,8 @@ class Staff(models.Model):
 
     tool_list = models.CharField(max_length=200)
 
-    # def set_tag_list(self, x):
-    #     self.tool_list = json.dumps(x)
 
-    # def get_tag_list(self):
-    #     return json.loads(self.tool_list)
-
-    # profile_img = models.ImageField(null=True, blank=True)
-    # profile_img_title = models.CharField(max_length=20, null=True)
+class SNS(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    type = models.CharField(max_length=30)
+    url = models.URLField()

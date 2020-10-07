@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Profile, Director, Actor, Staff
+from .models import Profile, Director, Actor, Staff, SNS
 
 # Register your models here.
 
@@ -20,3 +20,4 @@ admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Director)
 admin.site.register(Actor)
 admin.site.register(Staff)
+admin.site.register(SNS)
