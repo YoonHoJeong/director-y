@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}DIRECTORY - Actordetail{% endblock %}
+{% block link %}{% static 'css/actordetail.css' %}{% endblock %}
+
+{% block content %}
+
+<div container=actor_profile>
+    <h2>{{my_actor.profile.name}}</h2>
+    <h4>{{my_actor.profile.name_eng}}</h4>
+    <br>
+    <p><img src="{{ my_actor.profile.avatar.url }}" width="265" height="380" alt="Actor_Image"></p>
+    <p>소개 : {{my_actor.profile.intro}}</p>
+    <p>출생 : {{my_actor.profile.date_of_birth}}</p>
+    <p>신체 : {{my_actor.height}}/{{my_actor.weight}}</p>
+    <p>특기 : {{my_actor.specialty}}</p>
+    <p>소속 : {{my_actor.company}}</p>
+</div>
+
+    <br>
+    <h4>Profile</h4>
+    <p><img src="{{ my_image.image.url }}" width="200" height="300" alt="Actor_Image"></p>
+    
+    <br>
+    <h4>자기소개</h4>
+    <p>{{my_actor.profile.intro}}</p>
+
+    <br>
+    <h4>필모그래피</h4>
+
+    <br>
+    <h4>영상</h4>
+
+    <br>
+    <h4>추가 자료</h4>
+
+
+</div>
+
+{% endblock %}

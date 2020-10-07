@@ -23,7 +23,8 @@
             <a href="{% url 'login' %}">Login</a>
         </div>
     {% endif %}
-    <link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" type='text/css' href="{% block link %} {% endblock %}">
 </head>
 
 <body>
@@ -33,7 +34,7 @@
             <div class="nav-bar__category">
                 <div class="category-item"><a href="{% url 'directors' %}"></a> DIRECTOR</div>
                 <div class="category-item"><a href="{% url 'staffs' %}"></a> STAFF</div>
-                <div class="category-item"><a href="{% url 'actors' %}"></a> ACTOR</div>
+                <div class="category-item"><a href="{% url 'actors' %}">ACTOR</a></div>
                 <div class="category-item"><a href="{% url 'mypage' %}"></a> MYPAGE</div>
             </div>
         </nav>

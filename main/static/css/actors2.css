@@ -1,0 +1,22 @@
+.actor_recommendation{
+    display: inline-flex;
+    align-items: center;
+    margin: 30px;
+    border: 5px solid black;
+    display: flex;
+}
+
+.all_portfolio2, .all_portfolio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+    display: inline-flex;
+}
+
+.all_portfolio{
+    border: 1px solid black;
+}
+a{
+    text-decoration: none;
+}

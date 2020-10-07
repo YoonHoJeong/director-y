@@ -8,4 +8,5 @@ urlpatterns = [
     path('actors/', views.actors, name='actors'),
     path('mypage/', views.mypage, name='mypage'),
     path('new/', views.new, name="new"),
+    path('actordetail/<int:actor_profile_id>', views.actordetail, name='actordetail')
 ]
