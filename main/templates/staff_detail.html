@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+DIRECTORY - StaffDetail
+{% endblock %}
+
+{% block content %}
+
+<div container=staff_profile>
+    <h2>{{my_staff.profile.name}}</h2>
+    <h4>{{my_staff.profile.name_eng}}</h4>
+    <br>
+    <p><img src="{{ my_staff.profile.avatar.url }}" width="265" height="380" alt="Staff_Image"></p>
+    <p>소개 : {{my_staff.profile.intro}}</p>
+    <p>특기 : {{my_staff.specialty}}</p>
+    <p>장비 : {{my_staff.tools}}</p>
+    <p>전문분야 : {{my_staff.role}}</p>
+    <p>SNS : {{my_staff.sns}}</p>
+</div>
+
+<div class="staff_portfolio">
+    <br>
+    <h4>Portfolio</h4>
+    
+    <br>
+</div>
+<br>

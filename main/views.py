@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 # Create your views here.
 
 from .models import Movie, Festival, Section, SPortfolio, ActorImage, ActorVideo
@@ -14,13 +14,18 @@ def home(request):
 def actors(request):
     all_portfolio = Actor.objects.all()
 
-    return render(request, "home.html", {"all_portfolio": all_portfolio})
-
+   return render(request, "home.html", {"all_portfolio": all_portfolio})
 
 def staffs(request):
     all_portfolio = SPortfolio.objects.all()
+    random_portfolio = SPortfolio.objects.all().order_by('?')[:1]
 
-    return render(request, "home.html", {"all_portfolio": all_portfolio})
+    return render(request, "staffs.html", {"all_portfolio": all_portfolio})
+
+def staff_detail(request, staff_profile_id):
+    my_staff = get_object_or_404(Staff, pk=staff_profile_id)
+    
+    return render(request, 'staff_detail.html', {my_staff: my_staff})
 
 
 def directors(request):

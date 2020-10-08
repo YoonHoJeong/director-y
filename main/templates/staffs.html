@@ -6,21 +6,31 @@ DIRECTORY - Home-Staff
 {% endblock %}
 
 {% block content %}
-<div class="home">
-    <div class="welcome-box">
-        <h1>Welcome,</h1> <br />
-        <h1>Director 김멋사</h1>
-    </div>
-    <br />
-    <br />
-    <ul class="portfolios">
-        <h2>HOT STAFF</h2>
-        {% for portfolio in all_portfolio %}
-        <div>
-            {{portfolio.title}}
+
+<br>
+
+<div class="staff_recommendation">
+    <h2>Hot Now!</h2> <br>
+    {% for portfolio in random_portfolio %}
+    <a href="{% url 'staff_detail' portfolio.profile_id %}">
+        <div class="all_portfolio2">
+            <p><img src="{{ portfolio.profile.avatar.url }}" width="265" height="380" alt="Staff_Image"></p>
+            <p>{{ portfolio.profile.name }}</p>
         </div>
-        {% endfor %}
-    </ul>
+    </a>
+    {% endfor %}
+</div>
+
+<br>
+<div class>
+    {% for portfolio in all_portfolio %}
+    <a href="{% url 'staff_detail' portfolio.profile_id %}">
+        <div class="all_portfolio">
+            <p><img src="{{ portfolio.profile.avatar.url }}" width="265" height="380" alt="Staff_Image"></p>
+            <p>{{ portfolio.profile.name }}</p>
+        </div>
+    </a>
+    {% endfor %}
 </div>
 
 {% endblock %}
