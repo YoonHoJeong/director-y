@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}DIRECTORY - Home-Actors2{% endblock %}
+{% block link %}{% static 'css/actors2.css' %}{% endblock %}
+
+{% block content %}
+
+<br>
+
+<div class="actor_recommendation">
+    <h2>오늘의 배우</h2> <br>
+    {% for portfolio in random_portfolio %}
+    <a href="{% url 'actordetail' portfolio.profile_id %}">
+        <div class="all_portfolio2">
+            <p><img src="{{ portfolio.profile.avatar.url }}" width="265" height="380" alt="Actor_Image"></p>
+            <p>{{ portfolio.profile.name }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+<br>
+<div class>
+    {% for portfolio in all_portfolio %}
+    <a href="{% url 'actordetail' portfolio.profile_id %}">
+        <div class="all_portfolio">
+            <p><img src="{{ portfolio.profile.avatar.url }}" width="265" height="380" alt="Actor_Image"></p>
+            <p>{{ portfolio.profile.name }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+{% endblock %}

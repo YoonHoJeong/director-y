@@ -14,7 +14,8 @@ def home(request):
 def actors(request):
     all_portfolio = Actor.objects.all()
 
-   return render(request, "home.html", {"all_portfolio": all_portfolio})
+    random_portfolio = Actor.objects.all().order_by('?')[:4]
+    return render(request, "actors2.html", {"all_portfolio": all_portfolio, "random_portfolio" : random_portfolio})
 
 def staffs(request):
     all_portfolio = SPortfolio.objects.all()
@@ -30,7 +31,6 @@ def staff_detail(request, staff_profile_id):
 
 def directors(request):
     all_portfolio = Movie.objects.all()
-
     return render(request, "home.html", {"all_portfolio": all_portfolio})
 
 
@@ -76,3 +76,7 @@ def create(request):
         # print(request.FILES)
 
         return redirect("home")
+
+def actordetail(request, actor_profile_id):
+    my_actor = get_object_or_404(Actor, pk=actor_profile_id)
+    return render(request, 'actordetail.html', {'my_actor' : my_actor})
