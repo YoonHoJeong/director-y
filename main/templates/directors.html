@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+DIRECTORY - Home-Directors
+{% endblock %}
+
+{% block content %}
+<div class="director">
+    <div class="director_pro">
+        <div>
+            <h1>{{director_profile.profile.username}}</h1>
+        </div>
+            <br/>
+        <div>
+            <img src="{{director_profile.profile.avatar.url}}" width="300px" height="300px" />          
+            <div>
+                <h6>수상내역</h6>                
+                {{director_profile.awards}}
+            </div>
+        </div>      
+        
+    </div>
+    <br />
+    <br />
+    <ul class="portfolios">
+        <h2>포토폴리오 목록</h2>
+        <div class="dportfolios">
+            {% for portfolio in all_portfolio %}
+            <div class="poster-container">
+                <div>
+                    <img src="{{portfolio.poster.url}}" width="100px" height="100px" />
+                </div>
+                <div>
+                    {{portfolio.title}}
+                </div>
+                <div>
+                    {{portfolio.production_year}}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </ul>
+</div>
+
+{% endblock %}

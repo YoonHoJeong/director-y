@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h2>Register</h2>
+
+<a href="{% url 'director_register' %}">director</a>
+<a href="{% url 'actor_register' %}">actor</a>
+<a href="{% url 'staff_register' %}">staff</a>
+
+{% endblock content %}
