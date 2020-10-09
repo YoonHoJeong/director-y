@@ -21,10 +21,10 @@
         <nav class="nav-bar">
             <div class="nav-bar__icon"><a href="{% url 'home' %}">DIRECTORY</a></div>
             <div class="nav-bar__category">
-                <div class="category-item"><a href="{% url 'directors' %}">DIRECTOR</a> </div>
-                <div class="category-item"><a href="{% url 'staffs' %}">STAFF</a> </div>
-                <div class="category-item"><a href="{% url 'actors' %}">ACTOR</a></div>
-                <div class="category-item"><a href="{% url 'mypage' %}">MYPAGE</a> </div>
+                <div class="category-item" name="directors"><a href="{% url 'directors' %}">DIRECTOR</a> </div>
+                <div class="category-item" name="staffs"><a href="{% url 'staffs' %}">STAFF</a> </div>
+                <div class="category-item" name="actors"><a href="{% url 'actors' %}">ACTOR</a></div>
+                <div class="category-item" name="mypage"><a href="{% url 'mypage' %}">MYPAGE</a> </div>
             </div>
         </nav>
     </header>
@@ -37,5 +37,7 @@
         
     </footer>
 </body>
+
+<script src="{% static 'js/header.js' %}"></script>
 
 </html>

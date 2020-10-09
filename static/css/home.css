@@ -1,8 +1,13 @@
 .welcome-box {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  max-width: 1300px;
+  height: 350px;
 }
 
 .welcome-box h1 {
