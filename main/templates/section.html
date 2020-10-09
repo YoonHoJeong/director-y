@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% for section in all_sections %}
+    <h2>
+        {{section.title}}
+    </h2>
+    <img src="{{section.thumbnail}}" alt="{{section.title}}">
+    <div>section content : 
+        <strong>{{section.content | safe}}</strong>
+    </div>
+
+{% endfor %}
+
+{% endblock %}

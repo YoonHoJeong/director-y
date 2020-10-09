@@ -1,33 +1,52 @@
-{% extends 'base.html' %}
+{% extends 'base_home.html' %}
 {% load static %}
 
 {% block title %}
-DIRECTORY - Home
+DIRECTORY - Mypage
 {% endblock %}
 
-{% block content %}
-<div class="home">
-    <div class="welcome-box">
-        {% if request.user.is_authenticated %}
-        <h1>Welcome,</h1>
-        <h1>{{request.user.username}}</h1> 
-        <p>
-            <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'logout' %}">Logout</a>
-        </p>
-        {% else %}
-    </div>
-    <br />
-    <br />
-    <ul class="directors">
-        <h2>HOT DIRECTOR</h2>
-        <div class="dportfolios">
-            {% for portfolio in all_portfolio %}
-            <div class="poster-container">
-                <img src="{{portfolio.poster.url}}" width="100px" height="100px" />
-            </div>
-            {% endfor %}
+{% block css %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/mypage.css' %}">
+<link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}" />
+{% endblock %}
+
+{% block upper-container %}
+<div class="welcome-box">
+
+    <div class="box-frame top-left"></div>
+    <div class="box-frame top-right"></div>
+    <div class="box-frame bottom-left"></div>
+    <div class="box-frame bottom-right"></div>
+
+    <div class="profile">
+        <div class="profile-name">
+            <p class="profile-name__kor">김보라</p> <p class="profile-name__eng">BORA KIM</p> 
         </div>
-    </ul>
+        <div class="profile-info">
+            <div class="profile-image">image
+                <img src="" alt="">
+
+            </div>
+            <div class="profile-detail">
+                <ul class="profile-detail-list">
+                    <li class="profile-detail-item">
+                        <div class="profile-detail-item__title">소개</div>
+                        <div class="profile-detail-item__content">저는 감독</div>
+                    </li>
+                    <li class="profile-detail-item">
+                        <div class="profile-detail-item__title">출생</div>
+                        <div class="profile-detail-item__content">1991</div>
+                    </li>
+                    <li class="profile-detail-item">
+                        <div class="profile-detail-item__title">학력</div>
+                        <div class="profile-detail-item__content">콜럼비아대학교 영화학과</div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+    </div>
+
 </div>
 {% endblock %}
