@@ -1,4 +1,4 @@
-{% extends 'base_home.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}
@@ -9,55 +9,56 @@ DIRECTORY - Home
 <link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}" />
 {% endblock %}
 
-{% block upper-container %}
-<div class="welcome-box">
-    <div class="box-frame top-left"></div>
-    <div class="box-frame top-right"></div>
-    <div class="box-frame bottom-left"></div>
-    <div class="box-frame bottom-right"></div>
-    <h1>Welcome,</h1>
-    {% if request.user.is_authenticated %}
-    <h1>
-    {% if request.user.u_type == 1 %}
-        Director
-    {% elif request.user.u_type == 2 %}
-        Actor
-    {% elif request.user.u_type == 3 %}
-        Staff
-    <!-- <h1>{{request.user.u_type}}</h1> -->
-    {% endif  %}
-    
-    {{request.user.username}}
-    </h1>
-    <div class="auth">
-        <a href="{% url 'logout' %}">Logout</a>
+{% block content %}
+<div class="upper-container">
+    <div class="welcome-box">
+        <div class="box-frame top-left"></div>
+        <div class="box-frame top-right"></div>
+        <div class="box-frame bottom-left"></div>
+        <div class="box-frame bottom-right"></div>
+        <h1>Welcome,</h1>
+        {% if request.user.is_authenticated %}
+        <h1>
+        {% if request.user.u_type == 1 %}
+            Director
+        {% elif request.user.u_type == 2 %}
+            Actor
+        {% elif request.user.u_type == 3 %}
+            Staff
+        <!-- <h1>{{request.user.u_type}}</h1> -->
+        {% endif  %}
+        
+        {{request.user.username}}
+        </h1>
+        <div class="auth">
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+        {% else %}
+        <h1>Please Log in or Register</h1> 
+        <div class="auth">
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        </div>
+        {% endif %}
     </div>
-    {% else %}
-    <h1>Please Log in or Register</h1> 
-    <div class="auth">
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'register' %}">Register</a>
-    </div>
-    {% endif %}
 </div>
-{% endblock %}
-
-{% block lower-container %}
-<h2 class="lower-container__title">HOT DIRECTOR</h2>
-<ul class="lower-container__content">
-    <ul class="movies">
-        {% for portfolio in all_portfolio %}
-        <li class="movie">
-            <div class="movie-thumbnail">
-                <img src="{{portfolio.poster.url}}" />
-            </div>
-            <div class="movie-info">
-                <p>
-                    {{portfolio.title}}
-                </p>
-            </div>
-        </li>
-        {% endfor %}
+<div class="lower-container">
+    <h2 class="lower-container__title">HOT DIRECTOR</h2>
+    <ul class="lower-container__content">
+        <ul class="movies">
+            {% for portfolio in all_portfolio %}
+            <li class="movie">
+                <div class="movie-thumbnail">
+                    <img src="{{portfolio.poster.url}}" />
+                </div>
+                <div class="movie-info">
+                    <p>
+                        {{portfolio.title}}
+                    </p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
     </ul>
-</ul>
+</div>
 {% endblock %}
