@@ -3,6 +3,24 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Movie, Festival, Section, SPortfolio, ActorImage, ActorVideo
 from accounts.models import Actor
+from .forms import SectionForm
+
+
+def section(request):
+    all_sections = Section.objects.all()
+    return render(request, "section.html", {"all_sections": all_sections})
+
+
+def section_create(request):
+    if request.method == "POST":
+        filled_form = SectionForm(request.POST, request.FILES)
+
+        if filled_form.is_valid():
+            filled_form.save()
+            return redirect('/')
+
+    section_form = SectionForm()
+    return render(request, "section_create.html", {"section_form": section_form})
 
 
 def home(request):
@@ -14,7 +32,8 @@ def home(request):
 def actors(request):
     all_portfolio = Actor.objects.all()
 
-    return render(request, "home.html", {"all_portfolio": all_portfolio})
+    random_portfolio = Actor.objects.all().order_by('?')[:4]
+    return render(request, "actors2.html", {"all_portfolio": all_portfolio, "random_portfolio" : random_portfolio})
 
 def staffs(request):
     all_portfolio = SPortfolio.objects.all()
@@ -30,7 +49,6 @@ def staff_detail(request, staff_profile_id):
 
 def directors(request):
     all_portfolio = Movie.objects.all()
-
     return render(request, "home.html", {"all_portfolio": all_portfolio})
 
 
@@ -76,3 +94,7 @@ def create(request):
         # print(request.FILES)
 
         return redirect("home")
+
+def actordetail(request, actor_profile_id):
+    my_actor = get_object_or_404(Actor, pk=actor_profile_id)
+    return render(request, 'actordetail.html', {'my_actor' : my_actor})

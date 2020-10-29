@@ -55,10 +55,10 @@ class Section(models.Model):
             - video(undefined)
             - 
     """
-    mid = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    mid = models.ForeignKey(Movie, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=100, blank=False)
     thumbnail = models.ImageField(null=True, blank=True)
-    # content : smart editor에서 제공.
+    content = models.TextField(default="")
 
     def __str__(self):
         return self.title

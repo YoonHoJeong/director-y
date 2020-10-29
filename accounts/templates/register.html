@@ -1,12 +1,49 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block css %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}" />
+<link rel="stylesheet" type='text/css' href="{% static 'css/register.css' %}" />
+{% endblock %}
 
 {% block content %}
+<div class="upper-container">
+    <div class="register-box">
+        <div class="box-frame top-left"></div>
+        <div class="box-frame top-right"></div>
+        <div class="box-frame bottom-left"></div>
+        <div class="box-frame bottom-right"></div>
 
-<h2>Register</h2>
-
-<a href="{% url 'director_register' %}">director</a>
-<a href="{% url 'actor_register' %}">actor</a>
-<a href="{% url 'staff_register' %}">staff</a>
+        <ul class="job-list">
+            <li class="job-item">
+                <a href="{% url 'director_register' %}">
+                    <div class="job">
+                        <span class="job-eng">DIRECTOR</span>
+                        <span class="job-kor">감독</span>
+                    </div>
+                </a>
+            </li>
+            <li class="job-item">
+                <a href="{% url 'actor_register' %}">
+                    <div class="job">
+                        <span class="job-eng">ACTOR</span>
+                        <span class="job-kor">배우</span>            
+                    </div>
+                </a>
+            </li>
+            <li class="job-item">
+                <a href="{% url 'staff_register' %}">
+                    <div class="job">
+                        <span class="job-eng">STAFF</span>
+                        <span class="job-kor">스탭</span>            
+                    </div>
+                </a>
+            </li>
+        </ul>
+        
+        
+        
+    </div>
+</div>
 
 {% endblock content %}

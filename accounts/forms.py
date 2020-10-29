@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
 from django.db import transaction
 
-from .models import Profile, Actor, Director, Staff
+from .models import Profile, Actor, Director, Staff, SNS
 
 
 class RegistrationForm(UserCreationForm):
@@ -18,7 +18,11 @@ class RegistrationForm(UserCreationForm):
 
 
 class DirectorRegistraionForm(UserCreationForm):
+    SNS_CHOICES = ((1, 'instagram'), (2, 'youtube'), (3, 'facebook'))
+
     awards = forms.CharField(widget=forms.Textarea)
+    sns_type = forms.ChoiceField(choices=SNS_CHOICES)
+    sns_url = forms.CharField(max_length=100)
 
     class Meta(UserCreationForm.Meta):
         model = Profile
@@ -32,9 +36,19 @@ class DirectorRegistraionForm(UserCreationForm):
 
         profile.u_type = 1
         profile.save()
+
         director = Director.objects.create(profile=profile)
         director.awards = self.cleaned_data.get('awards')
         director.save()
+
+        sns_type_input = self.cleaned_data.get('sns_type')
+        sns_url_input = self.cleaned_data.get('sns_url')
+
+        if sns_type_input and sns_url_input:
+            sns = SNS.objects.create(profile=profile)
+            sns.type = sns_type_input
+            sns.url = sns_url_input
+            sns.save()
         return profile
 
 
@@ -45,6 +59,11 @@ class ActorRegistraionForm(UserCreationForm):
     height = forms.IntegerField(required=True)
     weight = forms.IntegerField(required=True)
     specialty = forms.CharField(max_length=30, required=True)
+
+    SNS_CHOICES = ((1, 'instagram'), (2, 'youtube'), (3, 'facebook'))
+
+    sns_type = forms.ChoiceField(choices=SNS_CHOICES)
+    sns_url = forms.CharField(max_length=100)
 
     class Meta(UserCreationForm.Meta):
         model = Profile
@@ -63,12 +82,27 @@ class ActorRegistraionForm(UserCreationForm):
         actor.weight = self.cleaned_data.get('weight')
         actor.specialty = self.cleaned_data.get('specialty')
         actor.save()
+
+        sns_type_input = self.cleaned_data.get('sns_type')
+        sns_url_input = self.cleaned_data.get('sns_url')
+
+        if sns_type_input and sns_url_input:
+            sns = SNS.objects.create(profile=profile)
+            sns.type = sns_type_input
+            sns.url = sns_url_input
+            sns.save()
+
         return profile
 
 
 class StaffRegistraionForm(UserCreationForm):
     role = forms.CharField(max_length=30)
     tool_list = forms.CharField(max_length=200)
+
+    SNS_CHOICES = ((1, 'instagram'), (2, 'youtube'), (3, 'facebook'))
+
+    sns_type = forms.ChoiceField(choices=SNS_CHOICES)
+    sns_url = forms.CharField(max_length=100)
 
     class Meta(UserCreationForm.Meta):
         model = Profile
@@ -85,6 +119,16 @@ class StaffRegistraionForm(UserCreationForm):
         staff.role = self.cleaned_data.get('role')
         staff.tool_list = self.cleaned_data.get('tool_list')
         staff.save()
+
+        sns_type_input = self.cleaned_data.get('sns_type')
+        sns_url_input = self.cleaned_data.get('sns_url')
+
+        if sns_type_input and sns_url_input:
+            sns = SNS.objects.create(profile=profile)
+            sns.type = sns_type_input
+            sns.url = sns_url_input
+            sns.save()
+
         return profile
 
 

@@ -1,0 +1,45 @@
+.register-box {
+  width: 100%;
+  max-width: 1300px;
+  height: 500px;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.job-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 80%;
+}
+
+.job {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.2em;
+  font-weight: 600;
+
+  line-height: 30px;
+
+  letter-spacing: 0.4em;
+}
+
+.job:hover {
+  background-color: #474344;
+  color: white;
+}
+
+.job-eng {
+  margin-top: 10px;
+}
