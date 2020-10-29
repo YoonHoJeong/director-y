@@ -1,36 +1,35 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-DIRECTORY - Home-Staff
-{% endblock %}
+{% block title %}DIRECTORY - Home-Staff{% endblock %}
 
 {% block content %}
-
-<br>
-
-<div class="staff_recommendation">
-    <h2>Hot Now!</h2> <br>
-    {% for portfolio in random_portfolio %}
-    <a href="{% url 'staff_detail' portfolio.profile_id %}">
-        <div class="all_portfolio2">
-            <p><img src="{{ portfolio.profile.avatar.url }}" width="265" height="380" alt="Staff_Image"></p>
-            <p>{{ portfolio.profile.name }}</p>
-        </div>
-    </a>
-    {% endfor %}
+<div class="upper-container">
+    <div class="welcome-box">
+        <div class="box-frame top-left"></div>
+        <div class="box-frame top-right"></div>
+        <div class="box-frame bottom-left"></div>
+        <div class="box-frame bottom-right"></div>
+    </div>
 </div>
-
-<br>
-<div class>
-    {% for portfolio in all_portfolio %}
-    <a href="{% url 'staff_detail' portfolio.profile_id %}">
-        <div class="all_portfolio">
-            <p><img src="{{ portfolio.profile.avatar.url }}" width="265" height="380" alt="Staff_Image"></p>
-            <p>{{ portfolio.profile.name }}</p>
-        </div>
-    </a>
-    {% endfor %}
+<div class="lower-container">
+    <h2 class="lower-container__title">HOT STAFF</h2>
+    <ul class="lower-container__content">
+        <ul class="portfolios">
+            {% for portfolio in all_portfolio %}
+            <li class="portfolio">
+                <div class="portfolio-thumbnail">
+                    <img src="{{portfolio.thumbnail.url}}" />
+                </div>
+                <div class="movie-info">
+                    <p>
+                        {{portfolio.title}}
+                    </p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </ul>
 </div>
 
 {% endblock %}
