@@ -14,7 +14,7 @@ def home(request):
 def actors(request):
     all_portfolio = Actor.objects.all()
 
-   return render(request, "home.html", {"all_portfolio": all_portfolio})
+    return render(request, "home.html", {"all_portfolio": all_portfolio})
 
 def staffs(request):
     all_portfolio = SPortfolio.objects.all()
