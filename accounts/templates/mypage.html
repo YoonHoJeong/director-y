@@ -1,0 +1,42 @@
+{% extends 'base_border.html' %}
+{% load static %}
+
+{% block title %}
+DIRECTORY - Mypage
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/mypage.css' %}">
+<link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}" />
+{% endblock %}
+
+{% block upper-container %}
+<div class="profile">
+    <div class="profile-name">
+        <p class="profile-name__kor">{{user.name}}</p>
+        <p class="profile-name__eng">{{user.name_eng}}</p>
+    </div>
+    <div class="profile-info">
+        <div class="profile-image" style="background-image: url({{user.avatar.url}});">image
+
+        </div>
+        <div class="profile-detail">
+            <ul class="profile-detail-list">
+                <li class="profile-detail-item">
+                    <div class="profile-detail-item__title">소개</div>
+                    <div class="profile-detail-item__content">{{user.intro}}</div>
+                </li>
+                <li class="profile-detail-item">
+                    <div class="profile-detail-item__title">출생</div>
+                    <div class="profile-detail-item__content">{{user.date_of_birth}}</div>
+                </li>
+                <li class="profile-detail-item">
+                    <div class="profile-detail-item__title">학력</div>
+                    <div class="profile-detail-item__content">{{user.education}}</div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

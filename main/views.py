@@ -51,11 +51,6 @@ def directors(request):
     all_portfolio = Movie.objects.all()
     return render(request, "home.html", {"all_portfolio": all_portfolio})
 
-
-def mypage(request):
-    return render(request, "mypage.html")
-
-
 def new(request):
     return render(request, 'create.html')
 

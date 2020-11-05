@@ -92,3 +92,9 @@ def login_view(request):
 
     context['login_form'] = form
     return render(request, 'accounts/login.html', context)
+
+def mypage(request):
+    user_id = request.user.id
+    user = Profile.objects.get(pk = user_id)
+
+    return render(request, 'mypage.html', {"user": user})

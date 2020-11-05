@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    {% block title%}
+    {% endblock %}
+    </title>
+    <link rel="stylesheet" type='text/css' href="{% static 'css/reset.css' %}" />
+    <link rel="stylesheet" type='text/css' href="{% static 'css/base.css' %}" />
+    {% block css %}
+    {% endblock %}
+    {% block js %}
+    {% endblock %}
+    <script src="{% static 'js/header.js' %}"></script>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="nav-bar__icon"><a href="{% url 'home' %}">DIRECTORY</a></div>
+            <div class="nav-bar__category">
+                <div class="category-item" name="directors"><a href="{% url 'directors' %}">DIRECTOR</a> </div>
+                <div class="category-item" name="staffs"><a href="{% url 'staffs' %}">STAFF</a> </div>
+                <div class="category-item" name="actors"><a href="{% url 'actors' %}">ACTOR</a></div>
+                <div class="category-item" name="mypage"><a href="{% url 'mypage' %}">MYPAGE</a> </div>
+            </div>
+        </nav>
+    </header>
+    {% block content %}
+    
+    {% endblock %}
+</body>
+
+
+</html>

@@ -4,6 +4,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 from main import views
 from accounts.views import (
     register,
@@ -13,6 +14,7 @@ from accounts.views import (
     actor_register,
     director_register,
     staff_register,
+    mypage,
 )
 urlpatterns = [
     path('register/', register, name="register"),
@@ -22,5 +24,6 @@ urlpatterns = [
     path('director_register/', director_register.as_view(),
          name="director_register"),
     path('staff_register/', staff_register.as_view(), name="staff_register"),
+    path('my_page/', mypage, name="mypage"),
 
 ]

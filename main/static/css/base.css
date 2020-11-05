@@ -95,6 +95,32 @@ body {
   align-items: center;
 }
 
+.welcome-box {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1300px;
+  height: fit-content;
+  min-height: 350px;
+
+  padding: 40px;
+}
+
+.welcome-box h1 {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.auth {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
 .lower-container {
   flex: 1;
   color: #fbf8f3;

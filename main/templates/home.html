@@ -1,64 +1,48 @@
-{% extends 'base.html' %}
+{% extends 'base_border.html' %}
 {% load static %}
 
-{% block title %}
-DIRECTORY - Home
-{% endblock %}
+{% block title %}DIRECTORY - Home{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}" />
 {% endblock %}
 
-{% block content %}
-<div class="upper-container">
-    <div class="welcome-box">
-        <div class="box-frame top-left"></div>
-        <div class="box-frame top-right"></div>
-        <div class="box-frame bottom-left"></div>
-        <div class="box-frame bottom-right"></div>
-        <h1>Welcome,</h1>
-        {% if request.user.is_authenticated %}
-        <h1>
-        {% if request.user.u_type == 1 %}
-            Director
-        {% elif request.user.u_type == 2 %}
-            Actor
-        {% elif request.user.u_type == 3 %}
-            Staff
-        <!-- <h1>{{request.user.u_type}}</h1> -->
-        {% endif  %}
-        
-        {{request.user.username}}
-        </h1>
-        <div class="auth">
-            <a href="{% url 'logout' %}">Logout</a>
-        </div>
-        {% else %}
-        <h1>Please Log in or Register</h1> 
-        <div class="auth">
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'register' %}">Register</a>
-        </div>
-        {% endif %}
-    </div>
-</div>
-<div class="lower-container">
-    <h2 class="lower-container__title">HOT DIRECTOR</h2>
-    <ul class="lower-container__content">
-        <ul class="movies">
-            {% for portfolio in all_portfolio %}
-            <li class="movie">
-                <div class="movie-thumbnail">
-                    <img src="{{portfolio.poster.url}}" />
-                </div>
-                <div class="movie-info">
-                    <p>
-                        {{portfolio.title}}
-                    </p>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
+{% block upper-container %}
+
+{% if user.is_authenticated %}
+<h1>
+    Welcome,
+    {% if request.user.u_type == 1 %}
+    Director
+    {% elif request.user.u_type == 2 %}
+    Actor
+    {% elif request.user.u_type == 3 %}
+    Staff
+    {% endif %}
+</h1>
+{{request.user.username}}
+{% else %}
+
+{% endif %}
+
+{% endblock %}
+
+{% block lower-container %}
+<h2 class="lower-container__title">HOT DIRECTOR</h2>
+<ul class="lower-container__content">
+    <ul class="movies">
+        {% for portfolio in all_portfolio %}
+        <li class="movie">
+            <div class="movie-thumbnail">
+                <img src="{{portfolio.poster.url}}" />
+            </div>
+            <div class="movie-info">
+                <p>
+                    {{portfolio.title}}
+                </p>
+            </div>
+        </li>
+        {% endfor %}
     </ul>
-</div>
+</ul>
 {% endblock %}
