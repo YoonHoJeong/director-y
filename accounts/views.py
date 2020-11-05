@@ -1,7 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm, StaffRegistraionForm, ActorRegistraionForm, DirectorRegistraionForm, ProfileAuthenticationForm
 from django.views.generic import CreateView
+
+
 from .models import Profile
 
 # Create your views here.
@@ -93,8 +96,21 @@ def login_view(request):
     context['login_form'] = form
     return render(request, 'accounts/login.html', context)
 
-def mypage(request):
-    user_id = request.user.id
-    user = Profile.objects.get(pk = user_id)
+# @login_required(login_url='/login/')
+def user_page(request, user_id=0):
+    # header에서 mypgae 클릭, 자신의 마이페이지로 갈 때
+    if user_id:
+        # 자신의 mypage에 접근하거나, 
+        user_id = request.user.id
+        user = get_object_or_404(Profile, pk = user_id)
+        
+    else:
+        # 로그인되지 않았는데 header에서 mypage를 누른 경우 로그인 페이지로 이동
+        user = request.user
 
-    return render(request, 'mypage.html', {"user": user})
+        if not user.is_authenticated:
+            # 로그인되지 않았을 때,
+            return redirect('/login')
+
+    return render(request, 'user_page.html', {"user": user})
+

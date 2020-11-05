@@ -20,6 +20,7 @@
   font-weight: 600;
   letter-spacing: 7px;
 }
+
 .profile-name .profile-name__eng {
   font-size: 0.7em;
   opacity: 0.6;
@@ -40,6 +41,7 @@
   width: 350px;
   height: 420px;
   background-color: aquamarine;
+  back
 }
 .profile-info .profile-detail {
   flex: 0.6;

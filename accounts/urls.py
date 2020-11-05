@@ -14,7 +14,7 @@ from accounts.views import (
     actor_register,
     director_register,
     staff_register,
-    mypage,
+    user_page,
 )
 urlpatterns = [
     path('register/', register, name="register"),
@@ -24,6 +24,7 @@ urlpatterns = [
     path('director_register/', director_register.as_view(),
          name="director_register"),
     path('staff_register/', staff_register.as_view(), name="staff_register"),
-    path('my_page/', mypage, name="mypage"),
+    path('user_page/<int:user_id>', user_page, name="user_page"),
+    path('user_page/', user_page, name="user_page"),
 
 ]
