@@ -21,15 +21,15 @@
 
 <body>
     <header class="header">
-        <nav class="nav-bar">
-            <div class="nav-bar__icon"><a href="{% url 'home' %}">DIRECTORY</a></div>
-            <div class="nav-bar__category">
-                <div class="category-item" name="directors"><a href="{% url 'directors' %}">DIRECTOR</a> </div>
-                <div class="category-item" name="staffs"><a href="{% url 'staffs' %}">STAFF</a> </div>
-                <div class="category-item" name="actors"><a href="{% url 'actors' %}">ACTOR</a></div>
-                <div class="category-item" name="user_page"><a href="{% url 'user_page' %}">MYPAGE</a> </div>
-            </div>
-        </nav>
+            <nav class="nav-bar">
+                <div class="nav-bar__icon"><a href="{% url 'home' %}">DIRECTORY</a></div>
+                <div class="nav-bar__category">
+                    <div class="category-item" name="directors"><a href="{% url 'directors' %}">DIRECTOR</a> </div>
+                    <div class="category-item" name="staffs"><a href="{% url 'staffs' %}">STAFF</a> </div>
+                    <div class="category-item" name="actors"><a href="{% url 'actors' %}">ACTOR</a></div>
+                    <div class="category-item" name="user_page"><a href="{% url 'user_page' %}">MYPAGE</a> </div>
+                </div>
+            </nav>
     </header>
     {% block content %}
     

@@ -6,37 +6,74 @@ DIRECTORY - Mypage
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" type='text/css' href="{% static 'css/mypage.css' %}">
+<link rel="stylesheet" type='text/css' href="{% static 'css/user_page.css' %}">
 <link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}" />
+<link rel="stylesheet" type='text/css' href="{% static 'css/movie.css' %}" />
 {% endblock %}
 
 {% block upper-container %}
 <div class="profile">
+    {% if profile_user.id == user.id %}
+    <div class="revise_btn_container">
+        ●
+        <button class="revise_btn">수정하기</button>
+    </div>
+    {% endif %}
     <div class="profile-name">
-        <p class="profile-name__kor">{{user.name}}</p>
-        <p class="profile-name__eng">{{user.name_eng}}</p>
+        <p class="profile-name__kor">{{profile_user.name}}</p>
+        <p class="profile-name__eng">{{profile_user.name_eng}}</p>
     </div>
     <div class="profile-info">
-        <div class="profile-image" style="background-image: url({{user.avatar.url}});">image
+        <div class="profile-image" style="background-image: url({{profile_user.avatar.url}});">image
 
         </div>
         <div class="profile-detail">
             <ul class="profile-detail-list">
                 <li class="profile-detail-item">
                     <div class="profile-detail-item__title">소개</div>
-                    <div class="profile-detail-item__content">{{user.intro}}</div>
+                    <div class="profile-detail-item__content">{{profile_user.intro}}</div>
                 </li>
                 <li class="profile-detail-item">
                     <div class="profile-detail-item__title">출생</div>
-                    <div class="profile-detail-item__content">{{user.date_of_birth}}</div>
+                    <div class="profile-detail-item__content">{{profile_user.date_of_birth}}</div>
                 </li>
                 <li class="profile-detail-item">
                     <div class="profile-detail-item__title">학력</div>
-                    <div class="profile-detail-item__content">{{user.education}}</div>
+                    <div class="profile-detail-item__content">{{profile_user.education}}{{profile_user.education}}{{profile_user.education}}{{profile_user.education}}{{profile_user.education}}{{profile_user.education}}{{profile_user.education}}{{profile_user.education}}</div>
                 </li>
             </ul>
 
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block lower-container %}
+<div class="lower-container__title">
+    FILMOGRAPHY
+</div>
+<div class="lower-container__content">
+    <ul class="movie-pf-list">
+        {% for movie_pf in movie_pfs %}
+        <li class="movie-pf">
+            <div class="movie-pf-frame top-left"></div>
+            <div class="movie-pf-frame top-right"></div>
+            <div class="movie-pf-frame bottom-left"></div>
+            <div class="movie-pf-frame bottom-right"></div>
+
+            <div class="movie-pf__thumbnail" style="background-image: url({{movie_pf.poster.url}});">
+            </div>
+            <div class="movie-pf__summary">
+                <div class="movie-pf__title">
+                    {{movie_pf.title}}
+                </div>
+                <div class="movie-pf__prod-year">
+                    {{movie_pf.production_year}}
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
 {% endblock %}

@@ -6,6 +6,7 @@ from django.views.generic import CreateView
 
 
 from .models import Profile
+from main.models import Movie
 
 # Create your views here.
 
@@ -111,6 +112,15 @@ def user_page(request, user_id=0):
         if not user.is_authenticated:
             # 로그인되지 않았을 때,
             return redirect('/login')
+    profile_user = user
 
-    return render(request, 'user_page.html', {"user": user})
+    movie_pfs = []
+
+    # user의 portfolio 가져오기
+    if profile_user.u_type == 1:
+        # 해당 유저가 감독일 경우
+        movie_pfs = Movie.objects.filter(uid__id = profile_user.id)
+        print(movie_pfs, profile_user)
+
+    return render(request, 'user_page.html', {"profile_user": profile_user, "movie_pfs":movie_pfs})
 

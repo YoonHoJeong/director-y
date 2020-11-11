@@ -17,9 +17,13 @@ html {
 
 body {
   width: 100%;
+  min-width: 960px;
   height: 100%;
   padding: 70px 0px 0px 0px;
   background-color: #fbf8f3;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -29,19 +33,26 @@ body {
   top: 0;
   left: 0;
   width: 100%;
+  min-width: 960px;
   height: 70px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.nav-bar {
-  height: 100%;
-  width: 100%;
 
   display: flex;
-  /* padding: 40px 40px; */
+  justify-content: center;
+}
+.nav-bar {
+  width: 100%;
+  height: 100%;
+  max-width: 1240px;
+
+  display: flex;
   align-items: center;
-  padding: 0px 40px;
   background-color: #fbf8f3;
+}
+@media screen and (max-width: 1240px) {
+  .nav-bar {
+    padding: 0px 40px;
+  }
 }
 
 .nav-bar .nav-bar__icon {
@@ -103,7 +114,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1240px;
   height: fit-content;
   min-height: 350px;
 
@@ -121,11 +132,22 @@ body {
   bottom: 20px;
 }
 
-.lower-container {
+.lower-container-wrapper {
   flex: 1;
   color: #fbf8f3;
   background-color: #474344;
-  padding: 60px 40px;
+}
+.lower-container {
+  max-width: 1240px;
+  padding: 60px 0px;
+
+  margin: 0px auto;
+}
+
+@media screen and (max-width: 1240px) {
+  .lower-container {
+    padding: 60px 40px;
+  }
 }
 
 .lower-container .lower-container__title {

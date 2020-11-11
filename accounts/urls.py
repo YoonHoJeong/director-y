@@ -26,5 +26,4 @@ urlpatterns = [
     path('staff_register/', staff_register.as_view(), name="staff_register"),
     path('user_page/<int:user_id>', user_page, name="user_page"),
     path('user_page/', user_page, name="user_page"),
-
 ]

@@ -12,14 +12,14 @@
 {% if user.is_authenticated %}
 <h1>
     Welcome,
-    {% if request.user.u_type == 1 %}
-    Director
-    {% elif request.user.u_type == 2 %}
-    Actor
-    {% elif request.user.u_type == 3 %}
-    Staff
-    {% endif %}
 </h1>
+{% if request.user.u_type == 1 %}
+Director
+{% elif request.user.u_type == 2 %}
+Actor
+{% elif request.user.u_type == 3 %}
+Staff
+{% endif %}
 {{request.user.username}}
 {% else %}
 
