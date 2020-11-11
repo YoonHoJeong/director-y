@@ -19,7 +19,7 @@ class Movie(models.Model):
     uid = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=30, blank=False, null=False)
     title_eng = models.CharField(max_length=30, blank=True)
-    poster = models.ImageField(blank=False, null=False)
+    poster = models.ImageField(upload_to = 'images/', blank=False, null=False)
     trailer = models.URLField(blank=True)
     trailer_thumbnail = models.ImageField(null=True, blank=True)
     genre = models.CharField(max_length=20, blank=False)

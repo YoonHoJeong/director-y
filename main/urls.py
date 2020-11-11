@@ -14,4 +14,6 @@ urlpatterns = [
          views.actordetail, name='actordetail'),
     path('section_create/', views.section_create, name="section_create"),
     path('section/', views.section, name="section"),
+    path('enroll_movie/', views.enroll_movie, name="enroll_movie"),
+    path('movie/', views.movie, name="movie"),
 ]

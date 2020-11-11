@@ -1,0 +1,60 @@
+.welcome-box {
+    position: relative;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1300px;
+    height: 350px;
+  }
+  
+  .welcome-box h1 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  
+  .auth {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+  }
+  
+  /* lower container */
+  
+  .movies {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .movies .movie {
+    margin-right: 20px;
+  }
+  
+  .movie .movie-info {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+  }
+  
+  .movie-thumbnail img {
+    /* 가로세로 1:1.3비율 */
+    width: 150px;
+    height: 195px;
+  }
+  
+  .movie-plus img {
+    /* 가로세로 1:1.3비율 */
+    width: 150px;
+    height: 195px;
+  }
+  
+  .complete {
+    position: absolute;
+    color: #D44242;
+  
+    top : 10px;
+    right: 20px;
+  }
+  
+  

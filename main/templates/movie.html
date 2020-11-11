@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+DIRECTORY - Movie
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/movie.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="upper-container">
+    <div class="welcome-box">
+        <div class="box-frame top-left"></div>
+        <div class="box-frame top-right"></div>
+        <div class="box-frame bottom-left"></div>
+        <div class="box-frame bottom-right"></div>
+
+        <div>
+            <div class='lower-container__title'>
+                {{movie_obj.title}}
+            </div>
+
+            {% if movie_obj.title_eng %}
+            <div class='lower-container__title'>
+                {{movie_obj.title_eng}}
+            </div>
+            {% endif %}
+
+            <div class='movies'>
+                <div class='movie'>
+                    <div class="movie-poster">
+                        <img src = '{{movie_obj.poster.url}}'>
+                    </div>
+                    <div class="movie-info">
+                        <div>감독 {{movie_obj.uid}}</div>
+                        <div>장르 {{movie_obj.genre}}</div>
+                        <div>개봉연도 {{movie_obj.production_year}}</div>
+                    </div>
+                </div>
+                <div class='movie'>
+                    {% if movie_obj.trailer_thumbnail %}
+                    <div class='movie-thumbnail'>
+                        <img src = '{{movie_obj.trailer_thumbnail.url}}'>
+                    </div>
+                    {% endif %}
+                    <p>{{movie_obj.summary}}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="lower-container">
+</div>
+{% endblock %}

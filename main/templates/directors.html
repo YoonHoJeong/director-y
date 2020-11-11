@@ -5,22 +5,64 @@
 DIRECTORY - Home-Directors
 {% endblock %}
 
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/directors.css' %}" />
+{% endblock %}
+
 {% block content %}
-<div class="home">
+<div class="upper-container">
     <div class="welcome-box">
-        <h1>Welcome,</h1> <br />
-        <h1>Director 김멋사</h1>
-    </div>
-    <br />
-    <br />
-    <ul class="portfolios">
-        <h2>HOT DIRECTOR</h2>
-        {% for portfolio in all_portfolio %}
-        <div>
-            {{portfolio.title}}
+        <div class="box-frame top-left"></div>
+        <div class="box-frame top-right"></div>
+        <div class="box-frame bottom-left"></div>
+        <div class="box-frame bottom-right"></div>
+
+        <div class="modify">
+            <a href="">● 수정하기</a>
         </div>
-        {% endfor %}
-    </ul>
+    </div>
 </div>
 
+<div class="lower-container">
+    <h2 class="lower-container__title">HOT DIRECTOR</h2>
+    <ul class="lower-container__content">
+        <ul class="movies">
+            {% for portfolio in all_portfolio %}
+            <li class="movie">
+                <form id="movie{{ forloop.counter }}-form" action="{% url 'directors' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{portfolio.id}}" name="portfolio-id">
+                    <a href="javascript:$('#movie{{ forloop.counter }}-form').submit();">
+                        <div class="movie-thumbnail">
+                            <img src="{{portfolio.poster.url}}" />
+                        </div>
+                    </a>
+                    <input type="submit" value="제출">
+                    <div class="movie-info">
+                        <p>
+                            {{portfolio.title}}
+                        </p>
+                    </div>
+                </form>
+            </li>
+            {% endfor %}
+            <li class="movie">
+                <div class="movie-plus">
+                    <a href="{% url 'enroll_movie' %}">
+                        <img src="{% static 'img/add.png' %}">
+                    </a>
+                </div>
+                <div class="movie-info">
+                    <p>
+                        추가하기
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </ul>
+</div>
 {% endblock %}

@@ -12,7 +12,7 @@ DIRECTORY - Home-Staff
 <div class="staff_recommendation">
     <h2>Hot Now!</h2> <br>
     {% for portfolio in random_portfolio %}
-    <a href="{% url 'staff_detail' portfolio.profile_id %}">
+    <a href="{% url 'staff_detail' portfolio.profile-id %}">
         <div class="all_portfolio2">
             <p><img src="{{ portfolio.profile.avatar.url }}" width="265" height="380" alt="Staff_Image"></p>
             <p>{{ portfolio.profile.name }}</p>
@@ -24,7 +24,7 @@ DIRECTORY - Home-Staff
 <br>
 <div class>
     {% for portfolio in all_portfolio %}
-    <a href="{% url 'staff_detail' portfolio.profile_id %}">
+    <a href="{% url 'staff_detail' portfolio.profile-id %}">
         <div class="all_portfolio">
             <p><img src="{{ portfolio.profile.avatar.url }}" width="265" height="380" alt="Staff_Image"></p>
             <p>{{ portfolio.profile.name }}</p>
