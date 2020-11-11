@@ -1,10 +1,61 @@
-/* lower container */
-
-.movies {
-  display: flex;
-  flex-wrap: wrap;
+.slider-wrapper {
+  position: relative;
+  width: 1030px;
+  height: 300px;
+  margin: 0px auto;
+  margin-top: 40px;
 }
-.movies .movie {
+
+.move-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+
+  outline: none;
+
+  transition: all 0.2s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+}
+
+.move-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.prev-btn {
+  top: 90px;
+  left: -60px;
+}
+.next-btn {
+  top: 90px;
+  right: -60px;
+}
+
+.slider-show-area {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transition: left 0.5s;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.movie:not(:last-child) {
   margin-right: 20px;
 }
 
@@ -14,8 +65,12 @@
   margin-top: 8px;
 }
 
-.movie-thumbnail img {
-  /* 가로세로 1:1.3비율 */
-  width: 150px;
-  height: 195px;
+.movie-thumbnail {
+  /* 가로세로 1:1.431비율 */
+  width: 190px;
+  padding-top: 143%;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
