@@ -2,7 +2,9 @@ window.addEventListener("load", function () {
   const prevBtn = document.querySelector(".prev-btn");
   const nextBtn = document.querySelector(".next-btn");
   const slider = document.querySelector(".slider");
+  const sliderShowArea = document.querySelector(".slider-show-area");
   const productCount = document.querySelectorAll(".movie").length;
+  const sliderLength = slider.width;
 
   let currentIdx = 0;
 
@@ -18,8 +20,12 @@ window.addEventListener("load", function () {
     }
   };
   const handleClickNext = (e) => {
+    const areaLength = sliderShowArea.offsetWidth;
+    const maxCount = Math.ceil(areaLength / 210);
+    console.log(sliderShowArea);
+
     moveSlide(currentIdx + 1);
-    if (currentIdx + 4 >= productCount) {
+    if (productCount < currentIdx + maxCount) {
       moveSlide(0);
     }
   };
