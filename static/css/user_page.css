@@ -5,6 +5,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  position: relative;
+
+  font-family: "NanumSquare";
+}
+
+.profile .revise_btn {
+  font-family: "NanumSquare";
+
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+  border: none;
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: 700;
+  color: #d44242;
+  outline: none;
 }
 
 .profile .profile-name {
@@ -16,14 +35,14 @@
 }
 
 .profile-name .profile-name__kor {
-  font-size: 1.1em;
+  font-size: 26px;
   font-weight: 600;
   letter-spacing: 7px;
 }
 
 .profile-name .profile-name__eng {
-  font-size: 0.7em;
-  opacity: 0.6;
+  font-size: 0.8em;
+  opacity: 0.9;
   letter-spacing: 2px;
 
   margin-top: 7px;
@@ -40,25 +59,40 @@
 .profile-info .profile-image {
   width: 350px;
   height: 420px;
-  background-color: aquamarine;
-  back
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
+
 .profile-info .profile-detail {
-  flex: 0.6;
+  flex: 1;
+  padding: 30px 50px;
+
+  display: flex;
+  align-items: center;
 }
 
 .profile-detail-item {
-  padding: 0px 20px;
   display: flex;
+  align-items: baseline;
+}
+
+.profile-detail-item:not(:last-child) {
   margin-bottom: 20px;
 }
 
 .profile-detail-item .profile-detail-item__title {
-  font-size: 0.9em;
+  width: 100px;
+
+  font-size: 17px;
   font-weight: 600;
-  margin-right: 50px;
+  letter-spacing: 5px;
 }
 
 .profile-detail-item .profile-detail-item__content {
-  font-size: 0.9em;
+  font-size: 17px;
+  flex: 1;
+  line-height: 20px;
+  letter-spacing: 2px;
 }

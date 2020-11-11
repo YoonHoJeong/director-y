@@ -139,6 +139,11 @@ class ProfileAuthenticationForm(forms.ModelForm):
         model = Profile
         fields = ('email', 'password')
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs.update({'class': 'login-field__form','placeholder': '아이디'})
+        self.fields['password'].widget.attrs.update({'class': 'login-field__form','placeholder': '비밀번호를 입력해주세요'})
+
     def clean(self):
         if self.is_valid():
             # self : form

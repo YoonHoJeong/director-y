@@ -1,3 +1,51 @@
+@font-face {
+  font-family: "NanumSquare";
+  src: url("../fonts/NanumSquareR.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "NanumSquare";
+  src: url("../fonts/NanumSquareB.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "NanumSquare";
+  src: url("../fonts/NanumSquareEB.ttf") format("truetype");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "NanumSquare";
+  src: url("../fonts/NanumSquareL.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "NanumSquareRound";
+  src: url("../fonts/NanumSquareRoundR.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "NanumSquareRound";
+  src: url("../fonts/NanumSquareRoundB.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "NanumSquareRound";
+  src: url("../fonts/NanumSquareRoundEB.ttf") format("truetype");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "NanumSquareRound";
+  src: url("../fonts/NanumSquareRoundL.ttf") format("truetype");
+  font-weight: 400;
+}
+
 * {
   box-sizing: border-box;
   text-decoration: none;
@@ -19,23 +67,32 @@ body {
   width: 100%;
   min-width: 960px;
   height: 100%;
-  padding: 70px 0px 0px 0px;
+  padding: 90px 0px 0px 0px;
   background-color: #fbf8f3;
+  color: #474344;
 
   display: flex;
   flex-direction: column;
+
+  font-family: "NanumSquare";
+}
+
+button {
+  font-family: "NanumSquare";
 }
 
 .header {
   position: fixed;
   z-index: 100;
-  background-color: #fbf8f3;
   top: 0;
   left: 0;
+
   width: 100%;
   min-width: 960px;
-  height: 70px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  height: 90px;
+
+  background-color: #fbf8f3;
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
 
   display: flex;
   justify-content: center;
@@ -55,9 +112,11 @@ body {
   }
 }
 
-.nav-bar .nav-bar__icon {
+.nav-bar__icon {
   flex: 0.2;
-  font-size: 20px;
+  font-size: 23px;
+  font-weight: 700;
+
   margin-right: 70px;
   height: inherit;
   width: fit-content;
@@ -70,6 +129,9 @@ body {
   flex: 0.8;
   display: flex;
   height: inherit;
+
+  font-size: 17px;
+  font-weight: 600;
 
   justify-content: space-between;
   align-items: center;
@@ -137,7 +199,9 @@ body {
   color: #fbf8f3;
   background-color: #474344;
 }
+
 .lower-container {
+  font-family: "NanumSquare";
   max-width: 1240px;
   padding: 60px 0px;
 
@@ -151,7 +215,8 @@ body {
 }
 
 .lower-container .lower-container__title {
-  font-size: 18px;
+  font-size: 20px;
+  letter-spacing: 3px;
 }
 
 .lower-container .lower-container__content {
@@ -193,4 +258,20 @@ body {
 
   border-left: none;
   border-top: none;
+}
+
+.btn {
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  border: none;
+
+  font-family: "NanumSquare";
+
+  outline: none;
+  cursor: pointer;
 }

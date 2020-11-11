@@ -1,36 +1,42 @@
-{% extends 'base.html' %}
+{% extends 'base_header.html' %}
+{% load static %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/login_form.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<h2>Login</h2>
-<form method="post">{% csrf_token %}
+
+<form class="login-form" method="post">{% csrf_token %}
     {% for field in login_form %}
-    <p>
-        {{field.label_tag}}
+    <div class="login-field">
         {{field}}
 
         {% if field.help_text %}
         <small style="color: grey;">{{field.help_text}}</small>
         {% endif %}
-
-        
-    </p>
+    </div>
     {% endfor %}
 
-    {% for field in login_form %}
-        {% for error in field.errors %}
-        <p style="color: red;">{{error}}</p>
+    <div class="error-container">
+        {% for field in login_form %}
+            {% for error in field.errors %}
+            <p style="color: red;">{{error}}</p>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
-    
+    </div>
+
     {% if login_form.non_field_errors %}
-        <div style="color: red;">{{login_form.non_field_errors}}</div>
+    <div style="color: red;">{{login_form.non_field_errors}}</div>
     {% endif %}
 
-    <button type="submit">lLg in</button>
+    <button class ="btn btn--login" type="submit">로그인</button>
+    <a href="{% url 'register' %}">
+        <div  class="btn btn--signup">회원가입</div>
+    </a>
+
 
 </form>
-
 
 {% endblock content %}

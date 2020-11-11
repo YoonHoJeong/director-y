@@ -120,7 +120,6 @@ def user_page(request, user_id=0):
     if profile_user.u_type == 1:
         # 해당 유저가 감독일 경우
         movie_pfs = Movie.objects.filter(uid__id = profile_user.id)
-        print(movie_pfs, profile_user)
 
     return render(request, 'user_page.html', {"profile_user": profile_user, "movie_pfs":movie_pfs})
 
