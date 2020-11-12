@@ -1,64 +1,60 @@
-{% extends 'base.html' %}
+{% extends 'base_border.html' %}
 {% load static %}
 
-{% block title %}
-DIRECTORY - Home
-{% endblock %}
+{% block title %}DIRECTORY - Home{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}" />
 {% endblock %}
 
-{% block content %}
-<div class="upper-container">
-    <div class="welcome-box">
-        <div class="box-frame top-left"></div>
-        <div class="box-frame top-right"></div>
-        <div class="box-frame bottom-left"></div>
-        <div class="box-frame bottom-right"></div>
-        <h1>Welcome,</h1>
-        {% if request.user.is_authenticated %}
-        <h1>
-        {% if request.user.u_type == 1 %}
-            Director
-        {% elif request.user.u_type == 2 %}
-            Actor
-        {% elif request.user.u_type == 3 %}
-            Staff
-        <!-- <h1>{{request.user.u_type}}</h1> -->
-        {% endif  %}
+{% block js %}
+<script src="{% static 'js/slider.js' %}"></script>
+{% endblock %}
+
+
+{% block upper-container %}
+
+{% if user.is_authenticated %}
+<h1>
+    Welcome,
+</h1>
+{% if request.user.u_type == 1 %}
+Director
+{% elif request.user.u_type == 2 %}
+Actor
+{% elif request.user.u_type == 3 %}
+Staff
+{% endif %}
+{{request.user.username}}
+{% else %}
+
+{% endif %}
+
+{% endblock %}
+
+{% block lower-container %}
+<h2 class="lower-container__title">HOT DIRECTOR</h2>
+<ul class="lower-container__content">
+
+    <div class="slider-wrapper">
+        <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
+        <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
         
-        {{request.user.username}}
-        </h1>
-        <div class="auth">
-            <a href="{% url 'logout' %}">Logout</a>
+        <div class="slider-show-area">
+            <ul class="slider">
+                {% for portfolio in all_portfolio %}
+                <li class="movie">
+                    <div class="movie-thumbnail" style="background-image: url({{portfolio.poster.url}});">
+                    </div>
+                    <div class="movie-info">
+                        <p>
+                            {{portfolio.title}}
+                        </p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
-        {% else %}
-        <h1>Please Log in or Register</h1> 
-        <div class="auth">
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'register' %}">Register</a>
-        </div>
-        {% endif %}
     </div>
-</div>
-<div class="lower-container">
-    <h2 class="lower-container__title">HOT DIRECTOR</h2>
-    <ul class="lower-container__content">
-        <ul class="movies">
-            {% for portfolio in all_portfolio %}
-            <li class="movie">
-                <div class="movie-thumbnail">
-                    <img src="{{portfolio.thumbnail.url}}" />
-                </div>
-                <div class="portfolio-info">
-                    <p>
-                        {{portfolio.title}}
-                    </p>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
-    </ul>
-</div>
+</ul>
 {% endblock %}

@@ -1,33 +1,79 @@
-.welcome-box {
+.slider-wrapper {
   position: relative;
+  /* width: 610px; */
+  width: 100%;
+  height: 300px;
+  margin: 0px auto;
+  margin-top: 40px;
+}
+/* @media screen and (min-width: 920px) {
+  .slider-wrapper {
+    width: 820px;
+  }
+}
+
+@media screen and (min-width: 1130px) {
+  .slider-wrapper {
+    width: 1030px;
+  }
+}
+
+@media screen and (min-width: 1340px) {
+  .slider-wrapper {
+    width: 1240px;
+  }
+} */
+
+.move-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+
+  outline: none;
+
+  transition: all 0.2s;
 
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 1300px;
-  height: 350px;
-}
 
-.welcome-box h1 {
-  font-size: 20px;
-  line-height: 30px;
-}
-
-.auth {
   position: absolute;
-  right: 20px;
-  bottom: 20px;
 }
 
-/* lower container */
+.move-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
 
-.movies {
+.prev-btn {
+  top: 90px;
+  left: -60px;
+}
+.next-btn {
+  top: 90px;
+  right: -60px;
+}
+
+.slider-show-area {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transition: left 0.5s;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
-.movies .movie {
+
+.movie:not(:last-child) {
   margin-right: 20px;
 }
 
@@ -37,8 +83,12 @@
   margin-top: 8px;
 }
 
-.movie-thumbnail img {
-  /* 가로세로 1:1.3비율 */
-  width: 150px;
-  height: 195px;
+.movie-thumbnail {
+  /* 가로세로 1:1.431비율 */
+  width: 190px;
+  padding-top: 143%;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }

@@ -1,35 +1,51 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}DIRECTORY - Home-Staff{% endblock %}
+{% block title %}DIRECTORY - Staff{% endblock %}
 
-{% block content %}
-<div class="upper-container">
-    <div class="welcome-box">
-        <div class="box-frame top-left"></div>
-        <div class="box-frame top-right"></div>
-        <div class="box-frame bottom-left"></div>
-        <div class="box-frame bottom-right"></div>
+{% block css %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/staffs.css' %}" />
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/slider.js' %}"></script>
+{% endblock %}
+
+{% block upper-container %}
+<h1>Hot Staff</h1>
+{% endblock %}
+
+{% block lower-container %}
+<h2 class="lower-container__title">분야</h2>
+<div class="staff__categories">
+    <button class="category__button">전체<span class="category__count">10</span></button>
+    <button class="category__button">촬영<span class="category__count">2</span></button>
+    <button class="category__button">음향<span class="category__count">2</span></button>
+    <button class="category__button">분장<span class="category__count">2</span></button>
+    <button class="category__button">조명<span class="category__count">2</span></button>
+    <button class="category__button">기타<span class="category__count">2</span></button>
+</div>
+    
+<ul class="lower-container__content">
+    <div class="slider-wrapper">
+        <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
+        <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
+        
+        <div class="slider-show-area">
+            <ul class="slider">
+                {% for portfolio in all_portfolio %}
+                <li class="staff">
+                    <div class="staff-thumbnail" style="background-image: url({{portfolio.poster.url}});">
+                    </div>
+                    <div class="staff-info">
+                        <p>
+                            {{portfolio.title}}
+                        </p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-</div>
-<div class="lower-container">
-    <h2 class="lower-container__title">HOT STAFF</h2>
-    <ul class="lower-container__content">
-        <ul class="portfolios">
-            {% for portfolio in all_portfolio %}
-            <li class="portfolio">
-                <div class="portfolio-thumbnail">
-                    <img src="{{portfolio.thumbnail.url}}" />
-                </div>
-                <div class="movie-info">
-                    <p>
-                        {{portfolio.title}}
-                    </p>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
-    </ul>
-</div>
-
+</ul>
 {% endblock %}

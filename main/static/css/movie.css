@@ -1,0 +1,82 @@
+.movie-pf-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.movie-pf {
+  height: fit-content;
+  color: white;
+
+  padding: 15px;
+  margin: 15px;
+
+  position: relative;
+
+  font-family: "NanumSquare";
+}
+
+.movie-pf__thumbnail {
+  /* 1 : 1.432 비율, 화면당 3개 */
+  width: 100%;
+  padding-top: 143%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.movie-pf__title {
+  font-size: 20px;
+  margin-top: 15px;
+  letter-spacing: 2px;
+}
+
+.movie-pf__prod-year {
+  font-size: 15px;
+  margin-top: 15px;
+  letter-spacing: 3px;
+}
+
+.movie-pf__summary {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movie-pf-frame {
+  position: absolute;
+
+  width: 40px;
+  height: 40px;
+  border: 2px solid white;
+}
+
+.movie-pf-frame.top-left {
+  top: 0;
+  left: 0;
+
+  border-right: none;
+  border-bottom: none;
+}
+.movie-pf-frame.top-right {
+  top: 0;
+  right: 0;
+
+  border-left: none;
+  border-bottom: none;
+}
+.movie-pf-frame.bottom-left {
+  bottom: 0;
+  left: 0;
+
+  border-right: none;
+  border-top: none;
+}
+.movie-pf-frame.bottom-right {
+  bottom: 0;
+  right: 0;
+
+  border-left: none;
+  border-top: none;
+}
