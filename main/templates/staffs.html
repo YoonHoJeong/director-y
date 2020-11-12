@@ -1,51 +1,37 @@
-{% extends 'base.html' %}
+{% extends 'base_border.html' %}
 {% load static %}
 
 {% block title %}DIRECTORY - Staff{% endblock %}
 
-{% block css %}
-<link rel="stylesheet" type='text/css' href="{% static 'css/staffs.css' %}" />
-{% endblock %}
-
-{% block js %}
-<script src="{% static 'js/slider.js' %}"></script>
-{% endblock %}
+{% block link %}{% static 'css/staffs.css' %}{% endblock %}
 
 {% block upper-container %}
-<h1>Hot Staff</h1>
 {% endblock %}
 
 {% block lower-container %}
-<h2 class="lower-container__title">분야</h2>
-<div class="staff__categories">
-    <button class="category__button">전체<span class="category__count">10</span></button>
-    <button class="category__button">촬영<span class="category__count">2</span></button>
-    <button class="category__button">음향<span class="category__count">2</span></button>
-    <button class="category__button">분장<span class="category__count">2</span></button>
-    <button class="category__button">조명<span class="category__count">2</span></button>
-    <button class="category__button">기타<span class="category__count">2</span></button>
-</div>
-    
+<h2 class="lower-container__title">모든 Staff Portfolio 보기</h2>
 <ul class="lower-container__content">
-    <div class="slider-wrapper">
-        <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
-        <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
-        
-        <div class="slider-show-area">
-            <ul class="slider">
-                {% for portfolio in all_portfolio %}
-                <li class="staff">
-                    <div class="staff-thumbnail" style="background-image: url({{portfolio.poster.url}});">
-                    </div>
-                    <div class="staff-info">
-                        <p>
-                            {{portfolio.title}}
-                        </p>
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+    <div class="portfolio__categories">
+        <button class="category__btn">전체</button>
+        <button class="category__btn">촬영</button>
+        <button class="category__btn">음향</button>
+        <button class="category__btn">분장</button>
+        <button class="category__btn">조명</button>
+        <button class="category__btn">기타</button>
     </div>
+    <ul class="portfolios">
+        {% for portfolio in all_portfolio %}
+        <li class="portfolio">
+            <div class="portfolio-thumbnail">
+                <img src="{{portfolio.thumbnail.url}}" />
+            </div>
+            <div class="portfolio-info">
+                <p>
+                    {{portfolio.title}}
+                </p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
 </ul>
 {% endblock %}
