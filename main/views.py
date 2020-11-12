@@ -33,6 +33,7 @@ def actors(request):
     all_portfolio = Actor.objects.all()
 
     random_portfolio = Actor.objects.all().order_by('?')[:4]
+    
     return render(request, "actors2.html", {"all_portfolio": all_portfolio, "random_portfolio" : random_portfolio})
 
 def staffs(request):

@@ -25,7 +25,7 @@ window.addEventListener("load", function () {
     console.log(sliderShowArea);
 
     moveSlide(currentIdx + 1);
-    if (productCount < currentIdx + maxCount) {
+    if (productCount < currentIdx + maxCount - 1) {
       moveSlide(0);
     }
   };
