@@ -216,8 +216,9 @@ button {
 }
 
 .lower-container .lower-container__title {
-  font-size: 20px;
   letter-spacing: 3px;
+  margin-bottom: 29px;
+  font-weight: 700;
 }
 
 .lower-container .lower-container__content {

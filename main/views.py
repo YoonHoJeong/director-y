@@ -24,9 +24,10 @@ def section_create(request):
 
 
 def home(request):
-    all_portfolio = Movie.objects.all()
+    movies = Movie.objects.all()
+    actors = Actor.objects.all()
 
-    return render(request, "home.html", {"all_portfolio": all_portfolio})
+    return render(request, "home.html", {"movies": movies, "actors":actors})
 
 
 

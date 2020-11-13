@@ -97,6 +97,7 @@ DIRECTORY - Mypage
 
     <li class="actor-pf-item">
         <h1 class="actor-pf__title font-lg">Profile</h1>
+        {% if profile_images %}
         <div class="slider-wrapper actor-pf__container">
             <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
             <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
@@ -111,6 +112,9 @@ DIRECTORY - Mypage
                 </ul>
             </div>
         </div>
+        {% else %}
+        등록된 프로필 사진이 없습니다.
+        {% endif %}
     </li>
     <!-- <li class="actor-pf-item">
         <h1 class="actor-pf__title font-lg">자기소개</h1>
@@ -119,6 +123,7 @@ DIRECTORY - Mypage
     <li class="actor-pf-item">
         <h1 class="actor-pf__title font-lg">필모그래피</h1>
         <div class="actor-pf__container">
+            {% if filmos %}
             <ul class="filmos">
                 {% for filmo in filmos %}
                 <li class="filmo">
@@ -131,6 +136,9 @@ DIRECTORY - Mypage
                 </li>
                 {% endfor %}
             </ul>
+            {% else %}
+            등록된 필모그래피가 없습니다.
+            {% endif %}
 
         </div>
     </li>

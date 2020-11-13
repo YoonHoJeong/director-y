@@ -77,6 +77,8 @@
 
 .movie-info {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   margin-top: 8px;
 }
@@ -92,4 +94,12 @@
   /* background-position: center;
   background-size: cover;
   background-repeat: no-repeat; */
+}
+
+.job-item:not(:last-child) {
+  margin-bottom: 110px;
+}
+
+.actor-image {
+  margin-right: 20px;
 }
