@@ -33,7 +33,7 @@ Staff
 {% endblock %}
 
 {% block lower-container %}
-<h2 class="lower-container__title">HOT DIRECTOR</h2>
+<h2 class="lower-container__title font-lg">HOT DIRECTOR</h2>
 <ul class="lower-container__content">
 
     <div class="slider-wrapper">
@@ -43,9 +43,8 @@ Staff
         <div class="slider-show-area">
             <ul class="slider">
                 {% for portfolio in all_portfolio %}
-                <li class="movie">
-                    <div class="movie-thumbnail" style="background-image: url({{portfolio.poster.url}});">
-                    </div>
+                <li class="slide">
+                    <img class="movie-thumbnail" src="{{portfolio.poster.url}}"/>
                     <div class="movie-info">
                         <p>
                             {{portfolio.title}}
@@ -58,5 +57,5 @@ Staff
     </div>
 </ul>
 
-<h2 class="lower-container__title">HOT DIRECTOR</h2>
+<h2 class="lower-container__title font-lg">HOT DIRECTOR</h2>
 {% endblock %}

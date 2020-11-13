@@ -1,26 +1,19 @@
-{% extends 'base.html' %}
+{% extends 'base_border.html' %}
 {% load static %}
 
 {% block title %}
-DIRECTORY - Home-Directors
+Directory - Directors
 {% endblock %}
 
-{% block content %}
-<div class="home">
-    <div class="welcome-box">
-        <h1>Welcome,</h1> <br />
-        <h1>Director 김멋사</h1>
-    </div>
-    <br />
-    <br />
-    <ul class="portfolios">
-        <h2>HOT DIRECTOR</h2>
-        {% for portfolio in all_portfolio %}
-        <div>
-            {{portfolio.title}}
-        </div>
-        {% endfor %}
-    </ul>
-</div>
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/directors.css' %}">
+{% endblock %}
+
+{% block upper-container %}
+
+{% endblock %}
+
+{% block lower-container %}
 
 {% endblock %}

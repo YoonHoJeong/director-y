@@ -3,13 +3,36 @@ window.addEventListener("load", function () {
   const nextBtn = document.querySelector(".next-btn");
   const slider = document.querySelector(".slider");
   const sliderShowArea = document.querySelector(".slider-show-area");
-  const productCount = document.querySelectorAll(".movie").length;
-  const sliderLength = slider.width;
+  const sliderWrapper = document.querySelector(".slider-wrapper");
+  const slides = document.querySelectorAll(".slide");
+
+  const slideHeight = slides[0].offsetHeight;
+
+  console.log(slideHeight);
+
+  slider.style.height = `${slideHeight}px`;
+  sliderShowArea.style.height = `${slideHeight}px`;
+  sliderWrapper.style.height = `${slideHeight}px`;
+  prevBtn.style.top = `${(slideHeight - 50) / 2}px`;
+  nextBtn.style.top = `${(slideHeight - 50) / 2}px`;
+
+  const slideLengths = [];
+
+  slides.forEach((slide) => {
+    slideLengths.push(slide.offsetWidth);
+  });
+
+  const sliderLength = slider.offsetWidth;
+  const areaLength = sliderShowArea.offsetWidth;
 
   let currentIdx = 0;
-
+  let left = 0;
   const moveSlide = (num) => {
-    slider.style = `left: ${num * -210}px`;
+    left = 0;
+    for (let i = 0; i < num; i++) {
+      left += slideLengths[i];
+    }
+    slider.style = `left: -${left}px`;
     currentIdx = num;
   };
 
@@ -20,13 +43,10 @@ window.addEventListener("load", function () {
     }
   };
   const handleClickNext = (e) => {
-    const areaLength = sliderShowArea.offsetWidth;
-    const maxCount = Math.ceil(areaLength / 210);
-    console.log(sliderShowArea);
-
-    moveSlide(currentIdx + 1);
-    if (productCount < currentIdx + maxCount - 1) {
+    if (left + areaLength > sliderLength) {
       moveSlide(0);
+    } else {
+      moveSlide(currentIdx + 1);
     }
   };
 

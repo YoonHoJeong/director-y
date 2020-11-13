@@ -11,10 +11,16 @@ DIRECTORY - Mypage
 <link rel="stylesheet" type='text/css' href="{% static 'css/movie.css' %}" />
 {% endblock %}
 
+{% block js %}
+<script src="{% static 'js/edit.js' %}"></script>
+<script src="{% static 'js/slider.js' %}"></script>
+{% endblock %}
+
+
 {% block upper-container %}
 <div class="profile">
     {% if profile_user.id == user.id %}
-    <button class="revise_btn"><i class="fas fa-circle"></i> 프로필 수정하기</button>
+    <button class="btn btn--revise"><i class="fas fa-circle"></i> 프로필 수정하기</button>
     {% endif %}
     <div class="profile-name">
         <p class="profile-name__kor">{{profile_user.name}}</p>
@@ -24,29 +30,42 @@ DIRECTORY - Mypage
         <div class="profile-image" style="background-image: url({{profile_user.avatar.url}});">
         </div>
         <div class="profile-detail">
-            <ul class="profile-detail-list">
-                <li class="profile-detail-item">
-                    <div class="profile-detail-item__title">소개</div>
-                    <div class="profile-detail-item__content">{{profile_user.intro}}</div>
-                </li>
-                <li class="profile-detail-item">
-                    <div class="profile-detail-item__title">출생</div>
-                    <div class="profile-detail-item__content">{{profile_user.date_of_birth}}</div>
-                </li>
-                <li class="profile-detail-item">
-                    <div class="profile-detail-item__title">학력</div>
-                    <div class="profile-detail-item__content">
-                        {{profile_user.education}}
-                    </div>
-                </li>
-            </ul>
-
+            <form action="" class="detail-form">
+                <ul class="profile-detail-list">
+                    <li class="profile-detail-item">
+                        <div class="profile-detail-item__title">소개</div>
+                        <input readonly name="소개" class="profile-detail-item__content" value="{{profile_user.intro}}">
+                        <button name="소개" class="btn btn--edit">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </li>
+                    <li class="profile-detail-item">
+                        <div class="profile-detail-item__title">출생</div>
+                        <input readonly name="출생" class="profile-detail-item__content"
+                            value="{{profile_user.date_of_birth}}">
+                        <button class="btn btn--edit" name="출생">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </li>
+                    <li class="profile-detail-item">
+                        <div class="profile-detail-item__title">학력</div>
+                        <input readonly name="학력" class="profile-detail-item__content"
+                            value="{{profile_user.education}}">
+                        <button name="학력" class="btn btn--edit">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </li>
+                </ul>
+                <button class="btn btn--done">완료</button>
+            </form>
         </div>
+
     </div>
 </div>
 {% endblock %}
 
 {% block lower-container %}
+{% if profile_user.u_type == 1 %}
 <div class="lower-container__title">
     FILMOGRAPHY
 </div>
@@ -73,5 +92,54 @@ DIRECTORY - Mypage
         {% endfor %}
     </ul>
 </div>
+{% elif profile_user.u_type == 2 %}
+<ul class="actor-portfolio">
 
+    <li class="actor-pf-item">
+        <h1 class="actor-pf__title font-lg">Profile</h1>
+        <div class="slider-wrapper actor-pf__container">
+            <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
+            <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
+
+            <div class="slider-show-area">
+                <ul class="slider profile-images">
+                    {% for profile_image in profile_images %}
+                    <li class="slide profile-image-container">
+                        <img class="profile-image" src="{{profile_image.image.url}}" />
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </li>
+    <!-- <li class="actor-pf-item">
+        <h1 class="actor-pf__title font-lg">자기소개</h1>
+        <div class="actor-pf__container"></div>
+    </li> -->
+    <li class="actor-pf-item">
+        <h1 class="actor-pf__title font-lg">필모그래피</h1>
+        <div class="actor-pf__container">
+            <ul class="filmos">
+                {% for filmo in filmos %}
+                <li class="filmo">
+                    <div class="filmo__prod-year font-md">
+                        {{filmo.movie.production_year}}년
+                    </div>
+                    <div class="filmo__title font-md">
+                        {{filmo.movie.title}} ({{filmo.role}} 역)
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </li>
+    <li class="actor-pf-item">
+        <h1 class="actor-pf__title font-lg">영상</h1>
+        <div class="actor-pf__container"></div>
+    </li>
+    <!-- <h1 class="section-title font-lg">추가자료</h1> -->
+</ul>
+
+{% endif %}
 {% endblock %}

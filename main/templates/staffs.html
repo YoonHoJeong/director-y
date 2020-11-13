@@ -1,36 +1,18 @@
-{% extends 'base.html' %}
+{% extends 'base_border.html' %}
 {% load static %}
 
 {% block title %}
-DIRECTORY - Home-Staff
+Directory - Staffs
 {% endblock %}
 
-{% block content %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/staffs.css' %}">
+{% endblock %}
 
-<br>
+{% block upper-container %}
 
-<div class="staff_recommendation">
-    <h2>Hot Now!</h2> <br>
-    {% for portfolio in random_portfolio %}
-    <a href="{% url 'staff_detail' portfolio.profile_id %}">
-        <div class="all_portfolio2">
-            <p><img src="{{ portfolio.profile.avatar.url }}" width="265" height="380" alt="Staff_Image"></p>
-            <p>{{ portfolio.profile.name }}</p>
-        </div>
-    </a>
-    {% endfor %}
-</div>
+{% endblock %}
 
-<br>
-<div class>
-    {% for portfolio in all_portfolio %}
-    <a href="{% url 'staff_detail' portfolio.profile_id %}">
-        <div class="all_portfolio">
-            <p><img src="{{ portfolio.profile.avatar.url }}" width="265" height="380" alt="Staff_Image"></p>
-            <p>{{ portfolio.profile.name }}</p>
-        </div>
-    </a>
-    {% endfor %}
-</div>
+{% block lower-container %}
 
 {% endblock %}
