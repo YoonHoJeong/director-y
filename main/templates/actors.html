@@ -13,7 +13,7 @@ Directory - Actors
 <h1 class="actors-title font-lg">오늘의 배우</h1>
 
 <ul class="actors">
-    {% for actor in actors %}
+    {% for actor in random_actors %}
     <li class="actor">
         <a href="{% url 'user_page' actor.profile.id %}">
             <div class="actor-image" style="background-image: url({{actor.favorite_image.url}});"></div>

@@ -88,7 +88,6 @@ def create(request):
 
 def actors(request):
     actors = Actor.objects.all()
-    print(actors[0].pk)
 
     random_actors = Actor.objects.all().order_by('?')[:4]
     
