@@ -1,36 +1,37 @@
-{% extends 'base.html' %}
+{% extends 'base_border.html' %}
 {% load static %}
 
-{% block title %}
-DIRECTORY - Home-Staff
+{% block title %}DIRECTORY - Staff{% endblock %}
+
+{% block link %}{% static 'css/staffs.css' %}{% endblock %}
+
+{% block upper-container %}
 {% endblock %}
 
-{% block content %}
-
-<br>
-
-<div class="staff_recommendation">
-    <h2>Hot Now!</h2> <br>
-    {% for portfolio in random_portfolio %}
-    <a href="{% url 'staff_detail' portfolio.profile_id %}">
-        <div class="all_portfolio2">
-            <p><img src="{{ portfolio.profile.avatar.url }}" width="265" height="380" alt="Staff_Image"></p>
-            <p>{{ portfolio.profile.name }}</p>
-        </div>
-    </a>
-    {% endfor %}
-</div>
-
-<br>
-<div class>
-    {% for portfolio in all_portfolio %}
-    <a href="{% url 'staff_detail' portfolio.profile_id %}">
-        <div class="all_portfolio">
-            <p><img src="{{ portfolio.profile.avatar.url }}" width="265" height="380" alt="Staff_Image"></p>
-            <p>{{ portfolio.profile.name }}</p>
-        </div>
-    </a>
-    {% endfor %}
-</div>
-
+{% block lower-container %}
+<h2 class="lower-container__title">모든 Staff Portfolio 보기</h2>
+<ul class="lower-container__content">
+    <div class="portfolio__categories">
+        <button class="category__btn">전체</button>
+        <button class="category__btn">촬영</button>
+        <button class="category__btn">음향</button>
+        <button class="category__btn">분장</button>
+        <button class="category__btn">조명</button>
+        <button class="category__btn">기타</button>
+    </div>
+    <ul class="portfolios">
+        {% for portfolio in all_portfolio %}
+        <li class="portfolio">
+            <div class="portfolio-thumbnail">
+                <img src="{{portfolio.thumbnail.url}}" />
+            </div>
+            <div class="portfolio-info">
+                <p>
+                    {{portfolio.title}}
+                </p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</ul>
 {% endblock %}

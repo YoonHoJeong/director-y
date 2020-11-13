@@ -74,7 +74,7 @@ class SPortfolio(models.Model):
     """
     uid = models.ForeignKey(Staff, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=100, blank=False)
-    thumbnail = models.TextField(blank=False, null=False)
+    thumbnail = models.ImageField(blank=True, null=True)
     # content : smart editor에서 제공.
 
     def __str__(self):
