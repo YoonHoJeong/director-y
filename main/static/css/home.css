@@ -75,7 +75,7 @@
   margin-right: 20px;
 }
 
-.movie-info {
+.slide > .movie-info {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,17 +83,8 @@
   margin-top: 8px;
 }
 
-.movie-thumbnail:not(:last-child) {
+.slide > a {
   margin-right: 20px;
-}
-
-.movie-thumbnail {
-  /* 가로세로 1:1.431비율 */
-  height: 378px;
-
-  /* background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat; */
 }
 
 .job-item:not(:last-child) {

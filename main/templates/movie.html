@@ -1,0 +1,52 @@
+{% extends 'base_border.html' %}
+{% load static %}
+
+{% block title %}
+DIRECTORY - Movie
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/movie.css' %}" />
+{% endblock %}
+
+{% block upper-container %}
+
+<div class='font-lg font-eb'>
+    {{movie_obj.title}}
+</div>
+{% if movie_obj.title_eng %}
+<div class='font-sm'>
+    {{movie_obj.title_eng}}
+</div>
+{% endif %}
+
+<div class="movie-info">
+    <div class="movie__left-col">
+        <img class="movie-thumbnail" src='{{movie_obj.poster.url}}'>
+        <ul class="movie-summary font-md">
+            <li class="movie-summary__item">
+                <div class="item-title font-eb">감독</div>
+                <div class="font-b">{{movie_obj.director.name}}</div>
+            </li>
+            <li class="movie-summary__item">
+                <div class="item-title font-eb">장르</div>
+                <div class="font-b">{{movie_obj.genre}}</div>
+            </li>
+            <li class="movie-summary__item">
+                <div class="item-title font-eb">개봉연도</div>
+                <div class="font-b">{{movie_obj.production_year}}</div>
+            </li>
+        </ul>
+    </div>
+    <div class="movie__right-col">
+        {% if movie_obj.trailer_thumbnail %}
+        <img class="movie-trailer-thumbnail" src='{{movie_obj.trailer_thumbnail.url}}'>
+        {% endif %}
+        <div class="movie__intro">
+            <div class="item-title font-md font-eb">줄거리</div>
+            <p class="item-content font-md">{{movie_obj.summary}}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

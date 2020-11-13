@@ -5,6 +5,7 @@
 
 {% block css %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}" />
+<link rel="stylesheet" type='text/css' href="{% static 'css/movie.css' %}" />
 <link rel="stylesheet" type='text/css' href="{% static 'css/actors.css' %}" />
 <link rel="stylesheet" type='text/css' href="{% static 'css/staffs.css' %}" />
 {% endblock %}
@@ -50,7 +51,9 @@
                 <ul class="slider">
                     {% for movie in movies %}
                     <li class="slide">
-                        <img class="movie-thumbnail" src="{{movie.poster.url}}" />
+                        <a href="{% url 'movie_detail' movie.id %}">
+                            <img class="movie-thumbnail" src="{{movie.poster.url}}" />
+                        </a>
                         <div class="movie-info font-md font-b">
                             <p>
                                 <strong>{{movie.director.name}}</strong> -

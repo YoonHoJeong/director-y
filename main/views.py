@@ -47,9 +47,13 @@ def directors(request):
     all_portfolio = Movie.objects.all()
     return render(request, "directors.html", {"all_portfolio": all_portfolio})
 
+def movie_detail(request, movie_id):
+    movie_obj = get_object_or_404(Movie, pk=movie_id)
+
+    return render(request, "movie.html", {"movie_obj":movie_obj})
+
 def new(request):
     return render(request, 'create.html')
-
 
 def create(request):
     return render(request, 'create.html')
