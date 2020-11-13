@@ -11,7 +11,7 @@
   font-family: "NanumSquare";
 }
 
-.profile .revise_btn {
+.profile .btn--revise {
   font-family: "NanumSquare";
 
   position: absolute;
@@ -24,6 +24,9 @@
   font-weight: 700;
   color: #d44242;
   outline: none;
+
+  width: fit-content;
+  height: fit-content;
 }
 
 .profile .profile-name {
@@ -95,4 +98,71 @@
   flex: 1;
   line-height: 20px;
   letter-spacing: 2px;
+
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.btn--edit {
+  width: fit-content;
+  height: fit-content;
+  display: none;
+}
+
+.btn--done {
+  display: none;
+}
+
+.actor-pf__title {
+  font-weight: 700;
+}
+.actor-pf__container {
+  width: 100%;
+  margin-top: 33px;
+}
+
+.actor-portfolio {
+  width: 900px;
+  margin: 0px auto;
+}
+
+.actor-pf-item {
+  width: 100%;
+  height: fit-content;
+}
+
+.actor-pf-item:not(:first-child) {
+  margin-top: 57px;
+}
+
+.profile-images {
+  height: 300px;
+}
+
+.profile-image-container {
+  width: fit-content;
+
+  display: flex;
+}
+
+.profile-image {
+  height: 300px;
+  /* background: contain / ; */
+}
+
+.profile-image {
+  margin-right: 16px;
+}
+
+.filmo:not(:first-child) {
+  margin-top: 17px;
+}
+
+.filmo__prod-year {
+  font-weight: 600;
+}
+
+.filmo__title {
+  margin-top: 5px;
 }

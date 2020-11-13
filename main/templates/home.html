@@ -6,6 +6,7 @@
 {% block css %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}" />
 <link rel="stylesheet" type='text/css' href="{% static 'css/actors.css' %}" />
+<link rel="stylesheet" type='text/css' href="{% static 'css/staffs.css' %}" />
 {% endblock %}
 
 {% block js %}
@@ -16,18 +17,21 @@
 {% block upper-container %}
 
 {% if user.is_authenticated %}
-<h1>
+<h1 class="font-xlg font-eb">
     Welcome,
 </h1>
-{% if request.user.u_type == 1 %}
-Director
-{% elif request.user.u_type == 2 %}
-Actor
-{% elif request.user.u_type == 3 %}
-Staff
-{% endif %}
-{{request.user.username}}
-{% else %}
+<h2 class="font-lg font-b">
+    {% if request.user.u_type == 1 %}
+    Director
+    {% elif request.user.u_type == 2 %}
+    Actor
+    {% elif request.user.u_type == 3 %}
+    Staff
+    {% endif %}
+    {{request.user.username}}
+    {% else %}
+</h2>
+<h1 class="font-xlg font-eb">Please Log in or Register</h1>
 
 {% endif %}
 
@@ -47,7 +51,7 @@ Staff
                     {% for movie in movies %}
                     <li class="slide">
                         <img class="movie-thumbnail" src="{{movie.poster.url}}" />
-                        <div class="movie-info font-md">
+                        <div class="movie-info font-md font-b">
                             <p>
                                 <strong>{{movie.director.name}}</strong> -
                                 {{movie.title}}
@@ -72,7 +76,27 @@ Staff
                         <a href="{% url 'user_page' actor.profile.id %}">
                             <div class="actor-image" style="background-image: url({{actor.favorite_image.url}});"></div>
                         </a>
-                        <div class="actor-name font-md">{{actor.profile.name}}</div>
+                        <div class="actor-name font-md font-b">{{actor.profile.name}}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </li>
+    <li class="job-item">
+        <h2 class="lower-container__title font-lg">STAFF</h2>
+        <div class="slider-wrapper">
+            <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
+            <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
+
+            <div class="slider-show-area">
+                <ul class="slider">
+                    {% for actor in actors %}
+                    <li class="slide">
+                        <div class="sportfolio">
+                            <iframe src="https://player.vimeo.com/video/76979871" width="300px" height="200px"
+                                frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                        </div>
                     </li>
                     {% endfor %}
                 </ul>

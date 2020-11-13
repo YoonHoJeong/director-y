@@ -81,6 +81,12 @@
   align-items: baseline;
 }
 
+.profile-detail-item input {
+  font-family: "NanumSquare";
+  color: #474344;
+  font-weight: 600;
+}
+
 .profile-detail-item:not(:last-child) {
   margin-bottom: 20px;
 }
@@ -89,7 +95,7 @@
   width: 100px;
 
   font-size: 17px;
-  font-weight: 600;
+  font-weight: 800;
   letter-spacing: 5px;
 }
 

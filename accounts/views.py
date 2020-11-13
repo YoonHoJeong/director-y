@@ -111,7 +111,6 @@ def user_page(request, user_id=0):
             return redirect('/login')
     profile_user = user
 
-
     # user의 portfolio 가져오기
     if profile_user.u_type == 1:
         # 해당 유저가 감독일 경우
@@ -126,5 +125,17 @@ def user_page(request, user_id=0):
         # 해당 유저가 스탭일 경우
         pass
     return redirect('/')
+
+def edit_user(request):
+    user = request.user
+
+    user.intro = request.POST.get("intro")
+    # user.date_of_birth = request.POST.get("date_of_birth")
+    user.education = request.POST.get("education")
+    print(request.POST.get("date_of_birth"))
+
+    user.save()
     
+    return redirect(f"/user_page/{user.id}")
+
 

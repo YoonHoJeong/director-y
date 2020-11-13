@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django_summernote',
 ]
 
+DATE_INPUT_FORMATS = ['%Y-%m-%d']
+
 AUTH_USER_MODEL = 'accounts.Profile'
 
 MIDDLEWARE = [

@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const reviseBtn = document.querySelector(".btn--revise");
   const editBtns = document.querySelectorAll(".btn--edit");
   const doneBtn = document.querySelector(".btn--done");
-  const inputs = document.querySelectorAll(".profile-detail-item input");
 
   const onClickRevise = (e) => {
     e.preventDefault();
@@ -16,23 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
       editBtn.style.display = "none";
     });
     doneBtn.style.display = "none";
-    inputs.forEach((input) => {
-      input.setAttribute("readonly");
-    });
   };
   const onClickEdit = (e) => {
     e.preventDefault();
-    const name = e.target.name ? e.target.name : e.target.parentNode.name;
-    let current = null;
-
-    inputs.forEach((input) => {
-      if (input.name === name) {
-        current = input;
-      }
-    });
-
-    current.removeAttribute("readonly");
-    current.style.borderBottom = "1px solid black";
+    console.log(e.target.name);
   };
 
   editBtns.forEach((editBtn) => {

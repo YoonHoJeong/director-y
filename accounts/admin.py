@@ -18,7 +18,7 @@ class ProfileAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'username', 'name', 'password1', 'password2', 'is_staff', 'is_active')}
+            'fields': ('email', 'username', 'name', 'password1', 'password2', 'u_type', 'is_staff', 'is_active')}
         ),
     )
 

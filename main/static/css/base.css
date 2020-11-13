@@ -184,8 +184,8 @@ button {
 }
 
 .welcome-box h1 {
-  font-size: 20px;
   line-height: 30px;
+  margin-bottom: 10px;
 }
 
 .auth {
@@ -280,17 +280,32 @@ button {
 }
 
 /* font */
+.font-xlg {
+  font-family: "NanumSquare";
+  font-size: 30px;
+}
+
 .font-lg {
   font-family: "NanumSquare";
-  font-size: 1.3em;
+  font-size: 25px;
 }
 
 .font-md {
   font-family: "NanumSquare";
-  font-size: 1.1em;
+  font-size: 17px;
 }
 
 .font-sm {
   font-family: "NanumSquare";
   font-size: 0.9em;
+}
+
+.font-l {
+  font-weight: 300;
+}
+.font-b {
+  font-weight: 600;
+}
+.font-eb {
+  font-weight: 800;
 }

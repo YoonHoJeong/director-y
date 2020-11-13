@@ -1,0 +1,7 @@
+.actor_profile{
+    display: inline-flex;
+    align-items: center;
+    margin: 30px;
+    border: 5px solid black;
+    display: flex;
+}

@@ -18,7 +18,7 @@ Directory - Actors
         <a href="{% url 'user_page' actor.profile.id %}">
             <div class="actor-image" style="background-image: url({{actor.favorite_image.url}});"></div>
         </a>
-        <div class="actor-name font-md">{{actor.profile.name}}</div>
+        <div class="actor-name font-md font-b">{{actor.profile.name}}</div>
     </li>
     {% endfor %}
 </ul>
