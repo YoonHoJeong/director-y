@@ -4,7 +4,7 @@
   display: flex;
   flex-wrap: wrap;
 }
-.movies .movie {
+.movies .slide {
   margin-right: 20px;
 }
 

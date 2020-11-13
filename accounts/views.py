@@ -1,15 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from .forms import RegistrationForm, StaffRegistraionForm, ActorRegistraionForm, DirectorRegistraionForm, ProfileAuthenticationForm
+from .forms import StaffRegistraionForm, ActorRegistraionForm, DirectorRegistraionForm, ProfileAuthenticationForm
 from django.views.generic import CreateView
 
 
 from .models import Profile
-from main.models import Movie
+from main.models import Movie, ActorImage, ActorVideo, Filmography
 
 # Create your views here.
-
 
 def register(request):
     return render(request, '../templates/register.html')
@@ -101,10 +100,8 @@ def login_view(request):
 def user_page(request, user_id=0):
     # header에서 mypgae 클릭, 자신의 마이페이지로 갈 때
     if user_id:
-        # 자신의 mypage에 접근하거나, 
-        user_id = request.user.id
+        # 다른 사람의 user_page에 접근
         user = get_object_or_404(Profile, pk = user_id)
-        
     else:
         # 로그인되지 않았는데 header에서 mypage를 누른 경우 로그인 페이지로 이동
         user = request.user
@@ -114,12 +111,20 @@ def user_page(request, user_id=0):
             return redirect('/login')
     profile_user = user
 
-    movie_pfs = []
 
     # user의 portfolio 가져오기
     if profile_user.u_type == 1:
         # 해당 유저가 감독일 경우
-        movie_pfs = Movie.objects.filter(uid__id = profile_user.id)
-
-    return render(request, 'user_page.html', {"profile_user": profile_user, "movie_pfs":movie_pfs})
+        movie_pfs = Movie.objects.filter(director = profile_user.id)
+        return render(request, 'user_page.html', {"profile_user": profile_user, "movie_pfs":movie_pfs})
+    elif profile_user.u_type == 2:
+        # 해당 유저가 배우일 경우
+        profile_images = ActorImage.objects.filter(actor = profile_user.id)
+        filmos = Filmography.objects.filter(profile = profile_user.id)
+        return render(request, 'user_page.html', {"profile_user": profile_user, "profile_images":profile_images, "filmos":filmos})
+    elif profile_user.u_type == 3:
+        # 해당 유저가 스탭일 경우
+        pass
+    return redirect('/')
+    
 

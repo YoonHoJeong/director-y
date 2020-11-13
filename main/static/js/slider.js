@@ -1,35 +1,64 @@
 window.addEventListener("load", function () {
-  const prevBtn = document.querySelector(".prev-btn");
-  const nextBtn = document.querySelector(".next-btn");
-  const slider = document.querySelector(".slider");
-  const sliderShowArea = document.querySelector(".slider-show-area");
-  const productCount = document.querySelectorAll(".movie").length;
-  const sliderLength = slider.width;
+  const sliderWrappers = document.querySelectorAll(".slider-wrapper");
 
-  let currentIdx = 0;
+  sliderWrappers.forEach((sliderWrapper) => {
+    const prevBtn = sliderWrapper.querySelector(".prev-btn");
+    const nextBtn = sliderWrapper.querySelector(".next-btn");
+    const slider = sliderWrapper.querySelector(".slider");
+    const sliderShowArea = sliderWrapper.querySelector(".slider-show-area");
+    const slides = sliderWrapper.querySelectorAll(".slide");
 
-  const moveSlide = (num) => {
-    slider.style = `left: ${num * -210}px`;
-    currentIdx = num;
-  };
+    const slideHeight = slides[0].offsetHeight;
 
-  const handleClickPrev = (e) => {
-    moveSlide(currentIdx - 1);
-    if (currentIdx <= 0) {
-      moveSlide(0);
-    }
-  };
-  const handleClickNext = (e) => {
+    slider.style.height = `${slideHeight}px`;
+    sliderShowArea.style.height = `${slideHeight}px`;
+    sliderWrapper.style.height = `${slideHeight}px`;
+    prevBtn.style.top = `${(slideHeight - 50) / 2}px`;
+    nextBtn.style.top = `${(slideHeight - 50) / 2}px`;
+
+    const slideLengths = [];
+
+    slides.forEach((slide) => {
+      slideLengths.push(slide.offsetWidth);
+    });
+
+    const sliderLength = slider.offsetWidth;
     const areaLength = sliderShowArea.offsetWidth;
-    const maxCount = Math.ceil(areaLength / 210);
-    console.log(sliderShowArea);
 
-    moveSlide(currentIdx + 1);
-    if (productCount < currentIdx + maxCount - 1) {
-      moveSlide(0);
-    }
-  };
+    let currentIdx = 0;
 
-  prevBtn.addEventListener("click", handleClickPrev);
-  nextBtn.addEventListener("click", handleClickNext);
+    prevBtn.style.display = "none";
+
+    let left = 0;
+    const moveSlide = (num) => {
+      left = 0;
+      for (let i = 0; i < num; i++) {
+        left += slideLengths[i];
+      }
+      slider.style = `left: -${left}px`;
+      currentIdx = num;
+    };
+
+    const handleClickPrev = (e) => {
+      moveSlide(currentIdx - 1);
+      if (currentIdx <= 0) {
+        moveSlide(0);
+        prevBtn.style.display = "none";
+      }
+    };
+    const handleClickNext = (e) => {
+      if (left + areaLength > sliderLength) {
+        moveSlide(0);
+        prevBtn.style.display = "none";
+      } else {
+        moveSlide(currentIdx + 1);
+      }
+      if (currentIdx !== 0) {
+        prevBtn.style.display = "flex";
+      }
+    };
+
+    prevBtn.addEventListener("click", handleClickPrev);
+    nextBtn.addEventListener("click", handleClickNext);
+  });
 });

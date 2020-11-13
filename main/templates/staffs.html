@@ -1,12 +1,19 @@
 {% extends 'base_border.html' %}
 {% load static %}
 
-{% block title %}DIRECTORY - Staff{% endblock %}
+{% block title %}
+Directory - Staffs
+{% endblock %}
 
-{% block link %}{% static 'css/staffs.css' %}{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/staffs.css' %}">
+{% endblock %}
 
 {% block upper-container %}
+
 {% endblock %}
+
+{% block lower-container %}
 
 {% block lower-container %}
 <h2 class="lower-container__title">모든 Staff Portfolio 보기</h2>

@@ -5,6 +5,7 @@
 
 {% block css %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}" />
+<link rel="stylesheet" type='text/css' href="{% static 'css/actors.css' %}" />
 {% endblock %}
 
 {% block js %}
@@ -33,30 +34,50 @@ Staff
 {% endblock %}
 
 {% block lower-container %}
-<h2 class="lower-container__title">HOT DIRECTOR</h2>
+
 <ul class="lower-container__content">
+    <li class="job-item">
+        <h2 class="lower-container__title font-lg">HOT DIRECTOR</h2>
+        <div class="slider-wrapper">
+            <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
+            <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
 
-    <div class="slider-wrapper">
-        <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
-        <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
-        
-        <div class="slider-show-area">
-            <ul class="slider">
-                {% for portfolio in all_portfolio %}
-                <li class="movie">
-                    <div class="movie-thumbnail" style="background-image: url({{portfolio.poster.url}});">
-                    </div>
-                    <div class="movie-info">
-                        <p>
-                            {{portfolio.title}}
-                        </p>
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
+            <div class="slider-show-area">
+                <ul class="slider">
+                    {% for movie in movies %}
+                    <li class="slide">
+                        <img class="movie-thumbnail" src="{{movie.poster.url}}" />
+                        <div class="movie-info font-md">
+                            <p>
+                                <strong>{{movie.director.name}}</strong> -
+                                {{movie.title}}
+                            </p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-    </div>
-</ul>
+    </li>
+    <li class="job-item">
+        <h2 class="lower-container__title font-lg">ACTOR</h2>
+        <div class="slider-wrapper">
+            <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
+            <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
 
-<h2 class="lower-container__title">HOT DIRECTOR</h2>
+            <div class="slider-show-area">
+                <ul class="slider">
+                    {% for actor in actors %}
+                    <li class="slide">
+                        <a href="{% url 'user_page' actor.profile.id %}">
+                            <div class="actor-image" style="background-image: url({{actor.favorite_image.url}});"></div>
+                        </a>
+                        <div class="actor-name font-md">{{actor.profile.name}}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </li>
+</ul>
 {% endblock %}

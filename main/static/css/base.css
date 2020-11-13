@@ -216,8 +216,9 @@ button {
 }
 
 .lower-container .lower-container__title {
-  font-size: 20px;
   letter-spacing: 3px;
+  margin-bottom: 29px;
+  font-weight: 700;
 }
 
 .lower-container .lower-container__content {
@@ -262,8 +263,8 @@ button {
 }
 
 .btn {
-  width: 70px;
-  height: 35px;
+  /* width: 70px;
+  height: 35px; */
   border-radius: 5px;
 
   font-size: 17px;
@@ -272,7 +273,24 @@ button {
   border: none;
 
   font-family: "NanumSquare";
+  background-color: transparent;
 
   outline: none;
   cursor: pointer;
+}
+
+/* font */
+.font-lg {
+  font-family: "NanumSquare";
+  font-size: 1.3em;
+}
+
+.font-md {
+  font-family: "NanumSquare";
+  font-size: 1.1em;
+}
+
+.font-sm {
+  font-family: "NanumSquare";
+  font-size: 0.9em;
 }
