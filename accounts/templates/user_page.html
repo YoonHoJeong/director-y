@@ -19,9 +19,7 @@ DIRECTORY - Mypage
 
 {% block upper-container %}
 <div class="profile">
-    {% if profile_user.id == user.id %}
-    <button class="btn btn--revise"><i class="fas fa-circle"></i> 프로필 수정하기</button>
-    {% endif %}
+
     <div class="profile-name">
         <p class="profile-name__kor">{{profile_user.name}}</p>
         <p class="profile-name__eng">{{profile_user.name_eng}}</p>
@@ -32,32 +30,27 @@ DIRECTORY - Mypage
         <div class="profile-detail">
             <form method = "POST" action="{% url 'edit_user' %}" class="detail-form">
                 {% csrf_token %}
+                {% if profile_user.id == user.id %}
+                <button class="btn btn--revise"><i class="fas fa-circle"></i> 프로필 수정하기</button>
+                <button class="btn btn--done"><i class="fas fa-circle"></i> 완료</button>
+                {% endif %}
                 <ul class="profile-detail-list">
                     <li class="profile-detail-item">
                         <div class="profile-detail-item__title">소개</div>
                         <input readonly name="intro" class="profile-detail-item__content" value="{{profile_user.intro}}">
-                        <button name="intro" class="btn btn--edit">
-                            <i class="fas fa-pen"></i>
-                        </button>
                     </li>
                     <li class="profile-detail-item">
                         <div class="profile-detail-item__title">출생</div>
                         <input readonly name="date_of_birth" class="profile-detail-item__content"
                             value="{{profile_user.date_of_birth}}">
-                        <button class="btn btn--edit" name="date_of_birth">
-                            <i class="fas fa-pen"></i>
-                        </button>
                     </li>
                     <li class="profile-detail-item">
                         <div class="profile-detail-item__title">학력</div>
                         <input readonly name="education" class="profile-detail-item__content"
                             value="{{profile_user.education}}">
-                        <button name="education" class="btn btn--edit">
-                            <i class="fas fa-pen"></i>
-                        </button>
                     </li>
                 </ul>
-                <button class="btn btn--done">완료</button>
+                
             </form>
         </div>
 
