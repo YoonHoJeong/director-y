@@ -7,8 +7,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-    {% block title%}
-    {% endblock %}
+        {% block title%}
+        {% endblock %}
     </title>
     <link rel="stylesheet" type='text/css' href="{% static 'css/reset.css' %}" />
     <link rel="stylesheet" type='text/css' href="{% static 'css/base.css' %}" />
@@ -22,18 +22,37 @@
 
 <body>
     <header class="header">
-            <nav class="nav-bar">
-                <div class="nav-bar__icon"><a href="{% url 'home' %}">DIRECTORY</a></div>
-                <div class="nav-bar__category">
-                    <div class="category-item" name="directors"><a href="{% url 'directors' %}">DIRECTOR</a> </div>
-                    <div class="category-item" name="staffs"><a href="{% url 'staffs' %}">STAFF</a> </div>
-                    <div class="category-item" name="actors"><a href="{% url 'actors' %}">ACTOR</a></div>
-                    <div class="category-item" name="user_page"><a href="{% url 'user_page' %}">MYPAGE</a> </div>
+        <nav class="nav-bar">
+            <div class="nav-bar__icon"><a href="{% url 'home' %}">DIRECTORY</a></div>
+            <ul class="nav-bar__category">
+                <li class="category-item" name="directors"><a href="{% url 'directors' %}">DIRECTOR</a> </li>
+                <li class="category-item" name="staffs"><a href="{% url 'staffs' %}">STAFF</a> </li>
+                <li class="category-item" name="actors"><a href="{% url 'actors' %}">ACTOR</a></li>
+                <li class="category-item" name="user_page"><a href="{% url 'user_page' %}">MYPAGE</a> </li>
+            </ul>
+            {% if user.is_authenticated %}
+            <div class="nav-bar__setting">
+                <div class="nav-bar__user-name font-md font-b">
+                    {{user.name}}님
                 </div>
-            </nav>
+                <div class="nav-bar__user-profile font-md font-b" style="background-image: url('{{user.avatar.url}}');">
+
+                </div>
+            </div>
+            {% else %}
+            <div class="auth font-md font-b">
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">
+                    <div class="btn-signup">
+                        Register
+                    </div>
+                </a>
+            </div>
+            {% endif %}
+        </nav>
     </header>
     {% block content %}
-    
+
     {% endblock %}
 </body>
 

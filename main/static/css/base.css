@@ -66,7 +66,7 @@ html {
 body {
   width: 100%;
   min-width: 960px;
-  height: 100%;
+  height: fit-content;
   padding: 90px 0px 0px 0px;
   background-color: #fbf8f3;
   color: #474344;
@@ -89,7 +89,8 @@ button {
 
   width: 100%;
   min-width: 960px;
-  height: 90px;
+  height: 70px;
+  padding: 0px 80px;
 
   background-color: #fbf8f3;
   /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
@@ -100,9 +101,9 @@ button {
 .nav-bar {
   width: 100%;
   height: 100%;
-  max-width: 1240px;
 
   display: flex;
+  justify-content: space-between;
   align-items: center;
   background-color: #fbf8f3;
 }
@@ -117,7 +118,6 @@ button {
   font-size: 23px;
   font-weight: 700;
 
-  margin-right: 70px;
   height: inherit;
   width: fit-content;
 
@@ -126,7 +126,6 @@ button {
 }
 
 .nav-bar .nav-bar__category {
-  flex: 0.8;
   display: flex;
   height: inherit;
 
@@ -137,9 +136,29 @@ button {
   align-items: center;
 }
 
+.category-item:not(:last-child) {
+  margin-right: 60px;
+}
+
+.nav-bar__setting {
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar__user-name {
+  margin-right: 10px;
+}
+
+.nav-bar__user-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: center / cover no-repeat;
+}
+
 .category-item {
   display: flex;
-  height: inherit;
+  height: 100%;
 
   justify-content: space-between;
   align-items: center;
@@ -189,9 +208,19 @@ button {
 }
 
 .auth {
-  position: absolute;
+  display: flex;
+  align-items: center;
+
   right: 20px;
   bottom: 20px;
+}
+.btn-signup {
+  background-color: #d44242;
+  border-radius: 5px;
+  color: #fbf8f3;
+  padding: 7px 12px;
+
+  margin-left: 10px;
 }
 
 .lower-container-wrapper {
@@ -308,4 +337,67 @@ button {
 }
 .font-eb {
   font-weight: 800;
+}
+
+/* slider */
+
+.slider-wrapper {
+  position: relative;
+  top: 0;
+  left: 0;
+  /* width: 610px; */
+  width: 100%;
+  margin: 0px auto;
+  /* margin-top: 40px; */
+}
+
+.move-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+
+  outline: none;
+
+  transition: all 0.2s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+}
+
+.move-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.prev-btn {
+  left: -60px;
+}
+
+.next-btn {
+  right: -60px;
+}
+
+.slider-show-area {
+  position: relative;
+
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transition: left 0.5s ease-in-out;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.slide {
+  height: fit-content;
 }

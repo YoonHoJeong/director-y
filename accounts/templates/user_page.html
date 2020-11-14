@@ -14,6 +14,7 @@ DIRECTORY - Mypage
 {% block js %}
 <script src="{% static 'js/edit.js' %}"></script>
 <script src="{% static 'js/slider.js' %}"></script>
+<script src="{% static 'js/popup_screen.js' %}"></script>
 {% endblock %}
 
 
@@ -28,7 +29,7 @@ DIRECTORY - Mypage
         <div class="profile-image" style="background-image: url({{profile_user.avatar.url}});">
         </div>
         <div class="profile-detail">
-            <form method = "POST" action="{% url 'edit_user' %}" class="detail-form">
+            <form method="POST" action="{% url 'edit_user' %}" class="detail-form">
                 {% csrf_token %}
                 {% if profile_user.id == user.id %}
                 <button class="btn btn--revise"><i class="fas fa-circle"></i> 프로필 수정하기</button>
@@ -37,7 +38,8 @@ DIRECTORY - Mypage
                 <ul class="profile-detail-list">
                     <li class="profile-detail-item">
                         <div class="profile-detail-item__title">소개</div>
-                        <input readonly name="intro" class="profile-detail-item__content" value="{{profile_user.intro}}">
+                        <input readonly name="intro" class="profile-detail-item__content"
+                            value="{{profile_user.intro}}">
                     </li>
                     <li class="profile-detail-item">
                         <div class="profile-detail-item__title">출생</div>
@@ -50,10 +52,8 @@ DIRECTORY - Mypage
                             value="{{profile_user.education}}">
                     </li>
                 </ul>
-                
             </form>
         </div>
-
     </div>
 </div>
 {% endblock %}
@@ -88,7 +88,6 @@ DIRECTORY - Mypage
 </div>
 {% elif profile_user.u_type == 2 %}
 <ul class="actor-portfolio">
-
     <li class="actor-pf-item">
         <h1 class="actor-pf__title font-lg">Profile</h1>
         {% if profile_images %}
@@ -110,10 +109,6 @@ DIRECTORY - Mypage
         등록된 프로필 사진이 없습니다.
         {% endif %}
     </li>
-    <!-- <li class="actor-pf-item">
-        <h1 class="actor-pf__title font-lg">자기소개</h1>
-        <div class="actor-pf__container"></div>
-    </li> -->
     <li class="actor-pf-item">
         <h1 class="actor-pf__title font-lg">필모그래피</h1>
         <div class="actor-pf__container">
@@ -142,6 +137,25 @@ DIRECTORY - Mypage
     </li>
     <!-- <h1 class="section-title font-lg">추가자료</h1> -->
 </ul>
+<div class="back-screen">
+    <div class="close-bs-btn font-lg font-b">
+        닫기
+    </div>
+    <div class="slider-wrapper actor-pf__container">
+        <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
+        <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
 
+        <div class="slider-show-area">
+            <ul class="slider profile-images">
+                {% for profile_image in profile_images %}
+                <li class="slide profile-image-container">
+                    <img class="profile-image" src="{{profile_image.image.url}}" style="height: 600px" />
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</div>
 {% endif %}
 {% endblock %}

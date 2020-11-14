@@ -1,7 +1,6 @@
-const navItems = document.querySelectorAll(".category-item");
-
 document.addEventListener("DOMContentLoaded", () => {
   const currentHref = window.location.href;
+  const navItems = document.querySelectorAll(".category-item");
   let current;
 
   navItems.forEach((item) => {
@@ -12,6 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   if (current) {
-    current.style.borderBottom = "1px solid black";
+    current.style.borderBottom = "2px solid black";
   }
 });
