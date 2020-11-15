@@ -5,6 +5,7 @@
 
 {% block css %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}" />
+<link rel="stylesheet" type='text/css' href="{% static 'css/register.css' %}" />
 <link rel="stylesheet" type='text/css' href="{% static 'css/movie.css' %}" />
 <link rel="stylesheet" type='text/css' href="{% static 'css/actors.css' %}" />
 <link rel="stylesheet" type='text/css' href="{% static 'css/staffs.css' %}" />
@@ -30,9 +31,34 @@
     Staff
     {% endif %}
     {{request.user.username}}
-    {% else %}
 </h2>
-<h1 class="font-xlg font-eb">Please Log in or Register</h1>
+{% else %}
+<ul class="job-list">
+    <li class="job-item">
+        <a href="{% url 'director_register' %}">
+            <div class="job">
+                <span class="job-eng">DIRECTOR</span>
+                <span class="job-kor">감독</span>
+            </div>
+        </a>
+    </li>
+    <li class="job-item">
+        <a href="{% url 'actor_register' %}">
+            <div class="job">
+                <span class="job-eng">ACTOR</span>
+                <span class="job-kor">배우</span>            
+            </div>
+        </a>
+    </li>
+    <li class="job-item">
+        <a href="{% url 'staff_register' %}">
+            <div class="job">
+                <span class="job-eng">STAFF</span>
+                <span class="job-kor">스탭</span>            
+            </div>
+        </a>
+    </li>
+</ul>
 
 {% endif %}
 
@@ -96,10 +122,10 @@
                 <ul class="slider">
                     {% for actor in actors %}
                     <li class="slide">
-                        <div class="sportfolio">
+                        <!-- <div class="sportfolio">
                             <iframe src="https://player.vimeo.com/video/76979871" width="300px" height="200px"
                                 frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                        </div>
+                        </div> -->
                     </li>
                     {% endfor %}
                 </ul>

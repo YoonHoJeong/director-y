@@ -26,7 +26,11 @@ DIRECTORY - Mypage
         <p class="profile-name__eng">{{profile_user.name_eng}}</p>
     </div>
     <div class="profile-info">
+        {% if profile_user.avatar %}
         <div class="profile-image" style="background-image: url({{profile_user.avatar.url}});">
+        {% else %}
+        <div class="profile-image" style="background-image: url('/static/images/default_user.jpg');">
+        {% endif %}
         </div>
         <div class="profile-detail">
             <form method="POST" action="{% url 'edit_user' %}" class="detail-form">

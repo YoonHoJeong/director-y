@@ -67,6 +67,7 @@ body {
   width: 100%;
   min-width: 960px;
   height: fit-content;
+  min-height: 100vh;
   padding: 90px 0px 0px 0px;
   background-color: #fbf8f3;
   color: #474344;
@@ -100,6 +101,8 @@ button {
 }
 .nav-bar {
   width: 100%;
+  max-width: 1240px;
+
   height: 100%;
 
   display: flex;

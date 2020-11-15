@@ -32,7 +32,7 @@
   margin-right: 20px;
 }
 
-.job-item:not(:last-child) {
+.lower-container__content .job-item:not(:last-child) {
   margin-bottom: 110px;
 }
 

@@ -35,9 +35,15 @@
                 <div class="nav-bar__user-name font-md font-b">
                     {{user.name}}님
                 </div>
-                <div class="nav-bar__user-profile font-md font-b" style="background-image: url('{{user.avatar.url}}');">
 
+                {% if user.avatar %}
+                <div class="nav-bar__user-profile font-md font-b" style="background-image: url('{{user.avatar.url}}');">
+                
                 </div>
+                {% else %}
+                <div class="nav-bar__user-profile font-md font-b" style="background-image: url('/static/images/default_user.jpg');">
+                </div>
+                {% endif %}
             </div>
             {% else %}
             <div class="auth font-md font-b">

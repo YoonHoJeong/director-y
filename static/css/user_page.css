@@ -11,7 +11,8 @@
   font-family: "NanumSquare";
 }
 
-.profile .btn--revise {
+.profile .btn--revise,
+.profile .btn--done {
   font-family: "NanumSquare";
 
   position: absolute;
@@ -67,6 +68,9 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+.slider .profile-image:hover {
+  cursor: pointer;
+}
 
 .profile-info .profile-detail {
   flex: 1;
@@ -81,6 +85,12 @@
   align-items: baseline;
 }
 
+.profile-detail-item input {
+  font-family: "NanumSquare";
+  color: #474344;
+  font-weight: 600;
+}
+
 .profile-detail-item:not(:last-child) {
   margin-bottom: 20px;
 }
@@ -89,7 +99,7 @@
   width: 100px;
 
   font-size: 17px;
-  font-weight: 600;
+  font-weight: 800;
   letter-spacing: 5px;
 }
 
@@ -165,4 +175,41 @@
 
 .filmo__title {
   margin-top: 5px;
+}
+
+.back-screen {
+  width: 100vw;
+  height: 100vh;
+  padding: 40px 80px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: black;
+
+  opacity: 0;
+
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  opacity: 0;
+
+  transition: opacity 0.3s linear;
+}
+
+.close-bs-btn {
+  align-self: start;
+  margin-left: auto;
+
+  background-color: transparent;
+  color: white;
+  width: 100px;
+}
+
+.close-bs-btn:hover {
+  cursor: pointer;
 }
