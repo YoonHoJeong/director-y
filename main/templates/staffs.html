@@ -1,10 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'base_border.html' %}
 {% load static %}
 
 {% block title %}
-DIRECTORY - Home-Staff
+Directory - Staffs
 {% endblock %}
 
+<<<<<<< HEAD
 {% block content %}
 
 <br>
@@ -32,5 +33,40 @@ DIRECTORY - Home-Staff
     </a>
     {% endfor %}
 </div>
+=======
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/staffs.css' %}">
+{% endblock %}
 
+{% block upper-container %}
+<iframe src="https://player.vimeo.com/video/76979871" width="300px" height="200px" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+{% endblock %}
+>>>>>>> 357839baa66e7917ccdc231f479e8508f0ffadcd
+
+{% block lower-container %}
+<h2 class="lower-container__title font-md">모든 Staff Portfolio 보기</h2>
+<ul class="lower-container__content">
+    <div class="portfolio__categories">
+        <button class="category__btn">전체</button>
+        <button class="category__btn">촬영</button>
+        <button class="category__btn">음향</button>
+        <button class="category__btn">분장</button>
+        <button class="category__btn">조명</button>
+        <button class="category__btn">기타</button>
+    </div>
+    <ul class="portfolios">
+        {% for portfolio in all_portfolio %}
+        <li class="portfolio">
+            <div class="portfolio-thumbnail">
+                <img src="{{portfolio.thumbnail.url}}" />
+            </div>
+            <div class="portfolio-info">
+                <p>
+                    {{portfolio.title}}
+                </p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</ul>
 {% endblock %}

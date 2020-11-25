@@ -45,17 +45,17 @@ class ProfileManager(BaseUserManager):
 class Profile(AbstractBaseUser):
     email = models.EmailField(
         verbose_name="email", max_length=60, unique=True, null=False, blank=False)
-    username = models.CharField(
-        max_length=30, unique=True, null=False, blank=False)
+    username = models.CharField(max_length=30, unique=True, null=False, blank=False)
     name = models.CharField(max_length=20, default="", blank=False)
+
+    # 필수가 아닌 fields
+    age = models.PositiveIntegerField(null=True, blank=True)
     name_eng = models.CharField(max_length=20, default="", blank=True)
-    age = models.PositiveIntegerField(null=True, blank=False)
-    date_of_birth = models.DateField(null=True, blank=False)
+    date_of_birth = models.DateField(null=True, blank=True)
     avatar = models.ImageField(null=True,  # profile 이미지
                                blank=True,
                                upload_to='image/avatar')
     intro = models.TextField(default="")  # 소개글
-
     education = models.CharField(max_length=20, null=True, blank=True)
     u_type = models.PositiveSmallIntegerField(null=True)
 
@@ -101,7 +101,8 @@ class Director(models.Model):
     awards = models.TextField()
     profile = models.OneToOneField(
         Profile, on_delete=models.CASCADE, primary_key=True)
-
+    def __str__(self):
+        return self.profile.name
 
 class Actor(models.Model):
     profile = models.OneToOneField(
@@ -116,6 +117,9 @@ class Actor(models.Model):
     favorite_image = models.ImageField(null=True, blank=True)
     specialty = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.profile.name
+
 
 class Staff(models.Model):
     # profile_... 들은 프로필에 보여질 대표 포토폴리오의 이미지,영상,제목
@@ -125,7 +129,8 @@ class Staff(models.Model):
     role = models.CharField(max_length=30)
 
     tool_list = models.CharField(max_length=200)
-
+    def __str__(self):
+        return self.profile.name
 
 class SNS(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)

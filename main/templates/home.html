@@ -1,64 +1,110 @@
-{% extends 'base.html' %}
+{% extends 'base_border.html' %}
 {% load static %}
 
-{% block title %}
-DIRECTORY - Home
-{% endblock %}
+{% block title %}DIRECTORY - Home{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}" />
+<link rel="stylesheet" type='text/css' href="{% static 'css/movie.css' %}" />
+<link rel="stylesheet" type='text/css' href="{% static 'css/actors.css' %}" />
+<link rel="stylesheet" type='text/css' href="{% static 'css/staffs.css' %}" />
 {% endblock %}
 
-{% block content %}
-<div class="upper-container">
-    <div class="welcome-box">
-        <div class="box-frame top-left"></div>
-        <div class="box-frame top-right"></div>
-        <div class="box-frame bottom-left"></div>
-        <div class="box-frame bottom-right"></div>
-        <h1>Welcome,</h1>
-        {% if request.user.is_authenticated %}
-        <h1>
-        {% if request.user.u_type == 1 %}
-            Director
-        {% elif request.user.u_type == 2 %}
-            Actor
-        {% elif request.user.u_type == 3 %}
-            Staff
-        <!-- <h1>{{request.user.u_type}}</h1> -->
-        {% endif  %}
-        
-        {{request.user.username}}
-        </h1>
-        <div class="auth">
-            <a href="{% url 'logout' %}">Logout</a>
+{% block js %}
+<script src="{% static 'js/slider.js' %}"></script>
+{% endblock %}
+
+
+{% block upper-container %}
+
+{% if user.is_authenticated %}
+<h1 class="font-xlg font-eb">
+    Welcome,
+</h1>
+<h2 class="font-lg font-b">
+    {% if request.user.u_type == 1 %}
+    Director
+    {% elif request.user.u_type == 2 %}
+    Actor
+    {% elif request.user.u_type == 3 %}
+    Staff
+    {% endif %}
+    {{request.user.username}}
+    {% else %}
+</h2>
+<h1 class="font-xlg font-eb">Please Log in or Register</h1>
+
+{% endif %}
+
+{% endblock %}
+
+{% block lower-container %}
+
+<ul class="lower-container__content">
+    <li class="job-item">
+        <h2 class="lower-container__title font-lg">HOT DIRECTOR</h2>
+        <div class="slider-wrapper">
+            <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
+            <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
+
+            <div class="slider-show-area">
+                <ul class="slider">
+                    {% for movie in movies %}
+                    <li class="slide">
+                        <a href="{% url 'movie_detail' movie.id %}">
+                            <img class="movie-thumbnail" src="{{movie.poster.url}}" />
+                        </a>
+                        <div class="movie-info font-md font-b">
+                            <p>
+                                <strong>{{movie.director.name}}</strong> -
+                                {{movie.title}}
+                            </p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-        {% else %}
-        <h1>Please Log in or Register</h1> 
-        <div class="auth">
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'register' %}">Register</a>
+    </li>
+    <li class="job-item">
+        <h2 class="lower-container__title font-lg">ACTOR</h2>
+        <div class="slider-wrapper">
+            <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
+            <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
+
+            <div class="slider-show-area">
+                <ul class="slider">
+                    {% for actor in actors %}
+                    <li class="slide">
+                        <a href="{% url 'user_page' actor.profile.id %}">
+                            <div class="actor-image" style="background-image: url({{actor.favorite_image.url}});"></div>
+                        </a>
+                        <div class="actor-name font-md font-b">{{actor.profile.name}}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-        {% endif %}
-    </div>
-</div>
-<div class="lower-container">
-    <h2 class="lower-container__title">HOT DIRECTOR</h2>
-    <ul class="lower-container__content">
-        <ul class="movies">
-            {% for portfolio in all_portfolio %}
-            <li class="movie">
-                <div class="movie-thumbnail">
-                    <img src="{{portfolio.poster.url}}" />
-                </div>
-                <div class="movie-info">
-                    <p>
-                        {{portfolio.title}}
-                    </p>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
-    </ul>
-</div>
+    </li>
+    <li class="job-item">
+        <h2 class="lower-container__title font-lg">STAFF</h2>
+        <div class="slider-wrapper">
+            <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
+            <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
+
+            <div class="slider-show-area">
+                <ul class="slider">
+                    {% for actor in actors %}
+                    <li class="slide">
+                        <div class="sportfolio">
+                            <iframe src="https://player.vimeo.com/video/76979871" width="300px" height="200px"
+                                frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </li>
+</ul>
 {% endblock %}

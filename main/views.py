@@ -24,22 +24,23 @@ def section_create(request):
 
 
 def home(request):
-    all_portfolio = Movie.objects.all()
+    movies = Movie.objects.all()
+    actors = Actor.objects.all()
 
-    return render(request, "home.html", {"all_portfolio": all_portfolio})
+    return render(request, "home.html", {"movies": movies, "actors":actors})
 
 
-def actors(request):
-    all_portfolio = Actor.objects.all()
-
-    random_portfolio = Actor.objects.all().order_by('?')[:4]
-    return render(request, "actors2.html", {"all_portfolio": all_portfolio, "random_portfolio" : random_portfolio})
 
 def staffs(request):
+<<<<<<< HEAD
     all_portfolio = SPortfolio.objects.all()
     #random_portfolio = SPortfolio.objects.all().order_by('?')[:1]
+=======
+    staffs = SPortfolio.objects.all()
+    random_portfolio = SPortfolio.objects.all().order_by('?')[:1]
+>>>>>>> 357839baa66e7917ccdc231f479e8508f0ffadcd
 
-    return render(request, "staffs.html", {"all_portfolio": all_portfolio})
+    return render(request, "staffs.html", {"staffs": staffs})
 
 def staff_detail(request, staff_profile_id):
     my_staff = get_object_or_404(Staff, pk=staff_profile_id)
@@ -73,14 +74,13 @@ def directors(request):
     all_portfolio = Movie.objects.all()
     return render(request, "directors.html", {"all_portfolio": all_portfolio})
 
+def movie_detail(request, movie_id):
+    movie_obj = get_object_or_404(Movie, pk=movie_id)
 
-def mypage(request):
-    return render(request, "mypage.html")
-
+    return render(request, "movie.html", {"movie_obj":movie_obj})
 
 def new(request):
     return render(request, 'create.html')
-
 
 def create(request):
     return render(request, 'create.html')
@@ -117,6 +117,7 @@ def create(request):
 
         return redirect("home")
 
+<<<<<<< HEAD
 def actordetail(request, actor_profile_id):
     my_actor = get_object_or_404(Actor, pk=actor_profile_id)
     return render(request, 'actordetail.html', {'my_actor' : my_actor})
@@ -161,3 +162,16 @@ def enroll_movie(request):
 
 def movie(request):
     return render(request, 'movie.html')
+=======
+def actors(request):
+    actors = Actor.objects.all()
+
+    random_actors = Actor.objects.all().order_by('?')[:4]
+    
+    return render(request, "actors.html", {"actors": actors, "random_actors" : random_actors})
+
+def actor_detail(request, actor_id):
+    my_actor = get_object_or_404(Actor, pk=actor_id)
+
+    return render(request, 'actor_detail.html', {'my_actor' : my_actor})
+>>>>>>> 357839baa66e7917ccdc231f479e8508f0ffadcd

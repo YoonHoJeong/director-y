@@ -1,11 +1,14 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
-from .forms import RegistrationForm, StaffRegistraionForm, ActorRegistraionForm, DirectorRegistraionForm, ProfileAuthenticationForm
+from django.contrib.auth.decorators import login_required
+from .forms import StaffRegistraionForm, ActorRegistraionForm, DirectorRegistraionForm, ProfileAuthenticationForm
 from django.views.generic import CreateView
+
+
 from .models import Profile
+from main.models import Movie, ActorImage, ActorVideo, Filmography
 
 # Create your views here.
-
 
 def register(request):
     return render(request, '../templates/register.html')
@@ -92,3 +95,47 @@ def login_view(request):
 
     context['login_form'] = form
     return render(request, 'accounts/login.html', context)
+
+# @login_required(login_url='/login/')
+def user_page(request, user_id=0):
+    # header에서 mypgae 클릭, 자신의 마이페이지로 갈 때
+    if user_id:
+        # 다른 사람의 user_page에 접근
+        user = get_object_or_404(Profile, pk = user_id)
+    else:
+        # 로그인되지 않았는데 header에서 mypage를 누른 경우 로그인 페이지로 이동
+        user = request.user
+
+        if not user.is_authenticated:
+            # 로그인되지 않았을 때,
+            return redirect('/login')
+    profile_user = user
+
+    # user의 portfolio 가져오기
+    if profile_user.u_type == 1:
+        # 해당 유저가 감독일 경우
+        movie_pfs = Movie.objects.filter(director = profile_user.id)
+        return render(request, 'user_page.html', {"profile_user": profile_user, "movie_pfs":movie_pfs})
+    elif profile_user.u_type == 2:
+        # 해당 유저가 배우일 경우
+        profile_images = ActorImage.objects.filter(actor = profile_user.id)
+        filmos = Filmography.objects.filter(profile = profile_user.id)
+        return render(request, 'user_page.html', {"profile_user": profile_user, "profile_images":profile_images, "filmos":filmos})
+    elif profile_user.u_type == 3:
+        # 해당 유저가 스탭일 경우
+        pass
+    return redirect('/')
+
+def edit_user(request):
+    user = request.user
+
+    user.intro = request.POST.get("intro")
+    # user.date_of_birth = request.POST.get("date_of_birth")
+    user.education = request.POST.get("education")
+    print(request.POST.get("date_of_birth"))
+
+    user.save()
+    
+    return redirect(f"/user_page/{user.id}")
+
+

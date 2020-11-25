@@ -1,10 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'base_border.html' %}
 {% load static %}
 
 {% block title %}
-DIRECTORY - Home-Directors
+Directory - Directors
 {% endblock %}
 
+<<<<<<< HEAD
 {% block js %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 {% endblock %}
@@ -26,6 +27,18 @@ DIRECTORY - Home-Directors
         </div>
     </div>
 </div>
+=======
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/directors.css' %}">
+{% endblock %}
+
+{% block upper-container %}
+
+{% endblock %}
+
+{% block lower-container %}
+>>>>>>> 357839baa66e7917ccdc231f479e8508f0ffadcd
 
 <div class="lower-container">
     <h2 class="lower-container__title">HOT DIRECTOR</h2>

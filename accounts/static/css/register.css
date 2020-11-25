@@ -48,3 +48,41 @@
 .job-eng {
   margin-top: 10px;
 }
+
+.register-field__form {
+  font-family: "NanumSquare", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  width: 300px;
+
+  padding: 15px 18px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  outline: none;
+  font-size: 17px;
+  margin-top: 5px;
+}
+
+.register-form {
+  margin: 50px auto;
+}
+
+.field-label {
+}
+
+input[type="password"] {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+::placeholder {
+  font-family: "NanumSquare";
+}
+
+.btn--submit {
+  width: 300px;
+  height: 100px;
+
+  background-color: #d44242;
+  color: white;
+
+  margin-left: auto;
+}

@@ -1,0 +1,31 @@
+.portfolios .portfolio-info {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.portfolio-thumbnail {
+  width: 190px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.staff__categories {
+  margin-bottom: 40px;
+}
+
+.category__btn {
+  border: 1px solid grey;
+  padding: 8px 48px;
+}
+
+.category__btn.active,
+.category__btn:hover {
+  background-color: grey;
+  color: white;
+}
+
+.sportfolio {
+  margin-right: 20px;
+}

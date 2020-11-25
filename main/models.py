@@ -6,17 +6,7 @@ from accounts.models import Profile, Director, Actor, Staff
 
 
 class Movie(models.Model):
-    """ 
-        Fields
-            1. title(kor) - CharField
-            2. title(eng) - CharField
-            3. poster - ImageField
-            4. trailer - URLField
-            5. trailer-thumbnail- ImageField
-            6. genre - CharField
-            7. summary - TextField
-    """
-    uid = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+    director = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=30, blank=False, null=False)
     title_eng = models.CharField(max_length=30, blank=True)
     poster = models.ImageField(upload_to = 'images/', blank=False, null=False)
@@ -28,8 +18,6 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.title
-#   영화제
-#   한 영화제에서 1개의 상만 탈 수 있다고 가정.
 
 
 class Festival(models.Model):
@@ -46,15 +34,6 @@ class Festival(models.Model):
 
 
 class Section(models.Model):
-    """ 
-        portfolio id
-
-        content
-            - image
-            - text
-            - video(undefined)
-            - 
-    """
     mid = models.ForeignKey(Movie, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=100, blank=False)
     thumbnail = models.ImageField(null=True, blank=True)
@@ -67,14 +46,9 @@ class Section(models.Model):
 
 
 class SPortfolio(models.Model):
-    """ 
-        Fields
-            1. 
-
-    """
     uid = models.ForeignKey(Staff, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=100, blank=False)
-    thumbnail = models.TextField(blank=False, null=False)
+    thumbnail = models.ImageField(blank=True, null=True)
     # content : smart editor에서 제공.
 
     def __str__(self):
@@ -82,10 +56,26 @@ class SPortfolio(models.Model):
 
 
 class ActorImage(models.Model):
-    aid = models.ForeignKey(Actor, on_delete=models.CASCADE)
+    actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images/')
 
 
 class ActorVideo(models.Model):
-    pid = models.ForeignKey(Actor, on_delete=models.CASCADE)
+    actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
     video_url = models.URLField()
+
+class Genre(models.Model):
+    title = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
+
+class Filmography(models.Model):
+    # movie - profile 연걸 many-to-many
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    role = models.CharField(max_length=100)
+
+
+    def __str__(self):
+        return self.profile.name + " / " + self.movie.title + " / " + self.role
