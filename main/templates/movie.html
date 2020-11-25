@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-{% extends 'base.html' %}
-=======
 {% extends 'base_border.html' %}
->>>>>>> 357839baa66e7917ccdc231f479e8508f0ffadcd
 {% load static %}
 
 {% block title %}
@@ -13,54 +9,6 @@ DIRECTORY - Movie
 <link rel="stylesheet" type='text/css' href="{% static 'css/movie.css' %}" />
 {% endblock %}
 
-<<<<<<< HEAD
-{% block content %}
-<div class="upper-container">
-    <div class="welcome-box">
-        <div class="box-frame top-left"></div>
-        <div class="box-frame top-right"></div>
-        <div class="box-frame bottom-left"></div>
-        <div class="box-frame bottom-right"></div>
-
-        <div>
-            <div class='lower-container__title'>
-                {{movie_obj.title}}
-            </div>
-
-            {% if movie_obj.title_eng %}
-            <div class='lower-container__title'>
-                {{movie_obj.title_eng}}
-            </div>
-            {% endif %}
-
-            <div class='movies'>
-                <div class='movie'>
-                    <div class="movie-poster">
-                        <img src = '{{movie_obj.poster.url}}'>
-                    </div>
-                    <div class="movie-info">
-                        <div>감독 {{movie_obj.uid}}</div>
-                        <div>장르 {{movie_obj.genre}}</div>
-                        <div>개봉연도 {{movie_obj.production_year}}</div>
-                    </div>
-                </div>
-                <div class='movie'>
-                    {% if movie_obj.trailer_thumbnail %}
-                    <div class='movie-thumbnail'>
-                        <img src = '{{movie_obj.trailer_thumbnail.url}}'>
-                    </div>
-                    {% endif %}
-                    <p>{{movie_obj.summary}}</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<div class="lower-container">
-</div>
-=======
 {% block upper-container %}
 
 <div class='font-lg font-eb'>
@@ -101,5 +49,23 @@ DIRECTORY - Movie
     </div>
 </div>
 
->>>>>>> 357839baa66e7917ccdc231f479e8508f0ffadcd
+{% endblock %}
+
+{% block lower-container %}
+<div>
+    {% for section in sections %}
+        <a href="{% url 'section_detail' section.id %}">
+            <h2>
+                {{section.title}}
+            </h2>
+            <img src="{{section.thumbnail.url}}">
+        </a>
+    {% endfor %}
+
+    <form action="{% url 'section_create' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" value="{{movie_obj.id}}" name="movie_id">
+        <input type="submit" value="Section 추가">
+    </form>
+</div> 
 {% endblock %}

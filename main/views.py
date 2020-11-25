@@ -16,12 +16,24 @@ def section_create(request):
         filled_form = SectionForm(request.POST, request.FILES)
 
         if filled_form.is_valid():
-            filled_form.save()
+            movie_id = request.POST.get('movie_id')
+            movie_obj = get_object_or_404(Movie, pk=movie_id)
+            section = Section(mid = movie_obj, title=request.POST.get('title'), thumbnail=request.POST.get('thumbnail'), content=request.POST.get('content'))
+            section.save()
             return redirect('/')
+        else :
+            movie_id = request.POST.get('movie_id')
+            movie_obj = get_object_or_404(Movie, pk=movie_id)
+            section_form = SectionForm()
+            
+            return render(request, "section_create.html", {"section_form": section_form, "movie_obj" : movie_obj})
 
     section_form = SectionForm()
     return render(request, "section_create.html", {"section_form": section_form})
 
+def section_detail(request, section_id):
+    section = get_object_or_404(Section, pk=section_id)
+    return render(request, "section_detail.html", {"section" : section})
 
 def home(request):
     movies = Movie.objects.all()
@@ -30,15 +42,9 @@ def home(request):
     return render(request, "home.html", {"movies": movies, "actors":actors})
 
 
-
 def staffs(request):
-<<<<<<< HEAD
-    all_portfolio = SPortfolio.objects.all()
-    #random_portfolio = SPortfolio.objects.all().order_by('?')[:1]
-=======
     staffs = SPortfolio.objects.all()
     random_portfolio = SPortfolio.objects.all().order_by('?')[:1]
->>>>>>> 357839baa66e7917ccdc231f479e8508f0ffadcd
 
     return render(request, "staffs.html", {"staffs": staffs})
 
@@ -53,31 +59,20 @@ def directors(request):
     if request.method == 'POST':
         movie_id = request.POST.get('portfolio-id')
 
-        temp_obj = Movie.objects.filter(id = movie_id).first()
-        
-        movie_obj = {}
+        movie_obj = get_object_or_404(Movie, pk=movie_id)
 
-        print(temp_obj)
-
-        movie_obj['uid'] = temp_obj.uid
-        movie_obj['title'] = temp_obj.title
-        movie_obj['poster'] = temp_obj.poster
-        movie_obj['genre'] = temp_obj.genre
-        movie_obj['summary'] = temp_obj.summary
-        movie_obj['production_year'] = temp_obj.production_year
-        movie_obj['title_eng'] = temp_obj.title_eng
-        movie_obj['trailer'] = temp_obj.trailer
-        movie_obj['trailer_thumbnail'] = temp_obj.trailer_thumbnail
+        sections = Section.objects.filter(mid = movie_obj)
         
-        return render(request, 'movie.html', {'movie_obj' : movie_obj})
+        return render(request, 'movie.html', {'movie_obj' : movie_obj, "sections":sections})
 
     all_portfolio = Movie.objects.all()
     return render(request, "directors.html", {"all_portfolio": all_portfolio})
 
 def movie_detail(request, movie_id):
     movie_obj = get_object_or_404(Movie, pk=movie_id)
+    sections = Section.objects.filter(mid = movie_obj)
 
-    return render(request, "movie.html", {"movie_obj":movie_obj})
+    return render(request, "movie.html", {"movie_obj":movie_obj, "sections":sections})
 
 def new(request):
     return render(request, 'create.html')
@@ -116,11 +111,6 @@ def create(request):
         # print(request.FILES)
 
         return redirect("home")
-
-<<<<<<< HEAD
-def actordetail(request, actor_profile_id):
-    my_actor = get_object_or_404(Actor, pk=actor_profile_id)
-    return render(request, 'actordetail.html', {'my_actor' : my_actor})
 
 def enroll_movie(request):
 
@@ -162,7 +152,7 @@ def enroll_movie(request):
 
 def movie(request):
     return render(request, 'movie.html')
-=======
+
 def actors(request):
     actors = Actor.objects.all()
 
@@ -174,4 +164,4 @@ def actor_detail(request, actor_id):
     my_actor = get_object_or_404(Actor, pk=actor_id)
 
     return render(request, 'actor_detail.html', {'my_actor' : my_actor})
->>>>>>> 357839baa66e7917ccdc231f479e8508f0ffadcd
+

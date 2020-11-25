@@ -5,35 +5,6 @@
 Directory - Staffs
 {% endblock %}
 
-<<<<<<< HEAD
-{% block content %}
-
-<br>
-
-<div class="staff_recommendation">
-    <h2>Hot Now!</h2> <br>
-    {% for portfolio in random_portfolio %}
-    <a href="{% url 'staff_detail' portfolio.profile-id %}">
-        <div class="all_portfolio2">
-            <p><img src="{{ portfolio.profile.avatar.url }}" width="265" height="380" alt="Staff_Image"></p>
-            <p>{{ portfolio.profile.name }}</p>
-        </div>
-    </a>
-    {% endfor %}
-</div>
-
-<br>
-<div class>
-    {% for portfolio in all_portfolio %}
-    <a href="{% url 'staff_detail' portfolio.profile-id %}">
-        <div class="all_portfolio">
-            <p><img src="{{ portfolio.profile.avatar.url }}" width="265" height="380" alt="Staff_Image"></p>
-            <p>{{ portfolio.profile.name }}</p>
-        </div>
-    </a>
-    {% endfor %}
-</div>
-=======
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/staffs.css' %}">
 {% endblock %}
@@ -41,7 +12,6 @@ Directory - Staffs
 {% block upper-container %}
 <iframe src="https://player.vimeo.com/video/76979871" width="300px" height="200px" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 {% endblock %}
->>>>>>> 357839baa66e7917ccdc231f479e8508f0ffadcd
 
 {% block lower-container %}
 <h2 class="lower-container__title font-md">모든 Staff Portfolio 보기</h2>

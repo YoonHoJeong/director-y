@@ -16,4 +16,5 @@ urlpatterns = [
     path('section/', views.section, name="section"),
     path('enroll_movie/', views.enroll_movie, name="enroll_movie"),
     path('movie/', views.movie, name="movie"),
+    path('section_detail/<int:section_id>', views.section_detail, name='section_detail'),
 ]
