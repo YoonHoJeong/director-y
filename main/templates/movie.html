@@ -61,11 +61,13 @@ DIRECTORY - Movie
             <img src="{{section.thumbnail.url}}">
         </a>
     {% endfor %}
-
+    
+    {% if user == movie_obj.director %}
     <form action="{% url 'section_create' %}" method="POST">
         {% csrf_token %}
         <input type="hidden" value="{{movie_obj.id}}" name="movie_id">
         <input type="submit" value="Section 추가">
     </form>
+    {% endif %}
 </div> 
 {% endblock %}
