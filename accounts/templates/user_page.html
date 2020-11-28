@@ -84,6 +84,20 @@ DIRECTORY - Mypage
             </div>
         </li>
         {% endfor %}
+
+        <li class="movie">
+                <div class="movie-plus">
+                    <a href="{% url 'enroll_movie' %}">
+                        <img src="{% static 'img/add.png' %}">
+                    </a>
+                </div>
+                <div class="movie-info">
+                    <p>
+                        추가하기
+                    </p>
+                </div>
+        </li>
+        
     </ul>
 </div>
 {% elif profile_user.u_type == 2 %}

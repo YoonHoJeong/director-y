@@ -7,6 +7,11 @@
     </table>
 
     <input type="hidden" value="{{movie_obj.id}}" name="movie_id">
+    {% if section_id %}
+    <input type="hidden" value="{{section_id}}" name="section_id">
+    {% else %}
+    <input type="hidden" value="None" name="section_id">
+    {% endif %}
     
     <input type="submit" value="제출">
 </form>

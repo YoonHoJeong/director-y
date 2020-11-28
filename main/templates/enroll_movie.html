@@ -23,23 +23,51 @@ DIRECTORY - Enroll-Movie
                 <input type="submit" value="● 완료하기">
             </div>
 
+            {% if movie_obj %}<input type="hidden" name='movie-id' value="{{movie_obj.id}}">
+            {% else %}<input type="hidden" value="None" name='movie-id'>
+            {% endif %}
+
             <div>
-                영화 한글 제목 <input type='text' name='title-kr'>             
-                영화 영어 제목 <input type='text' name='title-en'>
+                영화 한글 제목 
+                {% if movie_obj %}<input type='text' name='title-kr' value='{{movie_obj.title}}'>     
+                {% else %}<input type='text' name='title-kr'>  
+                {% endif %}           
+                영화 영어 제목
+                {% if movie_obj.title_eng %}<input type='text' name='title-en' value="{{movie_obj.title_eng}}">
+                {% else %}<input type='text' name='title-en'>
+                {% endif %}
             </div>
             <div>
-                영화 포스터 <input type="file" name="img">
+                영화 포스터 
+                {% if movie_obj.poster %}<input type="file" name="img" value="{{movie_obj.poster}}">
+                {% else %}<input type="file" name="img">
+                {% endif %}
             </div>
             <div>
-                영화 예고편 썸네일 <input type="file" name="trailer-thum">
-                영화 예고편 <input type="link" name="trailer">
+                영화 예고편 썸네일 
+                {% if movie_obj.trailer_thumbnail %}<input type="file" name="trailer-thum" value="{{movie_obj.trailer_thumbnail}}">
+                {% else %}<input type="file" name="trailer-thum">
+                {% endif %}
+                영화 예고편 
+                {% if movie_obj.trailer %}<input type="link" name="trailer" value="{{movie_obj.trailer}}">
+                {% else %}<input type="link" name="trailer">
+                {% endif %}
             </div>
             <div>
-                영화 장르 <input type="text" name="genre">
-                영화 제작년도 <input type="text" name="year">
+                영화 장르 
+                {% if movie_obj.genre %}<input type="text" name="genre" value="{{movie_obj.genre}}">
+                {% else %}<input type="text" name="genre">
+                {% endif %}
+                영화 제작년도 
+                {% if movie_obj.production_year %}<input type="text" name="year" value="{{movie_obj.production_year}}">
+                {% else %}<input type="text" name="year">
+                {% endif %}
             </div>
             <div>
-                영화 줄거리 <input type="text" name="summary">
+                영화 줄거리 
+                {% if movie_obj.summary %}<input type="text" name="summary" value="{{movie_obj.summary}}">
+                {% else %}<input type="text" name="summary">
+                {% endif %}
             </div>            
         </form> 
 

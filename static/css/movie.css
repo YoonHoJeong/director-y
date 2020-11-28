@@ -59,6 +59,7 @@
   border-right: none;
   border-bottom: none;
 }
+
 .movie-pf-frame.top-right {
   top: 0;
   right: 0;
@@ -66,6 +67,7 @@
   border-left: none;
   border-bottom: none;
 }
+
 .movie-pf-frame.bottom-left {
   bottom: 0;
   left: 0;
@@ -73,6 +75,7 @@
   border-right: none;
   border-top: none;
 }
+
 .movie-pf-frame.bottom-right {
   bottom: 0;
   right: 0;
@@ -80,3 +83,89 @@
   border-left: none;
   border-top: none;
 }
+
+.movie-poster img {
+  /* 가로세로 1:1.3비율 */
+  width: 150px;
+  height: 195px;
+}
+
+.movie-thumbnail {
+  /* 가로세로 1:1.431비율 */
+  height: 378px;
+
+  /* background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; */
+}
+
+.movie-plus img {
+  /* 가로세로 1:1.3비율 */
+  width: 150px;
+  height: 195px;
+}
+
+.modify {
+  position: absolute;
+  color: #d44242;
+
+  top: 10px;
+  right: 20px;
+}
+
+.welcome-box > .movie-info {
+  display: flex;
+  margin-top: 40px;
+}
+
+.movie__left-col {
+  width: fit-content;
+  margin-right: 70px;
+}
+
+.movie__right-col {
+  flex: 1;
+}
+
+.movie-trailer-thumbnail {
+  width: 100%;
+}
+
+.movie__left-col > .movie-summary {
+  margin-top: 42px;
+}
+
+.movie-summary__item:not(:first-child) {
+  margin-top: 16px;
+}
+
+.movie-summary__item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie-summary__item .item-title {
+}
+
+.movie__right-col > .movie__intro {
+  margin-top: 19px;
+
+  display: flex;
+}
+
+.movie__intro > .item-title {
+  width: 100px;
+}
+
+.movie__intro > .item-content {
+  flex: 1;
+  line-height: 20px;
+}
+
+.section {
+  display: none;
+}
+
+.section-content {
+  display: none;
+}}

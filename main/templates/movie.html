@@ -9,6 +9,11 @@ DIRECTORY - Movie
 <link rel="stylesheet" type='text/css' href="{% static 'css/movie.css' %}" />
 {% endblock %}
 
+
+{% block js %}
+<script src="{% static 'js/movie.js' %}"></script>
+{% endblock %}
+
 {% block upper-container %}
 
 <div class='font-lg font-eb'>
@@ -21,6 +26,10 @@ DIRECTORY - Movie
 {% endif %}
 
 <div class="movie-info">
+    {% if user == movie_obj.director %}
+        <div><a href="{% url 'update_movie' movie_obj.id %}">● 수정하기</a></div>
+        <div><a href="{% url 'delete_movie' movie_obj.id %}">● 삭제하기</a></div>
+    {% endif %}
     <div class="movie__left-col">
         <img class="movie-thumbnail" src='{{movie_obj.poster.url}}'>
         <ul class="movie-summary font-md">
@@ -54,12 +63,23 @@ DIRECTORY - Movie
 {% block lower-container %}
 <div>
     {% for section in sections %}
+    <div class='section-node'>
         <a href="{% url 'section_detail' section.id %}">
-            <h2>
+            <h2 class="section-name">
                 {{section.title}}
             </h2>
             <img src="{{section.thumbnail.url}}">
         </a>
+        
+        <div class="section-content">{{section.content}}</div>
+
+        <button class="section-btn">섹션 보기</button>
+
+        {% if user == movie_obj.director %}
+        <a href="{% url 'section_update' section.id %}">수정하기</a>
+        <a href="{% url 'section_delete' section.id %}">삭제하기</a>
+        {% endif %}
+    </div>
     {% endfor %}
     
     {% if user == movie_obj.director %}
@@ -70,4 +90,27 @@ DIRECTORY - Movie
     </form>
     {% endif %}
 </div> 
+
+<div class='section-background'>
+    <div class='section'>
+        <button class='section-cancle'>
+            X
+        </button>    
+
+        <div class='dircetor-profile'>
+    
+        </div>
+    
+        <div class='section-detail'>
+            <div class='section-title'>
+    
+            </div>
+            <div class='section-main'>
+    
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
+

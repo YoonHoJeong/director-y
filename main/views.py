@@ -16,11 +16,22 @@ def section_create(request):
         filled_form = SectionForm(request.POST, request.FILES)
 
         if filled_form.is_valid():
-            movie_id = request.POST.get('movie_id')
-            movie_obj = get_object_or_404(Movie, pk=movie_id)
-            section = Section(mid = movie_obj, title=request.POST.get('title'), thumbnail=request.POST.get('thumbnail'), content=request.POST.get('content'))
-            section.save()
-            return redirect('/')
+            section_id = request.POST.get('section_id')
+            if section_id == 'None' :
+                movie_id = request.POST.get('movie_id')
+                movie_obj = get_object_or_404(Movie, pk=movie_id)
+                section = Section(mid = movie_obj, title=request.POST.get('title'), thumbnail=request.POST.get('thumbnail'), content=request.POST.get('content'))
+                section.save()
+                return redirect('/')
+
+            else :
+                section = get_object_or_404(Section, pk=section_id)
+                section.title = request.POST.get('title')
+                section.thumbnail = request.POST.get('thumbnail')
+                section.content = request.POST.get('content')
+                section.save()
+                return redirect('/')
+
         else :
             movie_id = request.POST.get('movie_id')
             movie_obj = get_object_or_404(Movie, pk=movie_id)
@@ -34,6 +45,19 @@ def section_create(request):
 def section_detail(request, section_id):
     section = get_object_or_404(Section, pk=section_id)
     return render(request, "section_detail.html", {"section" : section})
+
+def section_update(request, section_id) :
+    section_form = SectionForm()
+    return render(request, "section_create.html", {"section_form" : section_form, "section_id" : section_id})
+
+def section_delete(request, section_id) :
+
+    section_obj = get_object_or_404(Section, pk=section_id)
+    movie_obj = section_obj.mid
+    section_obj.delete()
+    sections = Section.objects.filter(mid = movie_obj)
+
+    return render(request, "movie.html", {"movie_obj" : movie_obj , "sections" : sections})
 
 def home(request):
     movies = Movie.objects.all()
@@ -123,32 +147,60 @@ def enroll_movie(request):
         year = request.POST.get('year')
         summary = request.POST.get('summary')
         trailer_thum = request.POST.get('trailer-thum')
+        movie_id = request.POST.get('movie-id')
 
-        if title_kr and img and genre and year and summary :
-            movie = Movie(
-                uid = request.user,
-                title = title_kr,
-                title_eng = title_en,
-                poster = img,
-                trailer = trailer,
-                trailer_thumbnail = trailer_thum,
-                genre = genre,
-                summary = summary,
-                production_year = year
-            )        
+        if movie_id == 'None' :
+
+            if title_kr and img and genre and year and summary :
+                movie = Movie(
+                    director = request.user,
+                    title = title_kr,
+                    title_eng = title_en,
+                    poster = img,
+                    trailer = trailer,
+                    trailer_thumbnail = trailer_thum,
+                    genre = genre,
+                    summary = summary,
+                    production_year = year
+                )        
 
             print(img)
-
+                
             movie.save()   
 
-            all_portfolio = Movie.objects.all()
-            
-            return render(request, 'directors.html', {"all_portfolio": all_portfolio})
         else :
-            error = 1
-            return render(request, 'enroll_movie.html', {"error" : error})
+            movie = Movie.objects.get(id = movie_id)
+            movie.title = title_kr
+            movie.title_eng = title_en
+            movie.poster = img
+            movie.trailer = trailer
+            movie.trailer_thumbnail = trailer_thum
+            movie.genre = genre
+            movie.summary = summary
+            movie.production_year = year
+            movie.save()
+            
+        all_portfolio = Movie.objects.all() # director로 안 넘어가게?
+            
+        return render(request, 'directors.html', {"all_portfolio": all_portfolio})
+    #else :
+    #    error = 1
+    #    return render(request, 'enroll_movie.html', {"error" : error})
 
     return render(request, 'enroll_movie.html')
+
+def update_movie(request, movie_id) :
+
+    movie_obj = get_object_or_404(Movie, pk = movie_id)
+
+    return render(request, 'enroll_movie.html', {'movie_obj' : movie_obj})
+
+def delete_movie(request, movie_id) :
+
+    movie_obj = get_object_or_404(Movie, pk = movie_id)
+    movie_obj.delete()
+
+    return render(request, 'directors.html')
 
 def movie(request):
     return render(request, 'movie.html')

@@ -22,35 +22,20 @@ Directory - Directors
         <ul class="movies">
             {% for portfolio in all_portfolio %}
             <li class="movie">
-                <form id="movie{{ forloop.counter }}-form" action="{% url 'directors' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" value="{{portfolio.id}}" name="portfolio-id">
-                    <a href="javascript:$('#movie{{ forloop.counter }}-form').submit();">
-                        <div class="movie-thumbnail">
-                            <img src="{{portfolio.poster.url}}" />
-                        </div>
-                    </a>
-                    <input type="submit" value="제출">
+
+                <a href="{% url 'movie_detail' portfolio.id %}">
+                    <div class="movie-thumbnail">
+                        <img src="{{portfolio.poster.url}}" />
+                    </div>
                     <div class="movie-info">
                         <p>
                             {{portfolio.title}}
                         </p>
                     </div>
-                </form>
+                </a>
+
             </li>
-            {% endfor %}
-            <li class="movie">
-                <div class="movie-plus">
-                    <a href="{% url 'enroll_movie' %}">
-                        <img src="{% static 'img/add.png' %}">
-                    </a>
-                </div>
-                <div class="movie-info">
-                    <p>
-                        추가하기
-                    </p>
-                </div>
-            </li>
+            {% endfor %}            
         </ul>
     </ul>
 </div>
