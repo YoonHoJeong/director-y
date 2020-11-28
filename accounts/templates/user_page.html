@@ -28,73 +28,135 @@ DIRECTORY - Mypage
     <div class="profile-info">
         {% if profile_user.avatar %}
         <div class="profile-image" style="background-image: url({{profile_user.avatar.url}});">
-        {% else %}
-        <div class="profile-image" style="background-image: url('/static/images/default_user.jpg');">
-        {% endif %}
-        </div>
-        <div class="profile-detail">
-            <form method="POST" action="{% url 'edit_user' %}" class="detail-form">
-                {% csrf_token %}
-                {% if profile_user.id == user.id %}
-                <button class="btn btn--revise"><i class="fas fa-circle"></i> 프로필 수정하기</button>
-                <button class="btn btn--done"><i class="fas fa-circle"></i> 완료</button>
+            {% else %}
+            <div class="profile-image" style="background-image: url('/static/images/default_user.jpg');">
                 {% endif %}
-                <ul class="profile-detail-list">
-                    <li class="profile-detail-item">
-                        <div class="profile-detail-item__title">소개</div>
-                        <input readonly name="intro" class="profile-detail-item__content"
-                            value="{{profile_user.intro}}">
-                    </li>
-                    <li class="profile-detail-item">
-                        <div class="profile-detail-item__title">출생</div>
-                        <input readonly name="date_of_birth" class="profile-detail-item__content"
-                            value="{{profile_user.date_of_birth}}">
-                    </li>
-                    <li class="profile-detail-item">
-                        <div class="profile-detail-item__title">학력</div>
-                        <input readonly name="education" class="profile-detail-item__content"
-                            value="{{profile_user.education}}">
-                    </li>
-                </ul>
-            </form>
+            </div>
+            <div class="profile-detail">
+                <form method="POST" action="{% url 'edit_user' %}" class="detail-form">
+                    {% csrf_token %}
+                    {% if profile_user.id == user.id %}
+                    <button class="btn btn--revise"><i class="fas fa-circle"></i> 수정하기</button>
+                    <button class="btn btn--done"><i class="fas fa-circle"></i> 완료</button>
+                    {% endif %}
+                    <ul class="profile-detail-list">
+                        <li class="profile-detail-item">
+                            <div class="profile-detail-item__title">소개</div>
+                            <input readonly name="intro" class="profile-detail-item__content"
+                                value="{{profile_user.intro}}">
+                        </li>
+                        <li class="profile-detail-item">
+                            <div class="profile-detail-item__title">출생</div>
+                            <input readonly name="date_of_birth" class="profile-detail-item__content"
+                                value="{{profile_user.date_of_birth}}">
+                        </li>
+                        <li class="profile-detail-item">
+                            <div class="profile-detail-item__title">학력</div>
+                            <input readonly name="education" class="profile-detail-item__content"
+                                value="{{profile_user.education}}">
+                        </li>
+                    </ul>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
 
-{% block lower-container %}
-{% if profile_user.u_type == 1 %}
-<div class="lower-container__title font-md">
-    FILMOGRAPHY
-</div>
-<div class="lower-container__content">
-    <ul class="movie-pf-list">
-        {% for movie_pf in movie_pfs %}
-        <li class="movie-pf">
-            <div class="movie-pf-frame top-left"></div>
-            <div class="movie-pf-frame top-right"></div>
-            <div class="movie-pf-frame bottom-left"></div>
-            <div class="movie-pf-frame bottom-right"></div>
+    {% block lower-container %}
+    {% if profile_user.u_type == 1 %}
+    <div class="lower-container__title font-md">
+        FILMOGRAPHY
+    </div>
+    <div class="lower-container__content">
+        <ul class="movie-pf-list">
+            {% for movie_pf in movie_pfs %}
+            <li class="movie-pf">
+                <div class="movie-pf-frame top-left"></div>
+                <div class="movie-pf-frame top-right"></div>
+                <div class="movie-pf-frame bottom-left"></div>
+                <div class="movie-pf-frame bottom-right"></div>
 
-            <div class="movie-pf__thumbnail" style="background-image: url({{movie_pf.poster.url}});">
+                <div class="movie-pf__thumbnail" style="background-image: url({{movie_pf.poster.url}});">
+                </div>
+                <div class="movie-pf__summary">
+                    <div class="movie-pf__title">
+                        {{movie_pf.title}}
+                    </div>
+                    <div class="movie-pf__prod-year">
+                        {{movie_pf.production_year}}
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% elif profile_user.u_type == 2 %}
+    <ul class="actor-portfolio">
+        {% if profile_user.id == user.id %}
+        <button class="btn btn--revise"><i class="fas fa-circle"></i> 수정하기</button>
+        <button class="btn btn--done"><i class="fas fa-circle"></i> 완료</button>
+        {% endif %}
+        <li class="actor-pf-item">
+            <h1 class="actor-pf__title font-lg">Profile</h1>
+            {% if profile_images %}
+            <div class="slider-wrapper actor-pf__container">
+                <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
+                <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
+
+                <div class="slider-show-area">
+                    <ul class="slider profile-images">
+                        {% for profile_image in profile_images %}
+                        <li class="slide profile-image-container">
+                            <div class="profile-image" style="background-image: url('{{profile_image.image.url}}')">
+                                <a href="/delete_actor_image/{{profile_image.id}}" onclick="return confirm('정말 삭제하시겠습니까?')">
+                                    <img src="{{profile_image.image.url}}" style="visibility: hidden;" />
+                                    <div class="hover-screen font-lg font-b">
+                                        <i class="far fa-trash-alt"></i>
+                                        삭제하기
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-            <div class="movie-pf__summary">
-                <div class="movie-pf__title">
-                    {{movie_pf.title}}
-                </div>
-                <div class="movie-pf__prod-year">
-                    {{movie_pf.production_year}}
-                </div>
+            {% else %}
+            등록된 프로필 사진이 없습니다.
+            {% endif %}
+        </li>
+        <li class="actor-pf-item">
+            <h1 class="actor-pf__title font-lg">필모그래피</h1>
+            <div class="actor-pf__container">
+                {% if filmos %}
+                <ul class="filmos">
+                    {% for filmo in filmos %}
+                    <li class="filmo">
+                        <div class="filmo__prod-year font-md">
+                            {{filmo.movie.production_year}}년
+                        </div>
+                        <div class="filmo__title font-md">
+                            {{filmo.movie.title}} ({{filmo.role}} 역)
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                등록된 필모그래피가 없습니다.
+                {% endif %}
+
             </div>
         </li>
-        {% endfor %}
+        <li class="actor-pf-item">
+            <h1 class="actor-pf__title font-lg">영상</h1>
+            <div class="actor-pf__container"></div>
+        </li>
+        <!-- <h1 class="section-title font-lg">추가자료</h1> -->
     </ul>
-</div>
-{% elif profile_user.u_type == 2 %}
-<ul class="actor-portfolio">
-    <li class="actor-pf-item">
-        <h1 class="actor-pf__title font-lg">Profile</h1>
-        {% if profile_images %}
+    <div class="back-screen">
+        <div class="close-bs-btn font-lg font-b">
+            닫기
+        </div>
         <div class="slider-wrapper actor-pf__container">
             <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
             <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
@@ -103,63 +165,13 @@ DIRECTORY - Mypage
                 <ul class="slider profile-images">
                     {% for profile_image in profile_images %}
                     <li class="slide profile-image-container">
-                        <img class="profile-image" src="{{profile_image.image.url}}" />
+                        <img class="profile-image" src="{{profile_image.image.url}}" style="height: 600px" />
                     </li>
                     {% endfor %}
                 </ul>
             </div>
         </div>
-        {% else %}
-        등록된 프로필 사진이 없습니다.
-        {% endif %}
-    </li>
-    <li class="actor-pf-item">
-        <h1 class="actor-pf__title font-lg">필모그래피</h1>
-        <div class="actor-pf__container">
-            {% if filmos %}
-            <ul class="filmos">
-                {% for filmo in filmos %}
-                <li class="filmo">
-                    <div class="filmo__prod-year font-md">
-                        {{filmo.movie.production_year}}년
-                    </div>
-                    <div class="filmo__title font-md">
-                        {{filmo.movie.title}} ({{filmo.role}} 역)
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
-            {% else %}
-            등록된 필모그래피가 없습니다.
-            {% endif %}
 
-        </div>
-    </li>
-    <li class="actor-pf-item">
-        <h1 class="actor-pf__title font-lg">영상</h1>
-        <div class="actor-pf__container"></div>
-    </li>
-    <!-- <h1 class="section-title font-lg">추가자료</h1> -->
-</ul>
-<div class="back-screen">
-    <div class="close-bs-btn font-lg font-b">
-        닫기
     </div>
-    <div class="slider-wrapper actor-pf__container">
-        <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
-        <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
-
-        <div class="slider-show-area">
-            <ul class="slider profile-images">
-                {% for profile_image in profile_images %}
-                <li class="slide profile-image-container">
-                    <img class="profile-image" src="{{profile_image.image.url}}" style="height: 600px" />
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-
-</div>
-{% endif %}
-{% endblock %}
+    {% endif %}
+    {% endblock %}

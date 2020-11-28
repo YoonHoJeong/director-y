@@ -76,8 +76,55 @@ window.addEventListener("load", function () {
     enableScroll();
   };
 
+  const handleOverImage = (e) => {
+    const image = e.target;
+    const hoverScreen = image.querySelector(".hover-screen");
+    hoverScreen.style.visibility = "visible";
+  };
+
+  const handleLeaveImage = (e) => {
+    const image = e.target;
+    const hoverScreen = image.querySelector(".hover-screen");
+    hoverScreen.style.visibility = "hidden";
+  };
+
+  const initPFRevise = () => {
+    const reviseBtn = document.querySelector(".actor-portfolio .btn--revise");
+    const doneBtn = document.querySelector(".actor-portfolio .btn--done");
+    const onClickRevise = (e) => {
+      doneBtn.style.display = "block";
+      reviseBtn.style.display = "none";
+
+      images.forEach((image) => {
+        image.removeEventListener("click", handleClickImage);
+        image.addEventListener("mouseover", handleOverImage);
+        image.addEventListener("mouseleave", handleLeaveImage);
+      });
+    };
+    const onClickDone = (e) => {
+      doneBtn.style.display = "none";
+      reviseBtn.style.display = "block";
+      images.forEach((image) => {
+        image.addEventListener("click", handleClickImage);
+        image.removeEventListener("mouseover", handleOverImage);
+        image.removeEventListener("mouseleave", handleLeaveImage);
+      });
+    };
+
+    reviseBtn.addEventListener("click", onClickRevise);
+    doneBtn.addEventListener("click", onClickDone);
+  };
+
   closeBtn.addEventListener("click", handleClickClose);
   images.forEach((image) => {
     image.addEventListener("click", handleClickImage);
+    // const deleteBtn = image.querySelector("a");
+    // deleteBtn.addEventListener("click", (e) => {
+    //   e.preventDefault();
+    //   const onDelete = confirm();
+    //   if onDelete:
+
+    // })
   });
+  initPFRevise();
 });

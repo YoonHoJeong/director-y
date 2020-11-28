@@ -18,6 +18,7 @@ from accounts.views import (
     edit_user,
     my_account,
     edit_password,
+    delete_actor_image,
 )
 urlpatterns = [
     path('register/', register, name="register"),
@@ -30,6 +31,7 @@ urlpatterns = [
     path('user_page/<int:user_id>', user_page, name="user_page"),
     path('user_page/', user_page, name="user_page"),
     path('edit_user/', edit_user, name="edit_user"),
+    path('delete_actor_image/<int:image_id>', delete_actor_image, name="delete_actor_image"),
     path('my_account/', my_account, name="my_account"),
     path('my_account/edit_password', edit_password, name="edit_password"),
 ]

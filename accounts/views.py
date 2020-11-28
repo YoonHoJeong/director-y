@@ -187,3 +187,17 @@ def edit_password(request):
         # print(user.password)
 
         return redirect('edit_password')
+
+def delete_actor_image(request, image_id):
+    select_image = ActorImage.objects.filter(id = image_id).first()
+    print(select_image)
+    print(request.user, image_id)
+
+    if select_image and request.user == select_image.actor.profile:
+        if select_image:
+            select_image.delete()
+        else:
+            redirect('home')
+    else:
+        return redirect('home')
+    return redirect('user_page')
