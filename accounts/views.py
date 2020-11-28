@@ -139,3 +139,51 @@ def edit_user(request):
     return redirect(f"/user_page/{user.id}")
 
 
+def my_account(request):
+    if request.method == "GET":
+        return render(request, 'my_account.html')
+    else:
+        # method가 POST일 때
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone_number = request.POST.get('phone_number')
+
+        user = request.user
+
+        if name:
+            user.name = name
+        if email:
+            user.email = email
+        if phone_number:
+            user.phone_number = phone_number
+
+        user.save()
+
+        return redirect('my_account')
+
+def edit_password(request):
+    if request.method == "GET":
+        return render(request, 'edit_password.html')
+    else:
+        prev_password = request.POST.get('prev_password')
+        new_password1 = request.POST.get('new_password1')
+        new_password2 = request.POST.get('new_password2')
+
+        user = request.user
+        if request.POST.get("prev_password"):
+
+            user = request.user
+
+            #User entered old password is checked against the password in the database below.
+            if user.check_password('{}'.format(prev_password)) == True:
+                if new_password1 == new_password2:
+                    user.set_password(new_password1)
+                    user.save()
+                    print("비번 변경", new_password1)
+                    logout(request)
+                    return redirect('login')
+
+        # user.set_password(new_password1)
+        # print(user.password)
+
+        return redirect('edit_password')

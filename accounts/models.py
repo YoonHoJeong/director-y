@@ -1,11 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from phonenumber_field.modelfields import PhoneNumberField
 
 import json
 
 # Create your models here.
-
-
 class ProfileManager(BaseUserManager):
     def create_user(self, email, username, password=None):
         if not email:
@@ -23,9 +22,9 @@ class ProfileManager(BaseUserManager):
             # name=name,
             # age=age
         )
-
         user.set_password(password)
         user.save(using=self._db)
+
         return user
 
     def create_superuser(self, email, username, password):
@@ -41,12 +40,12 @@ class ProfileManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-
 class Profile(AbstractBaseUser):
     email = models.EmailField(
         verbose_name="email", max_length=60, unique=True, null=False, blank=False)
     username = models.CharField(max_length=30, unique=True, null=False, blank=False)
     name = models.CharField(max_length=20, default="", blank=False)
+    phone_number = PhoneNumberField(null=False, blank=False, default="")
 
     # 필수가 아닌 fields
     age = models.PositiveIntegerField(null=True, blank=True)
@@ -69,8 +68,8 @@ class Profile(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
-    # used as the unique identifier
 
+    # used as the unique identifier
     objects = ProfileManager()
 
     def __str__(self):
@@ -96,7 +95,6 @@ class Profile(AbstractBaseUser):
         else:
             return "unknown"
 
-
 class Director(models.Model):
     awards = models.TextField()
     profile = models.OneToOneField(
@@ -119,7 +117,6 @@ class Actor(models.Model):
 
     def __str__(self):
         return self.profile.name
-
 
 class Staff(models.Model):
     # profile_... 들은 프로필에 보여질 대표 포토폴리오의 이미지,영상,제목

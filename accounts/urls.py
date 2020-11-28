@@ -16,6 +16,8 @@ from accounts.views import (
     staff_register,
     user_page,
     edit_user,
+    my_account,
+    edit_password,
 )
 urlpatterns = [
     path('register/', register, name="register"),
@@ -28,4 +30,6 @@ urlpatterns = [
     path('user_page/<int:user_id>', user_page, name="user_page"),
     path('user_page/', user_page, name="user_page"),
     path('edit_user/', edit_user, name="edit_user"),
+    path('my_account/', my_account, name="my_account"),
+    path('my_account/edit_password', edit_password, name="edit_password"),
 ]

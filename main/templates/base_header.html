@@ -38,12 +38,20 @@
 
                 {% if user.avatar %}
                 <div class="nav-bar__user-profile font-md font-b" style="background-image: url('{{user.avatar.url}}');">
-                
+
                 </div>
                 {% else %}
-                <div class="nav-bar__user-profile font-md font-b" style="background-image: url('/static/images/default_user.jpg');">
+                <div class="nav-bar__user-profile font-md font-b"
+                    style="background-image: url('/static/images/default_user.jpg');">
                 </div>
                 {% endif %}
+                <div class="dropdown-status">
+                    <ul class="status-list">
+                        <li class="status-item"> <a href="{% url 'my_account' %}">My Accounts</a></li>
+                        <li class="status-item"> <a href="">Likes</a></li>
+                        <li class="status-item"> <a href="{% url 'logout' %}">Sign out</a></li>
+                    </ul>
+                </div>
             </div>
             {% else %}
             <div class="auth font-md font-b">

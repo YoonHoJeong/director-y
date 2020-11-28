@@ -146,6 +146,51 @@ button {
 .nav-bar__setting {
   display: flex;
   align-items: center;
+
+  position: relative;
+}
+
+.dropdown-status {
+  position: absolute;
+  right: 0;
+  top: 100%;
+
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  background-color: #fbf8f3;
+}
+
+.dropdown-status .status-list {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: center;
+
+  width: fit-content;
+  padding: 20px 20px;
+}
+
+.status-list .status-item {
+  width: 120px;
+  height: 100%;
+
+  /* font-family: "NanumSquare"; */
+  font-size: 17px;
+  font-weight: 700;
+}
+.status-list .status-item:hover {
+  cursor: pointer;
+}
+
+.status-list .status-item:not(:last-child) {
+  margin-bottom: 20px;
 }
 
 .nav-bar__user-name {
@@ -197,12 +242,21 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 1240px;
+  width: 1240px;
   height: fit-content;
   min-height: 350px;
 
   padding: 40px;
+}
+@media screen and (max-width: 1240px) {
+  /* .welcome-box {
+    width: fit-content;
+    max-width: 1240px;
+    height: fit-content;
+    min-height: 350px;
+
+    padding: 40px;
+  } */
 }
 
 .welcome-box h1 {
@@ -309,6 +363,11 @@ button {
 
   outline: none;
   cursor: pointer;
+}
+
+.btn--black {
+  background-color: #474344;
+  color: white;
 }
 
 /* font */
