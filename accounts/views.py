@@ -5,8 +5,10 @@ from .forms import StaffRegistraionForm, ActorRegistraionForm, DirectorRegistrai
 from django.views.generic import CreateView
 
 
-from .models import Profile
+from .models import Profile, Actor
 from main.models import Movie, ActorImage, ActorVideo, Filmography
+
+from .forms import ImageForm
 
 # Create your views here.
 
@@ -99,6 +101,9 @@ def login_view(request):
 # @login_required(login_url='/login/')
 def user_page(request, user_id=0):
     # header에서 mypgae 클릭, 자신의 마이페이지로 갈 때
+
+    image_form = ImageForm()
+
     if user_id:
         # 다른 사람의 user_page에 접근
         user = get_object_or_404(Profile, pk = user_id)
@@ -120,7 +125,7 @@ def user_page(request, user_id=0):
         # 해당 유저가 배우일 경우
         profile_images = ActorImage.objects.filter(actor = profile_user.id)
         filmos = Filmography.objects.filter(profile = profile_user.id)
-        return render(request, 'user_page.html', {"profile_user": profile_user, "profile_images":profile_images, "filmos":filmos})
+        return render(request, 'user_page.html', {"profile_user": profile_user, "profile_images":profile_images, "filmos":filmos, "image_form": image_form})
     elif profile_user.u_type == 3:
         # 해당 유저가 스탭일 경우
         pass
@@ -132,7 +137,6 @@ def edit_user(request):
     user.intro = request.POST.get("intro")
     # user.date_of_birth = request.POST.get("date_of_birth")
     user.education = request.POST.get("education")
-    print(request.POST.get("date_of_birth"))
 
     user.save()
     
@@ -190,8 +194,6 @@ def edit_password(request):
 
 def delete_actor_image(request, image_id):
     select_image = ActorImage.objects.filter(id = image_id).first()
-    print(select_image)
-    print(request.user, image_id)
 
     if select_image and request.user == select_image.actor.profile:
         if select_image:
@@ -200,4 +202,20 @@ def delete_actor_image(request, image_id):
             redirect('home')
     else:
         return redirect('home')
+    return redirect('user_page')
+
+
+def add_actor_image(request):
+    """Process images uploaded by users"""
+    actor = Actor.objects.filter(profile = request.user).first()
+
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            actor_image = form.save(commit=False)
+            actor_image.actor = actor
+            actor_image.save()
+            print("success")
+            
+
     return redirect('user_page')

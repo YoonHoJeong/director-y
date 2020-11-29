@@ -3,6 +3,7 @@ window.addEventListener("load", function () {
   const backScreen = document.querySelector(".back-screen");
   const header = document.querySelector("header");
   const closeBtn = document.querySelector(".close-bs-btn");
+  const imageAddBtn = document.querySelector(".actor-pf__title .btn");
 
   // left: 37, up: 38, right: 39, down: 40,
   // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
@@ -94,6 +95,7 @@ window.addEventListener("load", function () {
     const onClickRevise = (e) => {
       doneBtn.style.display = "block";
       reviseBtn.style.display = "none";
+      imageAddBtn.style.visibility = "visible";
 
       images.forEach((image) => {
         image.removeEventListener("click", handleClickImage);
@@ -104,6 +106,8 @@ window.addEventListener("load", function () {
     const onClickDone = (e) => {
       doneBtn.style.display = "none";
       reviseBtn.style.display = "block";
+      imageAddBtn.style.visibility = "hidden";
+
       images.forEach((image) => {
         image.addEventListener("click", handleClickImage);
         image.removeEventListener("mouseover", handleOverImage);

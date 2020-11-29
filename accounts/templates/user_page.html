@@ -96,8 +96,57 @@ DIRECTORY - Mypage
         <button class="btn btn--revise"><i class="fas fa-circle"></i> 수정하기</button>
         <button class="btn btn--done"><i class="fas fa-circle"></i> 완료</button>
         {% endif %}
+
+        <div class="image-add-form-container">
+            <form class="image-add-form" action="{% url 'add_actor_image' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="icon-container">
+                    <i class="fas fa-times-circle font-lg" onclick="onClickCloseImageAddContainer();"></i>
+                    <script>
+                        const imageFormContainer = document.querySelector(".image-add-form-container");
+                        const onClickCloseImageAddContainer = (e) => {
+                            const img = document.querySelector(".preview-image-container img");
+                            const form = document.querySelector(".image-add-form");
+
+                            imageFormContainer.style.visibility = "hidden";
+                            
+                            img.setAttribute("src", "{% static 'images/no_image.svg' %}");
+                            form.reset();
+                        }
+                    </script>
+                </div>
+                {{ image_form.as_p }}
+                <!-- <input type="file" name="image" onchange="setThumbnail(event);" /> -->
+                <div class="preview-image-container">
+                    <img src="{% static 'images/no_image.svg' %}" alt="connect" style="max-height:300px; max-width: 800px;">
+                </div>
+                <script>
+                    const imageInput = document.querySelector(".image-add-form .image-input");
+
+                    function setThumbnail(event) {
+                        var reader = new FileReader();
+                        reader.onload = function (event) {
+                            const img = document.querySelector(".preview-image-container img");
+                            img.setAttribute("src", event.target.result);
+                        };
+                        reader.readAsDataURL(event.target.files[0]);
+                    }
+
+                    imageInput.addEventListener("change", setThumbnail);
+                </script>
+                <button class="btn" type="submit">사진 추가하기</button>
+            </form>
+        </div>
+
         <li class="actor-pf-item">
-            <h1 class="actor-pf__title font-lg">Profile</h1>
+            <h1 class="actor-pf__title font-lg">Profile
+                <div class="btn image-add-btn" onclick="onClickAddImage(event);"><i class="fas fa-plus"></i></div>
+                <script>
+                    const onClickAddImage = () => {
+                        imageFormContainer.style.visibility = "visible";
+                    }
+                </script>
+            </h1>
             {% if profile_images %}
             <div class="slider-wrapper actor-pf__container">
                 <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
@@ -108,7 +157,8 @@ DIRECTORY - Mypage
                         {% for profile_image in profile_images %}
                         <li class="slide profile-image-container">
                             <div class="profile-image" style="background-image: url('{{profile_image.image.url}}')">
-                                <a href="/delete_actor_image/{{profile_image.id}}" onclick="return confirm('정말 삭제하시겠습니까?')">
+                                <a href="/delete_actor_image/{{profile_image.id}}"
+                                    onclick="return confirm('정말 삭제하시겠습니까?')">
                                     <img src="{{profile_image.image.url}}" style="visibility: hidden;" />
                                     <div class="hover-screen font-lg font-b">
                                         <i class="far fa-trash-alt"></i>

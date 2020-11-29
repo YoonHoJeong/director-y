@@ -31,6 +31,30 @@
   height: fit-content;
 }
 
+.actor-pf__title .btn {
+  position: static;
+  background-color: #474344;
+  color: white;
+
+  margin-left: 10px;
+  padding: 5px 10px;
+
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  visibility: hidden;
+}
+
+.actor-pf__title > .btn:hover {
+  background-color: white;
+  color: #474344;
+}
+
 .profile .profile-name {
   flex: 0.2;
   display: flex;
@@ -136,6 +160,8 @@
 
 .actor-pf__title {
   font-weight: 700;
+  display: flex;
+  align-items: center;
 }
 .actor-pf__container {
   width: 100%;
@@ -251,4 +277,67 @@
 
 .close-bs-btn:hover {
   cursor: pointer;
+}
+
+.image-add-form-container {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  z-index: 1;
+
+  height: 80vh;
+  width: 100vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  visibility: hidden;
+}
+
+.image-add-form {
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: #474344;
+
+  background-color: white;
+
+  padding: 20px 30px;
+
+  position: relative;
+}
+
+.image-add-form .btn {
+  position: static;
+  color: white;
+  background-color: #474344;
+
+  padding: 6px 10px;
+  margin-top: 15px;
+}
+
+.image-add-form .btn:hover {
+  opacity: 0.7;
+}
+
+.preview-image-container {
+  margin-top: 20px;
+}
+
+.icon-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.icon-container i:hover {
+  cursor: pointer;
+}
+
+.actor-input {
+  visibility: hidden;
 }
