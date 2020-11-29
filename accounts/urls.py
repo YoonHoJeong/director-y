@@ -20,7 +20,12 @@ from accounts.views import (
     edit_password,
     delete_actor_image,
     add_actor_image,
+    likes,
+    likes_director,
+    likes_actor,
+    likes_staff,
 )
+
 urlpatterns = [
     path('register/', register, name="register"),
     path('logout/', logout_view, name="logout"),
@@ -36,4 +41,8 @@ urlpatterns = [
     path('delete_actor_image/<int:image_id>', delete_actor_image, name="delete_actor_image"),
     path('my_account/', my_account, name="my_account"),
     path('my_account/edit_password', edit_password, name="edit_password"),
+    path('my_account/likes', likes, name="likes"),
+    path('my_account/likes/director', likes_director, name="likes_director"),
+    path('my_account/likes/actor', likes_actor, name="likes_actor"),
+    path('my_account/likes/staff', likes_staff, name="likes_staff"),
 ]

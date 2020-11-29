@@ -133,3 +133,16 @@ class SNS(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     type = models.CharField(max_length=30)
     url = models.URLField()
+
+class Like(models.Model):
+    # from main.models import Movie
+
+    LIKE_CHOICES = ((1, 'movie'),(2, 'director'), (3, 'actor'), (4, 'staff'))
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+    type = models.IntegerField(choices=LIKE_CHOICES)
+
+    # movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
+    director = models.ForeignKey(Director, on_delete=models.CASCADE)
+    staff = models.ForeignKey(Staff, on_delete=models.CASCADE)

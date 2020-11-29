@@ -5,7 +5,7 @@ from .forms import StaffRegistraionForm, ActorRegistraionForm, DirectorRegistrai
 from django.views.generic import CreateView
 
 
-from .models import Profile, Actor
+from .models import Profile, Actor, Like
 from main.models import Movie, ActorImage, ActorVideo, Filmography
 
 from .forms import ImageForm
@@ -215,7 +215,38 @@ def add_actor_image(request):
             actor_image = form.save(commit=False)
             actor_image.actor = actor
             actor_image.save()
-            print("success")
-            
 
     return redirect('user_page')
+
+
+@login_required(login_url='/login/')
+def likes(request):
+    user = request.user
+
+    likes = Like.objects.filter(user = user, type = 1)
+
+    return render(request, 'likes.html', {'likes':likes, 'type':1})
+
+@login_required(login_url='/login/')
+def likes_director(request):
+    user = request.user
+
+    likes = Like.objects.filter(user = user, type = 2)
+
+    return render(request, 'likes.html', {'likes':likes, 'type':2})
+
+@login_required(login_url='/login/')
+def likes_actor(request):
+    user = request.user
+
+    likes = Like.objects.filter(user = user, type = 3)
+
+    return render(request, 'likes.html', {'likes':likes, 'type':3})
+
+@login_required(login_url='/login/')
+def likes_staff(request):
+    user = request.user
+
+    likes = Like.objects.filter(user = user, type = 4)
+
+    return render(request, 'likes.html', {'likes':likes, 'type':4})
