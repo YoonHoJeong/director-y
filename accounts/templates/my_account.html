@@ -1,0 +1,58 @@
+{% extends 'base_header.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/my_account.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="account-main">
+    <div class="account-setting-container">
+        <ul class="setting__left-col">
+            <li class="setting-item font-lg font-eb">
+                <a href="{% url 'my_account' %}">
+                    프로필 편집
+                </a>
+            </li>
+            <li class="setting-item font-lg font-b">
+                <a href="{% url 'edit_password' %}">
+                    비밀번호 변경
+                </a>
+            </li>
+        </ul>
+        <div class="setting__right-col">
+            <div method="POST" class="image-form">
+                <div class="account__image" style="background-image: url('{{user.avatar.url}}');"></div>
+                <div class="account__name font-xlg font-eb">{{user.name}}</div>
+                <button class="btn btn--profile-change font-md">프로필 사진 변경</button>
+            </div>
+            <form method="POST" action="" class="info-form">
+                {% csrf_token %}
+                <ul class="input-list">
+                    <li class="input-item">
+                        <div class="input-label font-md font-eb">이름</div>
+                        <input name="name" class="account-input font-md font-b" type="text" placeholder="{{user.name}}">
+
+                    </li>
+                    <li class="input-item">
+                        <div class="input-label font-md font-eb">이메일</div>
+                        <input name="email" class="account-input font-md font-b" type="email" name="" id=""
+                            placeholder="{{user.email}}">
+
+                    </li>
+                    <li class="input-item">
+                        <div class="input-label font-md font-eb">휴대전화</div>
+                        <input name="phone_number" class="account-input font-md font-b" type="text"
+                            placeholder="{{user.phone_number.as_e164}}">
+                    </li>
+                </ul>
+                <button class="btn btn--black font-lg">변경사항 저장</button>
+            </form>
+
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}

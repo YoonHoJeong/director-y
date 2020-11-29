@@ -1,0 +1,111 @@
+.account-main {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.account-setting-container,
+.likes-container {
+  width: 1240px;
+  height: 600px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  background-color: white;
+
+  margin-top: 50px;
+
+  display: flex;
+}
+
+.setting__left-col {
+  width: 23%;
+  height: 100%;
+
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+  padding: 50px 50px;
+}
+
+.setting__left-col .setting-item:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.setting__right-col {
+  flex: 1;
+  align-self: center;
+
+  padding: 50px 120px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-form {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-form .account__image {
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background: center / cover no-repeat;
+}
+
+.image-form .account__name {
+  margin-top: 30px;
+}
+
+.image-form .btn--profile-change {
+  margin-top: 10px;
+}
+
+.input-label {
+  margin-left: 20px;
+}
+
+.info-form,
+.password-form {
+  width: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.password-form {
+  width: 100%;
+}
+
+.account-input {
+  padding: 10px 20px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 400px;
+  margin-top: 13px;
+}
+
+.password-form .account-input {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.input-list .input-item:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.input-list,
+.input-item {
+  width: fit-content;
+}
+
+.info-form .btn,
+.password-form .btn {
+  width: 250px;
+  height: 45px;
+  margin-top: 30px;
+}

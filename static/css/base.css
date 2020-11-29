@@ -66,7 +66,8 @@ html {
 body {
   width: 100%;
   min-width: 960px;
-  height: 100%;
+  height: fit-content;
+  min-height: 100vh;
   padding: 90px 0px 0px 0px;
   background-color: #fbf8f3;
   color: #474344;
@@ -89,7 +90,8 @@ button {
 
   width: 100%;
   min-width: 960px;
-  height: 90px;
+  height: 70px;
+  padding: 0px 80px;
 
   background-color: #fbf8f3;
   /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
@@ -99,10 +101,12 @@ button {
 }
 .nav-bar {
   width: 100%;
-  height: 100%;
   max-width: 1240px;
 
+  height: 100%;
+
   display: flex;
+  justify-content: space-between;
   align-items: center;
   background-color: #fbf8f3;
 }
@@ -117,7 +121,6 @@ button {
   font-size: 23px;
   font-weight: 700;
 
-  margin-right: 70px;
   height: inherit;
   width: fit-content;
 
@@ -126,7 +129,6 @@ button {
 }
 
 .nav-bar .nav-bar__category {
-  flex: 0.8;
   display: flex;
   height: inherit;
 
@@ -137,9 +139,74 @@ button {
   align-items: center;
 }
 
+.category-item:not(:last-child) {
+  margin-right: 60px;
+}
+
+.nav-bar__setting {
+  display: flex;
+  align-items: center;
+
+  position: relative;
+}
+
+.dropdown-status {
+  position: absolute;
+  right: 0;
+  top: 100%;
+
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  background-color: #fbf8f3;
+}
+
+.dropdown-status .status-list {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: center;
+
+  width: fit-content;
+  padding: 20px 20px;
+}
+
+.status-list .status-item {
+  width: 120px;
+  height: 100%;
+
+  /* font-family: "NanumSquare"; */
+  font-size: 17px;
+  font-weight: 700;
+}
+.status-list .status-item:hover {
+  cursor: pointer;
+}
+
+.status-list .status-item:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.nav-bar__user-name {
+  margin-right: 10px;
+}
+
+.nav-bar__user-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: center / cover no-repeat;
+}
+
 .category-item {
   display: flex;
-  height: inherit;
+  height: 100%;
 
   justify-content: space-between;
   align-items: center;
@@ -175,23 +242,42 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 1240px;
+  width: 1240px;
   height: fit-content;
   min-height: 350px;
 
   padding: 40px;
 }
+@media screen and (max-width: 1240px) {
+  /* .welcome-box {
+    width: fit-content;
+    max-width: 1240px;
+    height: fit-content;
+    min-height: 350px;
+
+    padding: 40px;
+  } */
+}
 
 .welcome-box h1 {
-  font-size: 20px;
   line-height: 30px;
+  margin-bottom: 10px;
 }
 
 .auth {
-  position: absolute;
+  display: flex;
+  align-items: center;
+
   right: 20px;
   bottom: 20px;
+}
+.btn-signup {
+  background-color: #d44242;
+  border-radius: 5px;
+  color: #fbf8f3;
+  padding: 7px 12px;
+
+  margin-left: 10px;
 }
 
 .lower-container-wrapper {
@@ -279,18 +365,101 @@ button {
   cursor: pointer;
 }
 
+.btn--black {
+  background-color: #474344;
+  color: white;
+}
+
 /* font */
+.font-xlg {
+  font-family: "NanumSquare";
+  font-size: 30px;
+}
+
 .font-lg {
   font-family: "NanumSquare";
-  font-size: 1.3em;
+  font-size: 22px;
 }
 
 .font-md {
   font-family: "NanumSquare";
-  font-size: 1.1em;
+  font-size: 17px;
 }
 
 .font-sm {
   font-family: "NanumSquare";
   font-size: 0.9em;
+}
+
+.font-l {
+  font-weight: 300;
+}
+.font-b {
+  font-weight: 600;
+}
+.font-eb {
+  font-weight: 800;
+}
+
+/* slider */
+
+.slider-wrapper {
+  position: relative;
+  top: 0;
+  left: 0;
+  /* width: 610px; */
+  width: 100%;
+  margin: 0px auto;
+  /* margin-top: 40px; */
+}
+
+.move-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+
+  outline: none;
+
+  transition: all 0.2s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+}
+
+.move-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.prev-btn {
+  left: -60px;
+}
+
+.next-btn {
+  right: -60px;
+}
+
+.slider-show-area {
+  position: relative;
+
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transition: left 0.5s ease-in-out;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.slide {
+  height: fit-content;
 }

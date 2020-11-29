@@ -1,0 +1,22 @@
+.likes-container {
+  min-height: 600px;
+  height: fit-content;
+}
+
+.likes-container .left-column {
+  width: 150px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 50px 0px;
+}
+
+.left-column .like-cate-item:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.likes-container .right-column {
+}

@@ -33,11 +33,13 @@
   align-items: center;
 
   font-size: 1.2em;
-  font-weight: 600;
+  font-weight: 800;
 
   line-height: 30px;
 
   letter-spacing: 0.4em;
+
+  transition: all 0.3s;
 }
 
 .job:hover {

@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate
 from django.db import transaction
 
 from .models import Profile, Actor, Director, Staff, SNS
+from main.models import ActorImage
 
 
 class RegistrationForm(UserCreationForm):
@@ -188,3 +189,13 @@ class ProfileAuthenticationForm(forms.ModelForm):
             password = self.cleaned_data['password']
             if not authenticate(email=email, password=password):
                 raise forms.ValidationError("Invaild login")
+
+class ImageForm(forms.ModelForm):
+    """Form for the image model"""
+    class Meta:
+        model = ActorImage
+        fields = ('image',)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['image'].widget.attrs.update({'class': 'image-input'})

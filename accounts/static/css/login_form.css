@@ -1,11 +1,28 @@
-.login-form {
-  margin: 100px auto;
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
+  position: relative;
+
+  width: 100vw;
+  height: 50vh;
+}
+
+.login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  margin-top: 100px;
   /* border: 1px solid #474344; */
+}
+
+.login-container .form-title {
+  letter-spacing: 5px;
+  position: absolute;
+  top: 0;
 }
 
 .login-field {
@@ -54,7 +71,9 @@ input[type="password"] {
 
 .btn--login {
   width: 300px;
-  background-color: #d44242;
+  height: 50px;
+
+  background-color: #474344;
   color: white;
 
   margin-left: auto;
@@ -62,4 +81,13 @@ input[type="password"] {
 
 .btn--signup {
   margin-top: 10px;
+}
+
+.sub-form {
+  display: flex;
+  width: 300px;
+
+  justify-content: space-around;
+
+  color: #847d7f;
 }

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'main',
     'accounts',
     'django_summernote',
+    'phonenumber_field',
 ]
 
 DATE_INPUT_FORMATS = ['%Y-%m-%d']

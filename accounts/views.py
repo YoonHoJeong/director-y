@@ -5,8 +5,10 @@ from .forms import StaffRegistraionForm, ActorRegistraionForm, DirectorRegistrai
 from django.views.generic import CreateView
 
 
-from .models import Profile
+from .models import Profile, Actor, Like
 from main.models import Movie, ActorImage, ActorVideo, Filmography
+
+from .forms import ImageForm
 
 # Create your views here.
 
@@ -99,6 +101,9 @@ def login_view(request):
 # @login_required(login_url='/login/')
 def user_page(request, user_id=0):
     # header에서 mypgae 클릭, 자신의 마이페이지로 갈 때
+
+    image_form = ImageForm()
+
     if user_id:
         # 다른 사람의 user_page에 접근
         user = get_object_or_404(Profile, pk = user_id)
@@ -120,7 +125,7 @@ def user_page(request, user_id=0):
         # 해당 유저가 배우일 경우
         profile_images = ActorImage.objects.filter(actor = profile_user.id)
         filmos = Filmography.objects.filter(profile = profile_user.id)
-        return render(request, 'user_page.html', {"profile_user": profile_user, "profile_images":profile_images, "filmos":filmos})
+        return render(request, 'user_page.html', {"profile_user": profile_user, "profile_images":profile_images, "filmos":filmos, "image_form": image_form})
     elif profile_user.u_type == 3:
         # 해당 유저가 스탭일 경우
         pass
@@ -132,10 +137,116 @@ def edit_user(request):
     user.intro = request.POST.get("intro")
     # user.date_of_birth = request.POST.get("date_of_birth")
     user.education = request.POST.get("education")
-    print(request.POST.get("date_of_birth"))
 
     user.save()
     
     return redirect(f"/user_page/{user.id}")
 
 
+def my_account(request):
+    if request.method == "GET":
+        return render(request, 'my_account.html')
+    else:
+        # method가 POST일 때
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone_number = request.POST.get('phone_number')
+
+        user = request.user
+
+        if name:
+            user.name = name
+        if email:
+            user.email = email
+        if phone_number:
+            user.phone_number = phone_number
+
+        user.save()
+
+        return redirect('my_account')
+
+def edit_password(request):
+    if request.method == "GET":
+        return render(request, 'edit_password.html')
+    else:
+        prev_password = request.POST.get('prev_password')
+        new_password1 = request.POST.get('new_password1')
+        new_password2 = request.POST.get('new_password2')
+
+        user = request.user
+        if request.POST.get("prev_password"):
+
+            user = request.user
+
+            #User entered old password is checked against the password in the database below.
+            if user.check_password('{}'.format(prev_password)) == True:
+                if new_password1 == new_password2:
+                    user.set_password(new_password1)
+                    user.save()
+                    print("비번 변경", new_password1)
+                    logout(request)
+                    return redirect('login')
+
+        # user.set_password(new_password1)
+        # print(user.password)
+
+        return redirect('edit_password')
+
+def delete_actor_image(request, image_id):
+    select_image = ActorImage.objects.filter(id = image_id).first()
+
+    if select_image and request.user == select_image.actor.profile:
+        if select_image:
+            select_image.delete()
+        else:
+            redirect('home')
+    else:
+        return redirect('home')
+    return redirect('user_page')
+
+
+def add_actor_image(request):
+    """Process images uploaded by users"""
+    actor = Actor.objects.filter(profile = request.user).first()
+
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            actor_image = form.save(commit=False)
+            actor_image.actor = actor
+            actor_image.save()
+
+    return redirect('user_page')
+
+
+@login_required(login_url='/login/')
+def likes(request):
+    user = request.user
+
+    likes = Like.objects.filter(user = user, type = 1)
+
+    return render(request, 'likes.html', {'likes':likes, 'type':1})
+
+@login_required(login_url='/login/')
+def likes_director(request):
+    user = request.user
+
+    likes = Like.objects.filter(user = user, type = 2)
+
+    return render(request, 'likes.html', {'likes':likes, 'type':2})
+
+@login_required(login_url='/login/')
+def likes_actor(request):
+    user = request.user
+
+    likes = Like.objects.filter(user = user, type = 3)
+
+    return render(request, 'likes.html', {'likes':likes, 'type':3})
+
+@login_required(login_url='/login/')
+def likes_staff(request):
+    user = request.user
+
+    likes = Like.objects.filter(user = user, type = 4)
+
+    return render(request, 'likes.html', {'likes':likes, 'type':4})

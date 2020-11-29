@@ -6,13 +6,17 @@ from accounts.models import Profile, Director, Actor, Staff
 
 
 class Movie(models.Model):
+    genres = ["액션","범죄","SF","코미디","스릴러","전쟁","스포츠","판타지","음악","멜로"]
+
+    GENRE_CHOICES = ((genre, genre) for genre in genres)
+
     director = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=30, blank=False, null=False)
     title_eng = models.CharField(max_length=30, blank=True)
     poster = models.ImageField(upload_to = 'images/', blank=False, null=False)
     trailer = models.URLField(blank=True)
-    trailer_thumbnail = models.ImageField(null=True, blank=True)
-    genre = models.CharField(max_length=20, blank=False)
+    trailer_thumbnail = models.ImageField(null=False, default=None)
+    genre = models.CharField(choices = GENRE_CHOICES, max_length=20, blank=False)
     summary = models.TextField(blank=False)
     production_year = models.PositiveIntegerField(blank=False)
 
@@ -48,10 +52,10 @@ class Section(models.Model):
 class SPortfolio(models.Model):
     uid = models.ForeignKey(Staff, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=100, blank=False)
-    thumbnail = models.ImageField(blank=True, null=True)
+    thumbnail = models.TextField(blank=True, null=True)
     # content : smart editor에서 제공.
 
-    def __str__(self):
+def __str__(self):
         return self.title
 
 
