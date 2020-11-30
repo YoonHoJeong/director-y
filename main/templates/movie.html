@@ -12,6 +12,7 @@ DIRECTORY - Movie
 
 {% block js %}
 <script src="{% static 'js/movie.js' %}"></script>
+<script src="{% static 'js/slider.js' %}"></script>
 {% endblock %}
 
 {% block upper-container %}
@@ -26,10 +27,12 @@ DIRECTORY - Movie
 {% endif %}
 
 <div class="movie-info">
+    <!--
     {% if user == movie_obj.director %}
         <div><a href="{% url 'update_movie' movie_obj.id %}">● 수정하기</a></div>
         <div><a href="{% url 'delete_movie' movie_obj.id %}">● 삭제하기</a></div>
     {% endif %}
+    -->
     <div class="movie__left-col">
         <img class="movie-thumbnail" src='{{movie_obj.poster.url}}'>
         <ul class="movie-summary font-md">
@@ -61,61 +64,67 @@ DIRECTORY - Movie
 {% endblock %}
 
 {% block lower-container %}
-<div>
-    <ul>
+    <ul class="section-items">
     {% for section in sections %}
-    <li>
-        <div class='section-poster' style="background-image: url('{{section.thumbnail.url}}');">
-
-        </div>
-    </li>
-    <div class='section-node'>
-        <a href="{% url 'section_detail' section.id %}">
-            <h2 class="section-name">
-                {{section.title}}
-            </h2>
-            <img src="{{section.thumbnail.url}}">
-        </a>
-        
-        <div class="section-content">{{section.content}}</div>
-
-        <button class="section-btn">섹션 보기</button>
-
-        {% if user == movie_obj.director %}
-        <a href="{% url 'section_update' section.id %}">수정하기</a>
-        <a href="{% url 'section_delete' section.id %}">삭제하기</a>
-        {% endif %}
-    </div>
+        <li class="section-btn">             
+            <div class='section-poster'>
+                <img class='section-url' src='{{section.thumbnail.url}}'>
+                <p class="section-content">{{section.content}}</p>                
+            </div>    
+            <div class="box-frame top-left"></div>
+            <div class="box-frame top-right"></div>
+            <div class="box-frame bottom-left"></div>
+            <div class="box-frame bottom-right"></div>
+            <p class="section-name"><strong>{{section.title}}</strong></p>        
+        </li>
     {% endfor %}
     </ul>
-    
+</div> 
+
+<div class="section-plus">
     {% if user == movie_obj.director %}
     <form action="{% url 'section_create' %}" method="POST">
-        {% csrf_token %}
+    {% csrf_token %}
         <input type="hidden" value="{{movie_obj.id}}" name="movie_id">
         <input type="submit" value="Section 추가">
     </form>
     {% endif %}
-</div> 
+</div>
 
 <div class='section-background'>
     <div class='section'>
-        <button class='section-cancle'>
+        <div class='section-cancle'>
             X
-        </button>    
+        </div>    
 
-        <div class='dircetor-profile'>
-            <p>{{movie_obj.director.profile.name}}</p>
-            {% if movie_obj.director.profile.avatar %}
-            <img src='{{movie_obj.directro.profile.avatar.url}}'>
+        <div class='director-profile'>
+            <p class="director-name-kr">{{movie_obj.director.name}}</p>
+            <p class="director-name-eng">{{movie_obj.director.name_eng}}</p>
+            {% if movie_obj.director.avatar %}
+            <div class="director-avatar">
+                <img src='{{movie_obj.director.avatar.url}}'>
+            </div>
             {% endif %}
-            <p>나이 {{movie_obj.director.profile.age}}</p>
-            <p>학력 {{movie_obj.director.profile.education}}</p>
-            <p>수상</p>
-            <p>{{movie_obj.director.awards}}</p>
+            <div class="profile">
+                <p class="director-setting">나이</p>
+                <p class="director-own">{{movie_obj.director.age}}</p>
+            </div>
+            <br></br>
+            <div class="profile">
+                <p class="director-setting">학력</p>
+                <p class="director-own">{{movie_obj.director.education}}</p>
+            </div>
+            <br></br>
+            <div class="profile">
+                <p class="director-setting">수상</p>
+                <br></br>
+                <p class="director-award">{{director.awards}}</p>
+            </div>
+            <br></br>
         </div>
     
         <div class='section-detail'>
+            <img class="section-thumbnail">
             <div class='section-title'>
     
             </div>

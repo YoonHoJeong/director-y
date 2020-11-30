@@ -15,11 +15,11 @@
   line-height: 30px;
 }
 
-.auth {
+/* .auth {
   position: absolute;
   right: 20px;
   bottom: 20px;
-}
+} */
 
 /* lower container */
 
@@ -28,7 +28,26 @@
   flex-wrap: wrap;
 }
 .movies .movie {
+  width: 20%;
   margin-right: 20px;
+}
+
+.movie-pf-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.movie-pf {
+  height: fit-content;
+  color: white;
+
+  padding: 15px;
+  margin: 15px;
+
+  position: relative;
+
+  font-family: "NanumSquare";
 }
 
 .movie .movie-info {
@@ -39,8 +58,8 @@
 
 .movie-thumbnail img {
   /* 가로세로 1:1.3비율 */
-  width: 150px;
-  height: 195px;
+  width: 100%;
+  /*height: 195px;*/
 }
 
 .movie-plus img {
@@ -51,9 +70,8 @@
 
 .modify {
   position: absolute;
-  color: #D44242;
+  color: #d44242;
 
-  top : 10px;
+  top: 10px;
   right: 20px;
 }
-

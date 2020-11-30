@@ -52,9 +52,91 @@
   .complete {
     position: absolute;
     color: #D44242;
+    background: none;
+    border: none;
+    font-family: "NanumSquare";
+    font-size: 1rem;
   
     top : 10px;
     right: 20px;
   }
   
-  
+  .enroll-movies {
+    width: 100%;
+    display: flex;
+    text-align: center;
+
+    margin : 10px;
+    margin-top : 20px;
+  }
+
+  .enroll-movie {
+    width: 30%;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  .enroll-smalls {
+    width: 100%;
+    display: flex;
+    margin-bottom: 30px;
+  }
+
+  .enroll-small {
+    width: 50%;
+  }
+
+  .enroll-movie.left {
+    margin-left: 10%;
+  }
+
+  .enroll-movie.right {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  .enroll-setting {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .enroll-setting-small {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .enroll-own {
+    margin-bottom: 30px;
+    font-family: "NanumSquare";
+    font-weight: 500;
+    background-color: #fbf8f3;
+    border-width: 2px solid black;
+    border-radius: 10px;
+  }
+
+  .enroll-own-small {
+    margin-bottom: 0px;
+    width: 80%;
+    background-color: #fbf8f3;
+    border-width: 2px solid black;
+    border-radius: 10px;
+  }
+
+  .enroll-url {
+    margin-bottom: 30px;
+    font-family: "NanumSquare";
+    font-weight: 500;
+    text-align: center;
+    background-color: #fbf8f3;
+    border-width: 2px solid black;
+    border-radius: 10px;
+  }
+
+  .enroll-img {
+    margin-bottom: 30px;
+    font-family: "NanumSquare";
+    font-weight: 500;
+    text-align: center;
+  }

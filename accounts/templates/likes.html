@@ -1,0 +1,49 @@
+{% extends 'base_header.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/likes.css' %}">
+<link rel="stylesheet" href="{% static 'css/my_account.css' %}">
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
+
+
+{% block content %}
+<main class="account-main">
+  <div class="likes-container">
+    <ul class="left-column font-lg font-b">
+      <li class="like-cate-item {% if type == 1 %} font-eb {% endif %}"> <a href="{% url 'likes' %}">영화</a> </li>
+      <li class="like-cate-item {% if type == 2 %} font-eb {% endif %}"> <a href="{% url 'likes_director' %}">감독</a>
+      </li>
+      <li class="like-cate-item {% if type == 3 %} font-eb {% endif %}"> <a href="{% url 'likes_actor' %}">배우</a> </li>
+      <li class="like-cate-item {% if type == 4 %} font-eb {% endif %}"> <a href="{% url 'likes_staff' %}">스태프</a> </li>
+    </ul>
+    <div class="right-column">
+      {% for like in likes %}
+      
+      {% if type == 1 %}
+      <div class="like-thumbnail" style="background-image: url('{{like.movie.poster.url}}')">
+      </div>
+      {% elif type == 2 %}
+      <div class="like-thumbnail" style="background-image: url('{{like.director.profile.avatar.url}}')">
+      </div>
+      {% elif type == 3 %}
+      <div class="like-thumbnail" style="background-image: url('{{like.actor.profile.avatar.url}}')">
+      </div>
+      {% elif type == 4 %}
+      <div class="like-thumbnail" style="background-image: url('{{like.staff.profile.avatar.url}}')">
+      </div>
+      {% endif %}
+
+      {% endfor %}
+    </div>
+
+
+  </div>
+  </div>
+</main>
+
+{% endblock %}

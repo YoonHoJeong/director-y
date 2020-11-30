@@ -8,5 +8,7 @@ class SectionForm(forms.ModelForm):
         model = Section
         fields = ['title', 'thumbnail', 'content']
         widgets = {
-            'content' : SummernoteWidget()
+            'title' : forms.TextInput(attrs={'class' : 'title-control'}),
+            'thumbnail' : forms.FileInput(attrs={'class': 'image-control'}),
+            'content' : SummernoteWidget(),
         }

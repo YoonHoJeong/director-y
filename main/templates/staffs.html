@@ -9,6 +9,10 @@ Directory - Staffs
 <link rel="stylesheet" href="{% static 'css/staffs.css' %}">
 {% endblock %}
 
+{% block js %}
+<script src="{% static 'js/staffs.js' %}"></script>
+{% endblock %}
+
 {% block upper-container %}
 <iframe src="https://player.vimeo.com/video/76979871" width="300px" height="200px" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 {% endblock %}
@@ -27,16 +31,62 @@ Directory - Staffs
     <ul class="portfolios">
         {% for portfolio in all_portfolio %}
         <li class="portfolio">
+            <input type="hidden" class="portfolio-name" value="{{portfolio.uid.profile.name}}">
+            <input type="hidden" class="portfolio-name-eng" value="{{portfolio.uid.profile.name_eng}}">
+            <input type="hidden" class="portfolio-avatar" value="{{portfolio.uid.avatar.url}}">
+            <input type="hidden" class="portfolio-part" value="{{portfolio.uid.role}}">
+            <input type="hidden" class="portfolio-special" value="{{portfolio.uid.tool_list}}">
+            <input type="hidden" class="portfolio-content" value="{{portfolio.content}}">
+            <div class="portfolio-box-frame top-left"></div>
+            <div class="portfolio-box-frame top-right"></div>
+            <div class="portfolio-box-frame bottom-left"></div>
+            <div class="portfolio-box-frame bottom-right"></div>
             <div class="portfolio-thumbnail">
-                <img src="{{portfolio.thumbnail.url}}" />
+                <img class="portfolio-thumbnail-url" src="{{portfolio.thumbnail.url}}" />
             </div>
             <div class="portfolio-info">
-                <p>
                     {{portfolio.title}}
-                </p>
             </div>
         </li>
         {% endfor %}
+        
     </ul>
 </ul>
+
+<div class='portfolio-background'>
+    <div class='portfolio-pop'>
+        <div class='portfolio-cancle'>
+            X
+        </div>    
+
+        <div class='staff-profile'>
+            <p class="staff-name-kr"></p>
+            <p class="staff-name-eng"></p>
+            <div class="staff-avatar">
+                <img>
+            </div>
+            <div class="profile">
+                <p class="staff-setting">전문분야</p>
+                <p class="staff-part"></p>
+            </div>
+            <br></br>
+            <div class="profile">
+                <p class="staff-setting">특기</p>
+                <p class="staff-special"></p>
+            </div>
+            <br></br>
+        </div>
+    
+        <div class='portfolio-detail'>
+            <img class="portfolio-thumbnail-pop">
+            <div class='portfolio-title'>
+    
+            </div>
+            <div class='portfolio-main'>
+    
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

@@ -23,7 +23,6 @@ window.addEventListener("load", function () {
     });
 
     const sliderLength = slider.offsetWidth;
-    const areaLength = sliderShowArea.offsetWidth;
 
     let currentIdx = 0;
 
@@ -47,6 +46,8 @@ window.addEventListener("load", function () {
       }
     };
     const handleClickNext = (e) => {
+      // console.log(left, areaLength, sliderLength);
+      const areaLength = sliderShowArea.offsetWidth;
       if (left + areaLength > sliderLength) {
         moveSlide(0);
         prevBtn.style.display = "none";

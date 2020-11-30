@@ -1,18 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/section_create.css' %}" />
+{% endblock %}
 
 {% block content %}
-<form action="{% url 'section_create' %}" method="POST">{% csrf_token %}
-    <table style="width:100%;">
-        {{section_form.as_table | safe}}
-    </table>
 
-    <input type="hidden" value="{{movie_obj.id}}" name="movie_id">
-    {% if section_id %}
-    <input type="hidden" value="{{section_id}}" name="section_id">
-    {% else %}
-    <input type="hidden" value="None" name="section_id">
-    {% endif %}
-    
-    <input type="submit" value="제출">
-</form>
+
+    <div class="box-frame top-left"></div>
+    <div class="box-frame top-right"></div>
+    <div class="box-frame bottom-left"></div>
+    <div class="box-frame bottom-right"></div>
+
+    <form action="{% url 'section_create' %}" method="POST">{% csrf_token %}
+        <table style="width:100%;">
+            {{section_form.as_table | safe}}
+        </table>
+
+        <input type="hidden" value="{{movie_obj.id}}" name="movie_id">
+        {% if section_id %}
+        <input type="hidden" value="{{section_id}}" name="section_id">
+        {% else %}
+        <input type="hidden" value="None" name="section_id">
+        {% endif %}
+        
+        <input class="complete" type="submit" value="● 완료하기">
+    </form>
+
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile, Director, Actor, Staff, SNS
+from .models import Profile, Director, Actor, Staff, SNS, Like
 
 
 # Register your models here.
@@ -28,3 +28,4 @@ admin.site.register(Director)
 admin.site.register(Actor)
 admin.site.register(Staff)
 admin.site.register(SNS)
+admin.site.register(Like)

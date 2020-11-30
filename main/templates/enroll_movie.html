@@ -19,15 +19,57 @@ DIRECTORY - Enroll-Movie
 
         <form action="{% url 'enroll_movie' %}" method="POST">
             {% csrf_token %}
-            <div class="complete">
-                <input type="submit" value="● 완료하기">
-            </div>
+            <input class="complete" type="submit" value="● 완료하기">
+            
+            <ul class="enroll-movies">
+                <li class="enroll-movie left">
+                    <p class="enroll-setting">영화 제목 (한글)</p>
+                    {% if movie_obj %}<input class="enroll-own" type='text' name='title-kr' value='{{movie_obj.title}}'>     
+                    {% else %}<input class="enroll-own" type='text' name='title-kr'>
+                    {% endif %}
+                    <p class="enroll-setting">영화 포스터</p>
+                    {% if movie_obj.poster %}<input class="enroll-img" type="file" name="img" value="{{movie_obj.poster}}">
+                    {% else %}<input class="enroll-img" type="file" name="img">
+                    {% endif %}
+
+                    <ul class="enroll-smalls">
+                        <li class="enroll-small">
+                            <p class="enroll-setting-small">장르</p>
+                            {% if movie_obj.genre %}<input class="enroll-own-small" type="text" name="genre" value="{{movie_obj.genre}}">
+                            {% else %}<input class="enroll-own-small" type="text" name="genre">
+                            {% endif %}
+                        </li>
+                        <li class="enroll-small">
+                            <p class="enroll-setting-small">제작년도</p>
+                            {% if movie_obj.production_year %}<input class="enroll-own-small" type="text" name="year" value="{{movie_obj.production_year}}">
+                            {% else %}<input class="enroll-own-small" type="text" name="year">
+                            {% endif %}        
+                        </li>
+                    </ul>
+                </li>
+                <li class="enroll-movie right">
+                    <p class="enroll-setting">영화 제목 (영어)</p>
+                    {% if movie_obj.title_eng %}<input class="enroll-own" type='text' name='title-en' value="{{movie_obj.title_eng}}">
+                    {% else %}<input class="enroll-own" type='text' name='title-en'>
+                    {% endif %}
+
+                    <p class="enroll-setting">영화 예고편</p>
+                    {% if movie_obj.trailer %}<input class="enroll-url" type="link" name="trailer" value="{{movie_obj.trailer}}">
+                    {% else %}<input class="enroll-url" type="link" name="trailer">
+                    {% endif %}
+
+                    <p class="enroll-setting">예고편 썸네일</p>
+                    {% if movie_obj.trailer_thumbnail %}<input class="enroll-img" type="file" name="trailer-thum" value="{{movie_obj.trailer_thumbnail}}">
+                    {% else %}<input class="enroll-img" type="file" name="trailer-thum">
+                    {% endif %}
+                </li>
+            </ul>
 
             {% if movie_obj %}<input type="hidden" name='movie-id' value="{{movie_obj.id}}">
             {% else %}<input type="hidden" value="None" name='movie-id'>
             {% endif %}
 
-            <div>
+            <!--<div>
                 영화 한글 제목 
                 {% if movie_obj %}<input type='text' name='title-kr' value='{{movie_obj.title}}'>     
                 {% else %}<input type='text' name='title-kr'>  
@@ -68,7 +110,8 @@ DIRECTORY - Enroll-Movie
                 {% if movie_obj.summary %}<input type="text" name="summary" value="{{movie_obj.summary}}">
                 {% else %}<input type="text" name="summary">
                 {% endif %}
-            </div>            
+            </div>   
+        -->         
         </form> 
 
         {% if error %}

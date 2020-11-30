@@ -68,9 +68,8 @@ def home(request):
 
 def staffs(request):
     staffs = SPortfolio.objects.all()
-    random_portfolio = SPortfolio.objects.all().order_by('?')[:1]
 
-    return render(request, "staffs.html", {"staffs": staffs})
+    return render(request, "staffs.html", {"all_portfolio": staffs})
 
 def staff_detail(request, staff_profile_id):
     my_staff = get_object_or_404(Staff, pk=staff_profile_id)
@@ -95,8 +94,9 @@ def directors(request):
 def movie_detail(request, movie_id):
     movie_obj = get_object_or_404(Movie, pk=movie_id)
     sections = Section.objects.filter(mid = movie_obj)
+    director = Director.objects.filter(profile = movie_obj.director).first()
 
-    return render(request, "movie.html", {"movie_obj":movie_obj, "sections":sections})
+    return render(request, "movie.html", {"movie_obj":movie_obj, "sections":sections, "director" : director})
 
 def new(request):
     return render(request, 'create.html')
