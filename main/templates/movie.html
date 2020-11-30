@@ -10,58 +10,73 @@ DIRECTORY - Movie
 {% endblock %}
 
 {% block upper-container %}
+<main class="movie-main">
 
-<div class='font-lg font-eb'>
-    {{movie_obj.title}}
-</div>
-{% if movie_obj.title_eng %}
-<div class='font-sm'>
-    {{movie_obj.title_eng}}
-</div>
-{% endif %}
 
-<div class="movie-info">
-    <div class="movie__left-col">
-        <img class="movie-thumbnail" src='{{movie_obj.poster.url}}'>
-        <ul class="movie-summary font-md">
-            <li class="movie-summary__item">
-                <div class="item-title font-eb">감독</div>
-                <div class="font-b">{{movie_obj.director.name}}</div>
-            </li>
-            <li class="movie-summary__item">
-                <div class="item-title font-eb">장르</div>
-                <div class="font-b">{{movie_obj.genre}}</div>
-            </li>
-            <li class="movie-summary__item">
-                <div class="item-title font-eb">개봉연도</div>
-                <div class="font-b">{{movie_obj.production_year}}</div>
-            </li>
-        </ul>
+    <div class='font-lg font-eb'>
+        {{movie_obj.title}}
     </div>
-    <div class="movie__right-col">
-        {% if movie_obj.trailer_thumbnail %}
-        <img class="movie-trailer-thumbnail" src='{{movie_obj.trailer_thumbnail.url}}'>
-        {% endif %}
-        <div class="movie__intro">
-            <div class="item-title font-md font-eb">줄거리</div>
-            <p class="item-content font-md">{{movie_obj.summary}}</p>
+    {% if movie_obj.title_eng %}
+    <div class='font-sm'>
+        {{movie_obj.title_eng}}
+    </div>
+    {% endif %}
+
+    <div class="movie-info">
+        <div class="like-btn-container font-lg font-b">
+            {% if is_like %}
+            <a href="{% url 'delete_like_movie' %}" onclick="return confirm('팔로우를 취소하시겠습니까?');">
+                <i class="fas fa-heart"></i>
+            </a>
+            {% else %}
+            <a href="{% url 'add_like_movie' %}">
+                <i class="far fa-heart"></i>
+            </a>
+            {% endif %}
+            <span class="like-cnts">{{likes}}</span>
+        </div>
+        <div class="movie__left-col">
+            <img class="image-thumbnail" src='{{movie_obj.poster.url}}'>
+            <ul class="movie-summary font-md">
+                <li class="movie-summary__item">
+                    <div class="item-title font-eb">감독</div>
+                    <div class="font-b">{{movie_obj.director.name}}</div>
+                </li>
+                <li class="movie-summary__item">
+                    <div class="item-title font-eb">장르</div>
+                    <div class="font-b">{{movie_obj.genre}}</div>
+                </li>
+                <li class="movie-summary__item">
+                    <div class="item-title font-eb">개봉연도</div>
+                    <div class="font-b">{{movie_obj.production_year}}</div>
+                </li>
+            </ul>
+        </div>
+        <div class="movie__right-col">
+            {% if movie_obj.trailer_thumbnail %}
+            <img class="movie-trailer-thumbnail" src='{{movie_obj.trailer_thumbnail.url}}'>
+            {% endif %}
+            <div class="movie__intro">
+                <div class="item-title font-md font-eb">줄거리</div>
+                <p class="item-content font-md">{{movie_obj.summary}}</p>
+            </div>
         </div>
     </div>
-</div>
+</main>
 
 {% endblock %}
 
 {% block lower-container %}
 <div>
     {% for section in sections %}
-        <a href="{% url 'section_detail' section.id %}">
-            <h2>
-                {{section.title}}
-            </h2>
-            <img src="{{section.thumbnail.url}}">
-        </a>
+    <a href="{% url 'section_detail' section.id %}">
+        <h2>
+            {{section.title}}
+        </h2>
+        <img src="{{section.thumbnail.url}}">
+    </a>
     {% endfor %}
-    
+
     {% if user == movie_obj.director %}
     <form action="{% url 'section_create' %}" method="POST">
         {% csrf_token %}
@@ -69,5 +84,5 @@ DIRECTORY - Movie
         <input type="submit" value="Section 추가">
     </form>
     {% endif %}
-</div> 
+</div>
 {% endblock %}

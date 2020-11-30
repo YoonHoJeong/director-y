@@ -21,8 +21,15 @@ DIRECTORY - Mypage
 {% block upper-container %}
 <div class="profile">
     <div class="like-btn-container font-lg font-b">
-        <!-- <i class="fas fa-heart"></i> -->
-        <i class="far fa-heart"></i>
+        {% if is_like %}
+        <a href="{% url 'delete_like' %}" onclick="return confirm('팔로우를 취소하시겠습니까?');">
+            <i class="fas fa-heart"></i>
+        </a>
+        {% else %}
+        <a href="{% url 'add_like' %}">
+            <i class="far fa-heart"></i>
+        </a>
+        {% endif %}
         <span class="like-cnts">{{likes}}</span>
     </div>
     <div class="profile-name">
@@ -103,7 +110,8 @@ DIRECTORY - Mypage
         {% endif %}
 
         <div class="image-add-form-container">
-            <form class="image-add-form" action="{% url 'add_actor_image' %}" method="post" enctype="multipart/form-data">
+            <form class="image-add-form" action="{% url 'add_actor_image' %}" method="post"
+                enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="icon-container">
                     <i class="fas fa-times-circle font-lg" onclick="onClickCloseImageAddContainer();"></i>
@@ -114,7 +122,7 @@ DIRECTORY - Mypage
                             const form = document.querySelector(".image-add-form");
 
                             imageFormContainer.style.visibility = "hidden";
-                            
+
                             img.setAttribute("src", "{% static 'images/no_image.svg' %}");
                             form.reset();
                         }
@@ -123,7 +131,8 @@ DIRECTORY - Mypage
                 {{ image_form.as_p }}
                 <!-- <input type="file" name="image" onchange="setThumbnail(event);" /> -->
                 <div class="preview-image-container">
-                    <img src="{% static 'images/no_image.svg' %}" alt="connect" style="max-height:300px; max-width: 800px;">
+                    <img src="{% static 'images/no_image.svg' %}" alt="connect"
+                        style="max-height:300px; max-width: 800px;">
                 </div>
                 <script>
                     const imageInput = document.querySelector(".image-add-form .image-input");

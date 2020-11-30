@@ -464,3 +464,23 @@ button {
   height: fit-content;
   margin-right: 20px;
 }
+
+.like-btn-container {
+  position: absolute;
+  top: 0px;
+  right: 30px;
+
+  display: flex;
+  align-items: center;
+
+  color: #d44242;
+
+  border: 3px solid #d44242;
+  border-radius: 9999px;
+
+  padding: 5px 8px;
+}
+
+.like-btn-container i {
+  margin-right: 7px;
+}

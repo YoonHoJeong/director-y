@@ -137,8 +137,10 @@ class SNS(models.Model):
 class Like(models.Model):
     # from main.models import Movie
 
-    LIKE_CHOICES = ((1, 'movie'),(2, 'director'), (3, 'actor'), (4, 'staff'))
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    LIKE_CHOICES = ((0, 'movie'),(1, 'director'), (2, 'actor'), (3, 'staff'))
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="user")
+    profile_user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_user", null=True, default=None)
+    movie = models.ForeignKey('main.Movie', on_delete=models.CASCADE, null=True, default=None)
 
     type = models.IntegerField(choices=LIKE_CHOICES, null=False)
 

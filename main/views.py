@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 # Create your views here.
 
 from .models import Movie, Festival, Section, SPortfolio, ActorImage, ActorVideo
-from accounts.models import Actor, Staff, Director
+from accounts.models import Actor, Staff, Director, Like
 from .forms import SectionForm
 
 
@@ -71,8 +71,10 @@ def directors(request):
 def movie_detail(request, movie_id):
     movie_obj = get_object_or_404(Movie, pk=movie_id)
     sections = Section.objects.filter(mid = movie_obj)
+    likes = Like.objects.filter(movie = movie_obj).count()
+    is_like = Like.objects.filter(movie = movie_obj, user=request.user).count()
 
-    return render(request, "movie.html", {"movie_obj":movie_obj, "sections":sections})
+    return render(request, "movie.html", {"is_like":is_like, "movie_obj":movie_obj, "sections":sections, "likes":likes})
 
 def new(request):
     return render(request, 'create.html')
