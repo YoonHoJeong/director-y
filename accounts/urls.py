@@ -24,6 +24,10 @@ from accounts.views import (
     likes_director,
     likes_actor,
     likes_staff,
+    add_like,
+    delete_like,
+    add_like_movie,
+    delete_like_movie,
 )
 
 urlpatterns = [
@@ -45,4 +49,8 @@ urlpatterns = [
     path('my_account/likes/director', likes_director, name="likes_director"),
     path('my_account/likes/actor', likes_actor, name="likes_actor"),
     path('my_account/likes/staff', likes_staff, name="likes_staff"),
+    path('add_like_movie', add_like_movie, name="add_like_movie"),
+    path('delete_like_movie', delete_like_movie, name="delete_like_movie"),
+    path('add_like', add_like, name="add_like"),
+    path('delete_like', delete_like, name="delete_like"),
 ]

@@ -15,31 +15,34 @@
 <main class="account-main">
   <div class="likes-container">
     <ul class="left-column font-lg font-b">
-      <li class="like-cate-item {% if type == 1 %} font-eb {% endif %}"> <a href="{% url 'likes' %}">영화</a> </li>
-      <li class="like-cate-item {% if type == 2 %} font-eb {% endif %}"> <a href="{% url 'likes_director' %}">감독</a>
+      <li class="like-cate-item {% if type == 0 %} font-eb {% endif %}"> <a href="{% url 'likes' %}">영화</a> </li>
+      <li class="like-cate-item {% if type == 1 %} font-eb {% endif %}"> <a href="{% url 'likes_director' %}">감독</a>
       </li>
-      <li class="like-cate-item {% if type == 3 %} font-eb {% endif %}"> <a href="{% url 'likes_actor' %}">배우</a> </li>
-      <li class="like-cate-item {% if type == 4 %} font-eb {% endif %}"> <a href="{% url 'likes_staff' %}">스태프</a> </li>
+      <li class="like-cate-item {% if type == 2 %} font-eb {% endif %}"> <a href="{% url 'likes_actor' %}">배우</a> </li>
+      <li class="like-cate-item {% if type == 3 %} font-eb {% endif %}"> <a href="{% url 'likes_staff' %}">스태프</a> </li>
     </ul>
-    <div class="right-column">
+    <ul class="right-column">
       {% for like in likes %}
-      
-      {% if type == 1 %}
-      <div class="like-thumbnail" style="background-image: url('{{like.movie.poster.url}}')">
-      </div>
-      {% elif type == 2 %}
-      <div class="like-thumbnail" style="background-image: url('{{like.director.profile.avatar.url}}')">
-      </div>
-      {% elif type == 3 %}
-      <div class="like-thumbnail" style="background-image: url('{{like.actor.profile.avatar.url}}')">
-      </div>
-      {% elif type == 4 %}
-      <div class="like-thumbnail" style="background-image: url('{{like.staff.profile.avatar.url}}')">
-      </div>
-      {% endif %}
 
+      <li class="like-item">
+        {% if type == 0 %}
+        <a href="{% url 'movie_detail' like.movie.id %}">
+          <div class="image-thumbnail" style="background-image: url('{{like.movie.poster.url}}')">
+          </div>
+          <div class="image-title font-b" style="font-size:20px;">{{like.movie.title}}</div>
+          <div class="image-title font-md font-b">{{like.movie.director.name}}</div>
+        </a>
+        {% else %}
+        <a href="{% url 'user_page' like.profile_user.id %}">
+          <div class="image-thumbnail" style="background-image: url('{{like.profile_user.avatar.url}}')">
+          </div>
+          <div class="image-title font-md font-b">{{like.profile_user.name}}</div>
+        </a>
+        {% endif %}
+
+      </li>
       {% endfor %}
-    </div>
+    </ul>
 
 
   </div>

@@ -2,9 +2,6 @@ from django.db import models
 from accounts.models import Profile, Director, Actor, Staff
 # Create your models here.
 
-# Director's Portfolio
-
-
 class Movie(models.Model):
     genres = ["액션","범죄","SF","코미디","스릴러","전쟁","스포츠","판타지","음악","멜로"]
 

@@ -78,13 +78,11 @@
                     {% for movie in movies %}
                     <li class="slide">
                         <a href="{% url 'movie_detail' movie.id %}">
-                            <img class="movie-thumbnail" src="{{movie.poster.url}}" />
+                            <div class="image-thumbnail" style="background-image: url({{movie.poster.url}});"></div>
                         </a>
-                        <div class="movie-info font-md font-b">
-                            <p>
+                        <div class="image-name font-md font-b">
                                 <strong>{{movie.director.name}}</strong> -
                                 {{movie.title}}
-                            </p>
                         </div>
                     </li>
                     {% endfor %}
@@ -103,9 +101,9 @@
                     {% for actor in actors %}
                     <li class="slide">
                         <a href="{% url 'user_page' actor.profile.id %}">
-                            <div class="actor-image" style="background-image: url({{actor.favorite_image.url}});"></div>
+                            <div class="image-thumbnail" style="background-image: url({{actor.favorite_image.url}});"></div>
                         </a>
-                        <div class="actor-name font-md font-b">{{actor.profile.name}}</div>
+                        <div class="image-name font-md font-b">{{actor.profile.name}}</div>
                     </li>
                     {% endfor %}
                 </ul>

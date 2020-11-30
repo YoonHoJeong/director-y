@@ -32,7 +32,7 @@ window.addEventListener("load", function () {
     const moveSlide = (num) => {
       left = 0;
       for (let i = 0; i < num; i++) {
-        left += slideLengths[i];
+        left += slideLengths[i] + 20;
       }
       slider.style = `left: -${left}px`;
       currentIdx = num;

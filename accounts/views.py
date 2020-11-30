@@ -5,7 +5,7 @@ from .forms import StaffRegistraionForm, ActorRegistraionForm, DirectorRegistrai
 from django.views.generic import CreateView
 
 
-from .models import Profile, Actor, Like
+from .models import Profile, Director, Actor, Staff, Like
 from main.models import Movie, ActorImage, ActorVideo, Filmography
 
 from .forms import ImageForm
@@ -116,19 +116,30 @@ def user_page(request, user_id=0):
             return redirect('/login')
     profile_user = user
 
+
     # user의 portfolio 가져오기
     if profile_user.u_type == 1:
         # 해당 유저가 감독일 경우
+        likes = Like.objects.filter(profile_user = profile_user).count()
+        is_like = Like.objects.filter(profile_user = profile_user, user = request.user).count()
         movie_pfs = Movie.objects.filter(director = profile_user.id)
-        return render(request, 'user_page.html', {"profile_user": profile_user, "movie_pfs":movie_pfs})
+        
+        return render(request, 'user_page.html', {"is_like": is_like, "profile_user": profile_user, "movie_pfs":movie_pfs, "likes":likes})
+    
     elif profile_user.u_type == 2:
         # 해당 유저가 배우일 경우
+        likes = Like.objects.filter(profile_user = profile_user).count()
+        is_like = Like.objects.filter(profile_user = profile_user, user = request.user).count()
         profile_images = ActorImage.objects.filter(actor = profile_user.id)
         filmos = Filmography.objects.filter(profile = profile_user.id)
-        return render(request, 'user_page.html', {"profile_user": profile_user, "profile_images":profile_images, "filmos":filmos, "image_form": image_form})
+        
+        return render(request, 'user_page.html', {"is_like": is_like, "profile_user": profile_user, "profile_images":profile_images, "filmos":filmos, "image_form": image_form, "likes":likes})
+    
     elif profile_user.u_type == 3:
         # 해당 유저가 스탭일 경우
+        likes = Like.objects.filter(profile_user = profile_user).count()
         pass
+    
     return redirect('/')
 
 def edit_user(request):
@@ -223,12 +234,20 @@ def add_actor_image(request):
 def likes(request):
     user = request.user
 
+    likes = Like.objects.filter(user = user, type = 0)
+
+    return render(request, 'likes.html', {'likes':likes, 'type':0})
+
+@login_required(login_url='/login/')
+def likes_director(request):
+    user = request.user
+
     likes = Like.objects.filter(user = user, type = 1)
 
     return render(request, 'likes.html', {'likes':likes, 'type':1})
 
 @login_required(login_url='/login/')
-def likes_director(request):
+def likes_actor(request):
     user = request.user
 
     likes = Like.objects.filter(user = user, type = 2)
@@ -236,17 +255,74 @@ def likes_director(request):
     return render(request, 'likes.html', {'likes':likes, 'type':2})
 
 @login_required(login_url='/login/')
-def likes_actor(request):
+def likes_staff(request):
     user = request.user
 
     likes = Like.objects.filter(user = user, type = 3)
 
     return render(request, 'likes.html', {'likes':likes, 'type':3})
 
-@login_required(login_url='/login/')
-def likes_staff(request):
+def add_like(request):
+    # print(request.META.get('HTTP_REFERER'))
+    prev_url = request.META.get('HTTP_REFERER')
+    profile_user_id = int(prev_url.split("/")[-1])
+
+    user = request.user
+    profile_user = Profile.objects.filter(id = profile_user_id).first()
+
+    like = Like()
+    like.profile_user = profile_user
+    like.user = user
+
+    user_type = profile_user.u_type
+    like.type = user_type
+
+    # 좋아요 누른 유저 저장
+    like.save()
+
+    return redirect(prev_url)
+
+def add_like_movie(request):
+    prev_url = request.META.get('HTTP_REFERER')
+    movie_id = int(prev_url.split("/")[-1])
+
+    user = request.user
+    movie = Movie.objects.filter(id = movie_id).first()
+
+    if movie:
+        like = Like()
+        like.movie = movie
+        like.user = user
+
+        user_type = 0
+        like.type = user_type
+
+        # 좋아요 누른 유저 저장
+        like.save()
+
+    return redirect(prev_url)    
+
+def delete_like(request):
+    prev_url = request.META.get('HTTP_REFERER')
+    profile_user_id = int(prev_url.split("/")[-1])
+
     user = request.user
 
-    likes = Like.objects.filter(user = user, type = 4)
+    profile_user = Profile.objects.filter(id = profile_user_id).first()
 
-    return render(request, 'likes.html', {'likes':likes, 'type':4})
+    like = Like.objects.filter(user = user, profile_user = profile_user).first()
+
+    like.delete()
+
+    return redirect(prev_url)
+
+def delete_like_movie(request):
+    prev_url = request.META.get('HTTP_REFERER')
+    movie_id = int(prev_url.split("/")[-1])
+
+    user = request.user
+    movie = Movie.objects.filter(id = movie_id).first()
+    like = Like.objects.filter(user = user, movie = movie).first()
+    like.delete()
+
+    return redirect(prev_url)
