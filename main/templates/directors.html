@@ -27,7 +27,7 @@ Directory - Directors
                     {% csrf_token %}
                     <input type="hidden" value="{{portfolio.id}}" name="portfolio-id">
                     <a href="javascript:$('#movie{{ forloop.counter }}-form').submit();">
-                        <img class="movie-thumbnail" src="{{portfolio.poster.url}}" />
+                        <div class="image-thumbnail" style="background-image: url('{{portfolio.poster.url}}')"></div>
                     </a>
                     <input type="submit" value="제출">
                     <div class="movie-info">

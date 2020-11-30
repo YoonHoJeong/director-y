@@ -140,9 +140,9 @@ class Like(models.Model):
     LIKE_CHOICES = ((1, 'movie'),(2, 'director'), (3, 'actor'), (4, 'staff'))
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
-    type = models.IntegerField(choices=LIKE_CHOICES)
+    type = models.IntegerField(choices=LIKE_CHOICES, null=False)
 
     # movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
-    director = models.ForeignKey(Director, on_delete=models.CASCADE)
-    staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    actor = models.ForeignKey(Actor, on_delete=models.CASCADE, null=True, default=None, blank = True)
+    director = models.ForeignKey(Director, on_delete=models.CASCADE, null=True, default=None, blank = True)
+    staff = models.ForeignKey(Staff, on_delete=models.CASCADE, null=True, default=None, blank = True)

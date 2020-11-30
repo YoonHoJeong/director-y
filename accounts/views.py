@@ -116,18 +116,22 @@ def user_page(request, user_id=0):
             return redirect('/login')
     profile_user = user
 
+
     # user의 portfolio 가져오기
     if profile_user.u_type == 1:
         # 해당 유저가 감독일 경우
+        likes = Like.objects.filter(director_profile = profile_user).count()
         movie_pfs = Movie.objects.filter(director = profile_user.id)
-        return render(request, 'user_page.html', {"profile_user": profile_user, "movie_pfs":movie_pfs})
+        return render(request, 'user_page.html', {"profile_user": profile_user, "movie_pfs":movie_pfs, "likes":likes})
     elif profile_user.u_type == 2:
         # 해당 유저가 배우일 경우
+        likes = Like.objects.filter(actor__profile = profile_user).count()
         profile_images = ActorImage.objects.filter(actor = profile_user.id)
         filmos = Filmography.objects.filter(profile = profile_user.id)
-        return render(request, 'user_page.html', {"profile_user": profile_user, "profile_images":profile_images, "filmos":filmos, "image_form": image_form})
+        return render(request, 'user_page.html', {"profile_user": profile_user, "profile_images":profile_images, "filmos":filmos, "image_form": image_form, "likes":likes})
     elif profile_user.u_type == 3:
         # 해당 유저가 스탭일 경우
+        likes = Like.objects.filter(staff_profile = profile_user).count()
         pass
     return redirect('/')
 

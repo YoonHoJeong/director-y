@@ -1,3 +1,5 @@
+@import "image.css";
+
 .movie-pf-list {
   width: 100%;
   display: grid;
@@ -82,21 +84,6 @@
 
   border-left: none;
   border-top: none;
-}
-
-.movie-poster img {
-  /* 가로세로 1:1.3비율 */
-  width: 150px;
-  height: 195px;
-}
-
-.movie-thumbnail {
-  /* 가로세로 1:1.431비율 */
-  height: 378px;
-
-  /* background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat; */
 }
 
 .movie-plus img {

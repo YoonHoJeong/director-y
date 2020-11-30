@@ -1,0 +1,12 @@
+.image-thumbnail {
+  /* 가로세로 1:1.431비율 */
+  width: 264px;
+  height: 378px;
+  background: center / cover no-repeat;
+
+  transition: opacity 0.3s;
+}
+
+.image-thumbnail:hover {
+  opacity: 0.7;
+}

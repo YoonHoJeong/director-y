@@ -20,7 +20,11 @@ DIRECTORY - Mypage
 
 {% block upper-container %}
 <div class="profile">
-
+    <div class="like-btn-container font-lg font-b">
+        <!-- <i class="fas fa-heart"></i> -->
+        <i class="far fa-heart"></i>
+        <span class="like-cnts">{{likes}}</span>
+    </div>
     <div class="profile-name">
         <p class="profile-name__kor">{{profile_user.name}}</p>
         <p class="profile-name__eng">{{profile_user.name_eng}}</p>
@@ -92,6 +96,7 @@ DIRECTORY - Mypage
     </div>
     {% elif profile_user.u_type == 2 %}
     <ul class="actor-portfolio">
+
         {% if profile_user.id == user.id %}
         <button class="btn btn--revise"><i class="fas fa-circle"></i> 수정하기</button>
         <button class="btn btn--done"><i class="fas fa-circle"></i> 완료</button>
