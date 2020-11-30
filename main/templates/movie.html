@@ -62,7 +62,13 @@ DIRECTORY - Movie
 
 {% block lower-container %}
 <div>
+    <ul>
     {% for section in sections %}
+    <li>
+        <div class='section-poster' style="background-image: url('{{section.thumbnail.url}}');">
+
+        </div>
+    </li>
     <div class='section-node'>
         <a href="{% url 'section_detail' section.id %}">
             <h2 class="section-name">
@@ -81,6 +87,7 @@ DIRECTORY - Movie
         {% endif %}
     </div>
     {% endfor %}
+    </ul>
     
     {% if user == movie_obj.director %}
     <form action="{% url 'section_create' %}" method="POST">
@@ -98,7 +105,14 @@ DIRECTORY - Movie
         </button>    
 
         <div class='dircetor-profile'>
-    
+            <p>{{movie_obj.director.profile.name}}</p>
+            {% if movie_obj.director.profile.avatar %}
+            <img src='{{movie_obj.directro.profile.avatar.url}}'>
+            {% endif %}
+            <p>나이 {{movie_obj.director.profile.age}}</p>
+            <p>학력 {{movie_obj.director.profile.education}}</p>
+            <p>수상</p>
+            <p>{{movie_obj.director.awards}}</p>
         </div>
     
         <div class='section-detail'>
@@ -113,4 +127,3 @@ DIRECTORY - Movie
 </div>
 
 {% endblock %}
-
