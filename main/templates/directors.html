@@ -8,6 +8,7 @@ Directory - Directors
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 <link rel="stylesheet" href="{% static 'css/directors.css' %}">
+<link rel="stylesheet" href="{% static 'css/movie.css' %}">
 {% endblock %}
 
 {% block upper-container %}
@@ -26,9 +27,7 @@ Directory - Directors
                     {% csrf_token %}
                     <input type="hidden" value="{{portfolio.id}}" name="portfolio-id">
                     <a href="javascript:$('#movie{{ forloop.counter }}-form').submit();">
-                        <div class="movie-thumbnail">
-                            <img src="{{portfolio.poster.url}}" />
-                        </div>
+                        <img class="movie-thumbnail" src="{{portfolio.poster.url}}" />
                     </a>
                     <input type="submit" value="제출">
                     <div class="movie-info">
