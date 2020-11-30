@@ -20,6 +20,7 @@ DIRECTORY - Mypage
 
 {% block upper-container %}
 <div class="profile">
+    {% if profile_user.id != user.id %}
     <div class="like-btn-container font-lg font-b">
         {% if is_like %}
         <a href="{% url 'delete_like' %}" onclick="return confirm('팔로우를 취소하시겠습니까?');">
@@ -32,6 +33,7 @@ DIRECTORY - Mypage
         {% endif %}
         <span class="like-cnts">{{likes}}</span>
     </div>
+    {% endif %}
     <div class="profile-name">
         <p class="profile-name__kor">{{profile_user.name}}</p>
         <p class="profile-name__eng">{{profile_user.name_eng}}</p>

@@ -206,7 +206,9 @@ button {
 
 .category-item {
   display: flex;
-  height: 100%;
+  /* height: 100%; */
+  height: 40px;
+  /* padding-bottom: 5px; */
 
   justify-content: space-between;
   align-items: center;

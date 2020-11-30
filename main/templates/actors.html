@@ -7,6 +7,11 @@ Directory - Actors
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/actors.css' %}">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/image.css' %}">
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/slider.js' %}"></script>
 {% endblock %}
 
 {% block upper-container %}
@@ -26,4 +31,27 @@ Directory - Actors
 {% endblock %}
 
 {% block lower-container %}
+<ul class="lower-container__content">
+    <li class="job-item">
+        <h2 class="lower-container__title font-lg">ACTOR</h2>
+        <div class="slider-wrapper">
+            <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
+            <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
+
+            <div class="slider-show-area">
+                <ul class="slider">
+                    {% for actor in actors %}
+                    <li class="slide">
+                        <a href="{% url 'user_page' actor.profile.id %}">
+                            <div class="image-thumbnail" style="background-image: url({{actor.favorite_image.url}});">
+                            </div>
+                        </a>
+                        <div class="image-name font-md font-b">{{actor.profile.name}}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </li>
+</ul>
 {% endblock %}
