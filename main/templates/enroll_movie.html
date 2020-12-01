@@ -65,6 +65,13 @@ DIRECTORY - Enroll-Movie
                 </li>
             </ul>
 
+            <div>
+                <p class="enroll-setting">영화 줄거리 </p>
+                {% if movie_obj.summary %}<input type="text" name="summary" value="{{movie_obj.summary}}">
+                {% else %}<input type="text" name="summary">
+                {% endif %}
+            </div>
+
             {% if movie_obj %}<input type="hidden" name='movie-id' value="{{movie_obj.id}}">
             {% else %}<input type="hidden" value="None" name='movie-id'>
             {% endif %}

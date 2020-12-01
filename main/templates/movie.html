@@ -67,8 +67,9 @@ DIRECTORY - Movie
     <ul class="section-items">
     {% for section in sections %}
         <li class="section-btn">             
-            <div class='section-poster'>
-                <img class='section-url' src='{{section.thumbnail.url}}'>
+            <div class='section-poster-div' style="background-image: url('{{section.thumbnail.url}}');">
+                <!-- <img class='section-url' src='{{section.thumbnail.url}}'> -->
+                <input class='section-url' type="hidden" value="{{section.thumbnail.url}}">
                 <p class="section-content">{{section.content}}</p>                
             </div>    
             <div class="box-frame top-left"></div>
