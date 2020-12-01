@@ -6,23 +6,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const setDropdown = () => {
     const navSetting = document.querySelector(".nav-bar__setting");
 
-    const dropdownBar = document.querySelector(".dropdown-status");
-    dropdownBar.style.display = "none";
+    if (navSetting) {
+      const dropdownBar = document.querySelector(".dropdown-status");
+      dropdownBar.style.display = "none";
 
-    const handleOverSetting = () => {
-      dropdownBar.style.display = "flex";
-      console.log("hover");
-    };
+      const handleOverSetting = () => {
+        dropdownBar.style.display = "flex";
+        console.log("hover");
+      };
 
-    const handleLeaveSetting = () => {
-      setTimeout(() => {
-        dropdownBar.style.display = "none";
-        console.log("leave");
-      }, 200);
-    };
-
-    navSetting.addEventListener("mouseover", handleOverSetting);
-    navSetting.addEventListener("mouseleave", handleLeaveSetting);
+      const handleLeaveSetting = () => {
+        setTimeout(() => {
+          dropdownBar.style.display = "none";
+          console.log("leave");
+        }, 200);
+      };
+      navSetting.addEventListener("mouseover", handleOverSetting);
+      navSetting.addEventListener("mouseleave", handleLeaveSetting);
+    }
   };
 
   setDropdown();
