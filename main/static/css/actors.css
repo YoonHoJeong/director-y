@@ -34,3 +34,13 @@
 .actor-name {
   margin-top: 7px;
 }
+
+.slide {
+  background-color: white;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+.image-name {
+  color: #474344;
+}

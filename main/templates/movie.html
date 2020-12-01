@@ -55,6 +55,8 @@ DIRECTORY - Movie
         <div class="movie__right-col">
             {% if movie_obj.trailer_thumbnail %}
             <img class="movie-trailer-thumbnail" src='{{movie_obj.trailer_thumbnail.url}}'>
+            {% else %}
+            <div class="movie-trailer-thumbnail no-thumbnail font-xlg font-b">No Movie Trailer</div>
             {% endif %}
             <div class="movie__intro">
                 <div class="item-title font-md font-eb">줄거리</div>
@@ -68,14 +70,40 @@ DIRECTORY - Movie
 
 {% block lower-container %}
 <div>
-    {% for section in sections %}
-    <a href="{% url 'section_detail' section.id %}">
-        <h2>
-            {{section.title}}
-        </h2>
-        <img src="{{section.thumbnail.url}}">
-    </a>
-    {% endfor %}
+    <h2 class="lower-container__title font-lg">DIRECTOR NOTE</h2>
+
+    <ul class="section-list">
+        {% for section in sections %}
+        <li class="section-item">
+            <a href="{% url 'section_detail' section.id %}">
+                <div class="section-thumbnail" style="background-image: url('{{section.thumbnail.url}}');">
+
+                </div>
+                <h2 class="font-xlg font-b">
+                    {{section.title}}
+                    <div class="movie-pf-frame top-left"></div>
+                    <div class="movie-pf-frame top-right"></div>
+                    <div class="movie-pf-frame bottom-left"></div>
+                    <div class="movie-pf-frame bottom-right"></div>
+                </h2>
+            </a>
+        </li>
+        {% endfor %}
+        <li class="section-item">
+            <a href="">
+                <div class="section-thumbnail">
+
+                </div>
+                <h2 class="font-xlg">
+                    <i class="fas fa-plus"></i>
+                    <div class="movie-pf-frame top-left"></div>
+                    <div class="movie-pf-frame top-right"></div>
+                    <div class="movie-pf-frame bottom-left"></div>
+                    <div class="movie-pf-frame bottom-right"></div>
+                </h2>
+            </a>
+        </li>
+    </ul>
 
     {% if user == movie_obj.director %}
     <form action="{% url 'section_create' %}" method="POST">
@@ -84,5 +112,6 @@ DIRECTORY - Movie
         <input type="submit" value="Section 추가">
     </form>
     {% endif %}
+
 </div>
 {% endblock %}
