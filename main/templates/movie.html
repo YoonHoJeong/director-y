@@ -92,7 +92,6 @@ DIRECTORY - Movie
 {% block lower-container %}
     <ul class="section-items">
     {% for section in sections %}
-<<<<<<< HEAD
         <li class="section-btn">             
             <div class='section-poster'>
                 <img class='section-url' src='{{section.thumbnail.url}}'>
@@ -109,16 +108,6 @@ DIRECTORY - Movie
 </div> 
 
 <div class="section-plus">
-=======
-    <a href="{% url 'section_detail' section.id %}">
-        <h2>
-            {{section.title}}
-        </h2>
-        <img src="{{section.thumbnail.url}}">
-    </a>
-    {% endfor %}
-
->>>>>>> 93c0f044c72951c16b8c2d348a83bb4e0a0f3591
     {% if user == movie_obj.director %}
     <form action="{% url 'section_create' %}" method="POST">
     {% csrf_token %}
@@ -127,7 +116,6 @@ DIRECTORY - Movie
     </form>
     {% endif %}
 </div>
-<<<<<<< HEAD
 
 <div class='section-background'>
     <div class='section'>
@@ -173,6 +161,4 @@ DIRECTORY - Movie
     </div>
 </div>
 
-=======
->>>>>>> 93c0f044c72951c16b8c2d348a83bb4e0a0f3591
 {% endblock %}
