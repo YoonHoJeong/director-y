@@ -7,12 +7,14 @@ DIRECTORY - Movie
 
 {% block css %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/movie.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/edit.css' %}"/>
 {% endblock %}
 
 
 {% block js %}
 <script src="{% static 'js/movie.js' %}"></script>
 <script src="{% static 'js/slider.js' %}"></script>
+<script src="{% static 'js/sectionedit.js' %}"></script>
 {% endblock %}
 
 {% block upper-container %}
@@ -27,12 +29,22 @@ DIRECTORY - Movie
 {% endif %}
 
 <div class="movie-info">
-    <!--
+<!-- movie 자체 수정은 mypage에서 하도록? -->
     {% if user == movie_obj.director %}
-        <div><a href="{% url 'update_movie' movie_obj.id %}">● 수정하기</a></div>
-        <div><a href="{% url 'delete_movie' movie_obj.id %}">● 삭제하기</a></div>
+        <div class="movie-editing">
+            <form method="POST" class="movie-update" action="{% url 'update_movie' movie_obj.id %}"> {% csrf_token %}
+                <a href="javascript:{}" onclick="document.querySelector('form.movie-update').submit();">
+                    <div class="btn"><i class="fas fa-circle"></i> 수정하기</div>
+                </a>
+            </form>
+            <form method="POST" class="movie-delete" action="{% url 'delete_movie' movie_obj.id %}"> {% csrf_token %}
+                <a href="javascript:{}" onclick="document.querySelector('form.movie-delete').submit();">
+                    <div class="btn"><i class="fas fa-circle"></i> 삭제하기</div>
+                </a>
+            </form>      
+        </div> 
     {% endif %}
-    -->
+    
     <div class="movie__left-col">
         <img class="movie-thumbnail" src='{{movie_obj.poster.url}}'>
         <ul class="movie-summary font-md">
@@ -64,33 +76,55 @@ DIRECTORY - Movie
 {% endblock %}
 
 {% block lower-container %}
+    {% if movie_obj.director == user %}
+    <div class="section-edit">
+    <button class="btn btn--revise"><i class="fas fa-circle"></i> 수정하기</button>
+    <button class="btn btn--done"><i class="fas fa-circle"></i> 완료</button>
+    </div>
+    {% endif %}
     <ul class="section-items">
     {% for section in sections %}
-        <li class="section-btn">             
-            <div class='section-poster-div' style="background-image: url('{{section.thumbnail.url}}');">
-                <!-- <img class='section-url' src='{{section.thumbnail.url}}'> -->
-                <input class='section-url' type="hidden" value="{{section.thumbnail.url}}">
-                <p class="section-content">{{section.content}}</p>                
-            </div>    
-            <div class="box-frame top-left"></div>
-            <div class="box-frame top-right"></div>
-            <div class="box-frame bottom-left"></div>
-            <div class="box-frame bottom-right"></div>
-            <p class="section-name"><strong>{{section.title}}</strong></p>        
+        
+        <li class="section-item">      
+            <div class="section-btn">   
+                <div class='section-poster-div' style="background-image: url('{{section.thumbnail.url}}');">
+                    <!-- <img class='section-url' src='{{section.thumbnail.url}}'> -->
+                    <input class='section-url' type="hidden" value="{{section.thumbnail.url}}">
+                    <p class="section-content">{{section.content}}</p>                
+                </div>    
+                <div class="section-box-frame top-left"></div>
+                <div class="section-box-frame top-right"></div>
+                <div class="section-box-frame bottom-left"></div>
+                <div class="section-box-frame bottom-right"></div>
+                <p class="section-name"><strong>{{section.title}}</strong></p>  
+            </div>  
+            <div class="section-editing">
+                <form method="POST" class="section-update" action="{% url 'section_update' section.id %}"> {% csrf_token %}
+                    <input type="submit" value="● 수정하기">
+                    <p>{{section.id}}</p>
+                </form>
+                <form method="POST" class="section-delete" action="{% url 'section_delete' section.id %}"> {% csrf_token %}
+                    <input type="submit" value="● 삭제하기">
+                    <p>{{section.id}}</p>
+                </form>      
+            </div> 
         </li>
     {% endfor %}
-    </ul>
-</div> 
-
-<div class="section-plus">
     {% if user == movie_obj.director %}
-    <form action="{% url 'section_create' %}" method="POST">
-    {% csrf_token %}
-        <input type="hidden" value="{{movie_obj.id}}" name="movie_id">
-        <input type="submit" value="Section 추가">
+    <form class="section-plus" action="{% url 'section_create' %}" method="POST">
+        {% csrf_token %}
+        <div class="section-box-frame top-left"></div>
+        <div class="section-box-frame top-right"></div>
+        <div class="section-box-frame bottom-left"></div>
+        <div class="section-box-frame bottom-right"></div>
+        <a href="javascript:{}" onclick="document.querySelector('form.section-plus').submit();">
+            <input type="hidden" value="{{movie_obj.id}}" name="movie_id">
+            <i class="fas fa-plus font-xlg font-eb"></i>
+        </a>
     </form>
     {% endif %}
-</div>
+    </ul>
+</div> 
 
 <div class='section-background'>
     <div class='section'>

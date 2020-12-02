@@ -7,10 +7,12 @@ Directory - Staffs
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/staffs.css' %}">
+<link rel="stylesheet" type='text/css' href="{% static 'css/movie.css' %}" />
 {% endblock %}
 
 {% block js %}
 <script src="{% static 'js/staffs.js' %}"></script>
+<script src="{% static 'js/edit.js' %}"></script>
 {% endblock %}
 
 {% block upper-container %}
@@ -37,16 +39,16 @@ Directory - Staffs
             <input type="hidden" class="portfolio-part" value="{{portfolio.uid.role}}">
             <input type="hidden" class="portfolio-special" value="{{portfolio.uid.tool_list}}">
             <input type="hidden" class="portfolio-content" value="{{portfolio.content}}">
-            <div class="portfolio-box-frame top-left"></div>
-            <div class="portfolio-box-frame top-right"></div>
-            <div class="portfolio-box-frame bottom-left"></div>
-            <div class="portfolio-box-frame bottom-right"></div>
-            <div class="portfolio-thumbnail">
-                <img class="portfolio-thumbnail-url" src="{{portfolio.thumbnail.url}}" />
+            <div class="portfolio-thumbnail" style="background-image: url('{{portfolio.thumbnail.url}}');">
+                <input type="hidden" class="portfolio-thumbnail-url" value="{{portfolio.thumbnail.url}}" />
             </div>
             <div class="portfolio-info">
                     {{portfolio.title}}
             </div>
+            <div class="portfolio-box-frame top-left"></div>
+            <div class="portfolio-box-frame top-right"></div>
+            <div class="portfolio-box-frame bottom-left"></div>
+            <div class="portfolio-box-frame bottom-right"></div>
         </li>
         {% endfor %}
         
@@ -78,7 +80,9 @@ Directory - Staffs
         </div>
     
         <div class='portfolio-detail'>
-            <img class="portfolio-thumbnail-pop">
+            <div class="pop-thumbnail">
+                <img class="portfolio-thumbnail-pop">
+            </div>
             <div class='portfolio-title'>
     
             </div>

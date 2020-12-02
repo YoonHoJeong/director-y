@@ -5,8 +5,9 @@ from .forms import StaffRegistraionForm, ActorRegistraionForm, DirectorRegistrai
 from django.views.generic import CreateView
 
 
-from .models import Profile, Actor, Like
-from main.models import Movie, ActorImage, ActorVideo, Filmography
+from .models import Profile, Actor, Like, Staff
+from main.models import Movie, ActorImage, ActorVideo, Filmography, SPortfolio
+from main.forms import SectionForm
 
 from .forms import ImageForm
 
@@ -128,7 +129,9 @@ def user_page(request, user_id=0):
         return render(request, 'user_page.html', {"profile_user": profile_user, "profile_images":profile_images, "filmos":filmos, "image_form": image_form})
     elif profile_user.u_type == 3:
         # 해당 유저가 스탭일 경우
-        pass
+        staff_pfs = SPortfolio.objects.filter(uid = profile_user.id)
+        return render(request, 'user_page.html', {"profile_user": profile_user, "staff_pfs":staff_pfs})
+
     return redirect('/')
 
 def edit_user(request):
@@ -250,3 +253,49 @@ def likes_staff(request):
     likes = Like.objects.filter(user = user, type = 4)
 
     return render(request, 'likes.html', {'likes':likes, 'type':4})
+
+def staff_create(request) :
+    if request.method == "POST":
+        filled_form = SectionForm(request.POST, request.FILES)
+
+        if filled_form.is_valid():
+            portfolio_id = request.POST.get('portfolio_id')
+            if portfolio_id == 'None' :
+                staff_id = request.POST.get('staff_id')
+                profile = get_object_or_404(Profile, pk=staff_id)
+                staff = get_object_or_404(Staff, profile=profile)
+                portfolio = SPortfolio(uid = staff, title=request.POST.get('title'), thumbnail=request.POST.get('thumbnail'), content=request.POST.get('content'))
+                portfolio.save()
+                return redirect('/')
+
+            else :
+                portfolio = get_object_or_404(SPortfolio, pk=portfolio_id)
+                portfolio.title = request.POST.get('title')
+                portfolio.thumbnail = request.POST.get('thumbnail')
+                portfolio.content = request.POST.get('content')
+                portfolio.save()
+                return redirect('/')
+
+        else :
+            staff_id = request.POST.get('staff_id')
+            section_form = SectionForm()
+            
+            return render(request, "staff_create.html", {"staff_form": section_form, "staff_id" : staff_id})
+
+def staff_update(request, portfolio_id) :
+    section_form = SectionForm()
+    portfolio = get_object_or_404(SPortfolio, pk=portfolio_id)
+    staff_id = portfolio.uid.profile.id
+    return render(request, 'staff_create.html', {'staff_form' : section_form, 'portfolio_id' : portfolio_id, 'staff_id' : staff_id})
+
+def staff_delete(request, portfolio_id) :
+
+    staff_obj = get_object_or_404(SPortfolio, pk=portfolio_id)
+
+    profile_user = staff_obj.uid
+
+    staff_obj.delete()
+
+    staff_pfs = SPortfolio.objects.filter(uid = profile_user)
+    
+    return render(request, 'user_page.html', {"profile_user": profile_user.profile, "staff_pfs":staff_pfs})

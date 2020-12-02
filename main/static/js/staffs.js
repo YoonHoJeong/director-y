@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             staffImg.src = portfolioAvatar.src;
             staffPart.innerText = portfolioPart.value;
             staffSpecial.innerText = portfolioSpecial.value;
-            portfolioImg.src = portfolioThumb.src;
+            portfolioImg.src = portfolioThumb.value;
             portfolioTitle.innerText = portfolioT.innerText;
             portfolioMain.innerHTML = portfolioCon.value;
             

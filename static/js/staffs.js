@@ -19,25 +19,25 @@ document.addEventListener("DOMContentLoaded", () => {
             portfolioBG.style.display = 'flex';
             portfolio.style.display = 'flex';
 
-            const portfolioInfo = e.tartget;
+            const portfolioInfo = e.target.parentNode;
 
-            const portfolioName = portfolioInfo.querySelector('.portfolio-name');
-            const portfolioNameEng = portfolioInfo.querySelector('.sportfolio-name-eng');
-            const portfolioAvatar = portfolioInfo.querySelector('.portfolio-avatar');
-            const portfolioPart = portfolioInfo.querySelector('.portfolio-part');
-            const portfolioSpecial = portfolioInfo.querySelector('.portfolio-special');
-            const portfolioT = portfolioInfo.querySelector('.portfolio-info');
-            const portfolioThumb = portfolioInfo.querySelector('.portfolio-thumbnail');
-            const portfolioCon = portfolioInfo.querySelector('.portfolio-content');
+            const portfolioName = portfolioBtn.querySelector('.portfolio-name');
+            const portfolioNameEng = portfolioBtn.querySelector('.portfolio-name-eng');
+            const portfolioAvatar = portfolioBtn.querySelector('.portfolio-avatar');
+            const portfolioPart = portfolioBtn.querySelector('.portfolio-part');
+            const portfolioSpecial = portfolioBtn.querySelector('.portfolio-special');
+            const portfolioT = portfolioBtn.querySelector('.portfolio-info');
+            const portfolioThumb = portfolioBtn.querySelector('.portfolio-thumbnail-url');
+            const portfolioCon = portfolioBtn.querySelector('.portfolio-content');
 
-            staffName.innerText = portfolioName.innerText;
-            staffNameEng.innerText = portfolioNameEng.innerText;
+            staffName.innerText = portfolioName.value;
+            staffNameEng.innerText = portfolioNameEng.value;
             staffImg.src = portfolioAvatar.src;
-            staffPart.innerText = portfolioPart.innerText;
-            staffSpecial.innerText = portfolioSpecial.innerText;
-            portfolioImg.src = portfolioThumb.src;
+            staffPart.innerText = portfolioPart.value;
+            staffSpecial.innerText = portfolioSpecial.value;
+            portfolioImg.src = portfolioThumb.value;
             portfolioTitle.innerText = portfolioT.innerText;
-            portfolioMain.innerHTML = portfolioCon.innerText;
+            portfolioMain.innerHTML = portfolioCon.value;
             
         })
     })
