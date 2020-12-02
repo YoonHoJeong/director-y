@@ -20,16 +20,13 @@ from accounts.views import (
     likes_director,
     likes_actor,
     likes_staff,
-<<<<<<< HEAD
     add_like,
     delete_like,
     add_like_movie,
     delete_like_movie,
-=======
     staff_update,
     staff_delete,
     staff_create,
->>>>>>> 7d71797c221b5f7ccf2ed8780ece0776f7960b29
 )
 
 urlpatterns = [
