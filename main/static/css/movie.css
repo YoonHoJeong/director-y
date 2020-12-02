@@ -126,7 +126,17 @@
 }
 
 .movie-trailer-thumbnail {
-  width: 100%;
+  width: 826px;
+}
+
+.no-thumbnail {
+  height: 450px;
+
+  background-color: grey;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .movie__left-col > .movie-summary {

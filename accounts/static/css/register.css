@@ -88,3 +88,39 @@ input[type="password"] {
 
   margin-left: auto;
 }
+
+.job-select-list {
+  /* padding: 15px 18px; */
+  width: 300px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 10px;
+}
+
+.job-select-item {
+  width: 100%;
+  color: #847d7f;
+}
+
+.job-select-item:not(:last-child) {
+}
+
+.job-select-item input {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  padding: 12px 18px;
+
+  text-align: center;
+
+  outline: none;
+}
+
+.job-select-item input:hover {
+  cursor: pointer;
+}
+
+.clicked {
+  background-color: #474344;
+  color: white;
+}
