@@ -17,32 +17,14 @@ DIRECTORY - Movie
 
 {% block upper-container %}
 <main class="movie-main">
-
-
-<div class="movie-info">
-    <!--
-    {% if user == movie_obj.director %}
-        <div><a href="{% url 'update_movie' movie_obj.id %}">● 수정하기</a></div>
-        <div><a href="{% url 'delete_movie' movie_obj.id %}">● 삭제하기</a></div>
-    {% endif %}
-    -->
-    <div class="movie__left-col">
-        <img class="movie-thumbnail" src='{{movie_obj.poster.url}}'>
-        <ul class="movie-summary font-md">
-            <li class="movie-summary__item">
-                <div class="item-title font-eb">감독</div>
-                <div class="font-b">{{movie_obj.director.name}}</div>
-            </li>
-            <li class="movie-summary__item">
-                <div class="item-title font-eb">장르</div>
-                <div class="font-b">{{movie_obj.genre}}</div>
-            </li>
-            <li class="movie-summary__item">
-                <div class="item-title font-eb">개봉연도</div>
-                <div class="font-b">{{movie_obj.production_year}}</div>
-            </li>
-        </ul>
+    <div class='font-lg font-eb'>
+        {{movie_obj.title}}
     </div>
+    {% if movie_obj.title_eng %}
+    <div class='font-sm'>
+        {{movie_obj.title_eng}}
+    </div>
+    {% endif %}
 
     <div class="movie-info">
         <div class="like-btn-container font-lg font-b">
@@ -77,6 +59,8 @@ DIRECTORY - Movie
         <div class="movie__right-col">
             {% if movie_obj.trailer_thumbnail %}
             <img class="movie-trailer-thumbnail" src='{{movie_obj.trailer_thumbnail.url}}'>
+            {% else %}
+            <div class="movie-trailer-thumbnail no-thumbnail font-xlg font-b">No Movie Trailer</div>
             {% endif %}
             <div class="movie__intro">
                 <div class="item-title font-md font-eb">줄거리</div>
@@ -89,39 +73,45 @@ DIRECTORY - Movie
 {% endblock %}
 
 {% block lower-container %}
-    <ul class="section-items">
-    {% for section in sections %}
-        <li class="section-btn">             
-            <div class='section-poster-div' style="background-image: url('{{section.thumbnail.url}}');">
-                <!-- <img class='section-url' src='{{section.thumbnail.url}}'> -->
-                <input class='section-url' type="hidden" value="{{section.thumbnail.url}}">
-                <p class="section-content">{{section.content}}</p>                
-            </div>    
-            <div class="box-frame top-left"></div>
-            <div class="box-frame top-right"></div>
-            <div class="box-frame bottom-left"></div>
-            <div class="box-frame bottom-right"></div>
-            <p class="section-name"><strong>{{section.title}}</strong></p>        
-        </li>
-    {% endfor %}
-    </ul>
-</div> 
+<ul class="section-items">
 
-<div class="section-plus">
+
+    {% for section in sections %}
+    <li class="section-btn">
+        <div class='section-poster-div' style="background-image: url('{{section.thumbnail.url}}');">
+            <!-- <img class='section-url' src='{{section.thumbnail.url}}'> -->
+            <input class='section-url' type="hidden" value="{{section.thumbnail.url}}">
+            <p class="section-content">{{section.content}}</p>
+        </div>
+        <div class="box-frame top-left"></div>
+        <div class="box-frame top-right"></div>
+        <div class="box-frame bottom-left"></div>
+        <div class="box-frame bottom-right"></div>
+        <p class="section-name font-xlg font-eb">{{section.title}}</p>
+    </li>
+    {% endfor %}
+
     {% if user == movie_obj.director %}
-    <form action="{% url 'section_create' %}" method="POST">
-    {% csrf_token %}
-        <input type="hidden" value="{{movie_obj.id}}" name="movie_id">
-        <input type="submit" value="Section 추가">
+    <form class="section-plus" action="{% url 'section_create' %}" method="POST">
+        {% csrf_token %}
+        <div class="box-frame top-left"></div>
+        <div class="box-frame top-right"></div>
+        <div class="box-frame bottom-left"></div>
+        <div class="box-frame bottom-right"></div>
+        <a href="javascript:{}" onclick="document.querySelector('form.section-plus').submit();">
+
+            <input type="hidden" value="{{movie_obj.id}}" name="movie_id">
+            <i class="fas fa-plus font-xlg font-eb"></i>
+        </a>
     </form>
     {% endif %}
-</div>
+</ul>
 
 <div class='section-background'>
     <div class='section'>
         <div class='section-cancle'>
             X
-        </div>    
+        </div>
 
         <div class='director-profile'>
             <p class="director-name-kr">{{movie_obj.director.name}}</p>
@@ -148,14 +138,14 @@ DIRECTORY - Movie
             </div>
             <br></br>
         </div>
-    
+
         <div class='section-detail'>
             <img class="section-thumbnail">
             <div class='section-title'>
-    
+
             </div>
             <div class='section-main'>
-    
+
             </div>
         </div>
     </div>

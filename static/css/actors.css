@@ -26,11 +26,21 @@
 
 .actor-image {
   width: 265px;
-  height: 350px;
+  height: 378px;
 
   background: center / cover no-repeat;
 }
 
 .actor-name {
   margin-top: 7px;
+}
+
+.slide {
+  background-color: white;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+.image-name {
+  color: #474344;
 }

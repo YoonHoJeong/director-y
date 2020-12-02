@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const sectionInfo = e.target.parentNode;
             const sectionName = sectionBtn.querySelector('.section-name').innerText;
             const sectionCon = sectionBtn.querySelector('.section-content').innerText;
-            const sectionUrl = sectionBtn.querySelector('.section-url').src;
+            const sectionUrl = sectionBtn.querySelector('.section-url').value;
 
             sectionTitle.innerText = sectionName;
             sectionMain.innerHTML = sectionCon;

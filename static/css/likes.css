@@ -1,10 +1,16 @@
+@import "image.css";
+
 .likes-container {
+  display: flex;
+
   min-height: 600px;
   height: fit-content;
 }
 
 .likes-container .left-column {
   width: 150px;
+  flex-shrink: unset;
+  flex-grow: unset;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 
   display: flex;
@@ -19,4 +25,34 @@
 }
 
 .likes-container .right-column {
+  padding: 50px 65px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 40px;
+  row-gap: 50px;
+
+  flex: 1;
+}
+
+.likes-container .right-column .image-thumbnail {
+  width: 100%;
+  height: 0;
+  padding-top: 141%;
+}
+
+.like-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.like-item .image-title {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.like-item a {
+  width: 100%;
+  height: fit-content;
 }

@@ -7,9 +7,11 @@
   align-items: center;
 }
 
-.account-setting-container {
+.account-setting-container,
+.likes-container {
   width: 1240px;
-  height: 600px;
+  min-height: 600px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 
   background-color: white;
 
