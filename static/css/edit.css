@@ -1,0 +1,9 @@
+.btn--edit {
+    width: fit-content;
+    height: fit-content;
+    display: none;
+  }
+  
+  .btn--done {
+    display: none;
+  }

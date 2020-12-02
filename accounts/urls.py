@@ -20,10 +20,16 @@ from accounts.views import (
     likes_director,
     likes_actor,
     likes_staff,
+<<<<<<< HEAD
     add_like,
     delete_like,
     add_like_movie,
     delete_like_movie,
+=======
+    staff_update,
+    staff_delete,
+    staff_create,
+>>>>>>> 7d71797c221b5f7ccf2ed8780ece0776f7960b29
 )
 
 urlpatterns = [
@@ -45,4 +51,7 @@ urlpatterns = [
     path('delete_like_movie', delete_like_movie, name="delete_like_movie"),
     path('add_like', add_like, name="add_like"),
     path('delete_like', delete_like, name="delete_like"),
+    path('staff_update/<int:portfolio_id>', staff_update, name="staff_update"),
+    path('staff_delete/<int:portfolio_id>', staff_delete, name="staff_delete"),
+    path('staff_create', staff_create, name='staff_create'),
 ]

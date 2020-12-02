@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/section_create.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="box-frame top-left"></div>
+    <div class="box-frame top-right"></div>
+    <div class="box-frame bottom-left"></div>
+    <div class="box-frame bottom-right"></div>
+
+    <form action="{% url 'staff_create' %}" method="POST">{% csrf_token %}
+        <table style="width:100%;">
+            {{staff_form.as_table | safe}}
+        </table>
+
+        <input type="hidden" value="{{staff_id}}" name="staff_id">
+        {% if portfolio_id %}
+        <input type="hidden" value="{{portfolio_id}}" name="portfolio_id">
+        {% else %}
+        <input type="hidden" value="None" name="portfolio_id">
+        {% endif %}
+        
+        <input class="complete" type="submit" value="● 완료하기">
+    </form>
+
+{% endblock %}

@@ -9,12 +9,15 @@ DIRECTORY - Mypage
 <link rel="stylesheet" type='text/css' href="{% static 'css/user_page.css' %}">
 <link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}" />
 <link rel="stylesheet" type='text/css' href="{% static 'css/movie.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/staffs.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/edit.css' %}"/>
 {% endblock %}
 
 {% block js %}
 <script src="{% static 'js/edit.js' %}"></script>
 <script src="{% static 'js/slider.js' %}"></script>
 <script src="{% static 'js/popup_screen.js' %}"></script>
+<script src="{% static 'js/staffs.js' %}"></script>
 {% endblock %}
 
 
@@ -88,9 +91,10 @@ DIRECTORY - Mypage
                 <div class="movie-pf-frame top-right"></div>
                 <div class="movie-pf-frame bottom-left"></div>
                 <div class="movie-pf-frame bottom-right"></div>
-
-                <div class="movie-pf__thumbnail" style="background-image: url({{movie_pf.poster.url}});">
-                </div>
+                <a href="{% url 'movie_detail' movie_pf.id %}">
+                    <div class="movie-pf__thumbnail" style="background-image: url({{movie_pf.poster.url}});">
+                    </div>
+                </a>
                 <div class="movie-pf__summary">
                     <div class="movie-pf__title">
                         {{movie_pf.title}}
@@ -239,5 +243,88 @@ DIRECTORY - Mypage
         </div>
 
     </div>
-    {% endif %}
-    {% endblock %}
+        {% elif profile_user.u_type == 3 %}
+        <div class="section-edit">
+            <button class="btn staff-btn--revise"><i class="fas fa-circle"></i> 수정하기</button>
+            <button class="btn staff-btn--done"><i class="fas fa-circle"></i> 완료</button>
+        </div>
+        <ul class="portfolios">
+            {% for portfolio in staff_pfs %}
+            <li class="portfolio">
+                <input type="hidden" class="portfolio-name" value="{{portfolio.uid.profile.name}}">
+                <input type="hidden" class="portfolio-name-eng" value="{{portfolio.uid.profile.name_eng}}">
+                <input type="hidden" class="portfolio-avatar" value="{{portfolio.uid.avatar.url}}">
+                <input type="hidden" class="portfolio-part" value="{{portfolio.uid.role}}">
+                <input type="hidden" class="portfolio-special" value="{{portfolio.uid.tool_list}}">
+                <input type="hidden" class="portfolio-content" value="{{portfolio.content}}">
+                <div class="portfolio-thumbnail" style="background-image: url('{{portfolio.thumbnail.url}}');">
+                    <input type="hidden" class="portfolio-thumbnail-url" value="{{portfolio.thumbnail.url}}" />
+                </div>
+                <div class="portfolio-info">
+                        {{portfolio.title}}
+                </div>
+                <div class="portfolio-box-frame top-left"></div>
+                <div class="portfolio-box-frame top-right"></div>
+                <div class="portfolio-box-frame bottom-left"></div>
+                <div class="portfolio-box-frame bottom-right"></div>  
+
+                <div class="staff-editing">
+                    <form method="POST" class="staff-update" action="{% url 'staff_update' portfolio.id %}"> {% csrf_token %}
+                        <input type="submit" value="● 수정하기">
+                    </form>
+                    <form method="POST" class="staff-delete" action="{% url 'staff_delete' portfolio.id %}"> {% csrf_token %}
+                        <input type="submit" value="● 삭제하기">
+                    </form>      
+                </div> 
+
+            </li>
+            {% endfor %}
+            <form class="staff-plus" action="{% url 'staff_create' %}" method="POST">
+                {% csrf_token %}
+                <a href="javascript:{}" onclick="document.querySelector('form.staff-plus').submit();">
+                    <input type="hidden" value="{{profile_user.id}}" name="staff_id">
+                    <i class="fas fa-plus font-xlg font-eb"></i>
+                </a>
+            </form>
+        </ul>
+
+        <div class='portfolio-background'>
+            <div class='portfolio-pop'>
+                <div class='portfolio-cancle'>
+                    X
+                </div>    
+        
+                <div class='staff-profile'>
+                    <p class="staff-name-kr"></p>
+                    <p class="staff-name-eng"></p>
+                    <div class="staff-avatar">
+                        <img>
+                    </div>
+                    <div class="profile-user">
+                        <p class="staff-setting">전문분야</p>
+                        <p class="staff-part"></p>
+                    </div>
+                    <br></br>
+                    <div class="profile-user">
+                        <p class="staff-setting">특기</p>
+                        <p class="staff-special"></p>
+                    </div>
+                    <br></br>
+                </div>
+            
+                <div class='portfolio-detail'>
+                    <div class="pop-thumbnail">
+                        <img class="portfolio-thumbnail-pop">
+                    </div>
+                    <div class='portfolio-title'>
+            
+                    </div>
+                    <div class='portfolio-main'>
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}    
+        {% endblock %}

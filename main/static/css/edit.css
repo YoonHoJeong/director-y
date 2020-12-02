@@ -1,0 +1,42 @@
+.btn--edit {
+    width: fit-content;
+    height: fit-content;
+    display: none;
+  }
+  
+  .btn--done {
+    display: none;
+  }
+
+  .staff-btn--done {
+      display: none;
+  }
+
+  .staff-editing {
+    display: none;
+    text-align: center;
+  }
+  
+  .staff-editing .staff-delete {
+    position: absolute;
+    top:10%;
+    right:5%;
+  }
+  
+  .staff-editing .staff-update {
+    position: absolute;
+    top:10%;
+    left:5%;
+  }
+  
+  .staff-editing .btn {
+    font-family: "NanumSquare";
+  
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+    font-weight: 700;
+    color: #d44242;
+    outline: none;
+  }
+  

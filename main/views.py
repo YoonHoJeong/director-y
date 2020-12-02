@@ -57,6 +57,8 @@ def section_delete(request, section_id) :
     section_obj.delete()
     sections = Section.objects.filter(mid = movie_obj)
 
+    print(section_id)
+
     return render(request, "movie.html", {"movie_obj" : movie_obj , "sections" : sections})
 
 def home(request):
