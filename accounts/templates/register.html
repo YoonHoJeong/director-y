@@ -1,49 +1,83 @@
-{% extends 'base_header.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}" />
 <link rel="stylesheet" type='text/css' href="{% static 'css/register.css' %}" />
 {% endblock %}
 
 {% block content %}
-<div class="upper-container">
-<div class="register-box">
-        <div class="box-frame top-left"></div>
-        <div class="box-frame top-right"></div>
-        <div class="box-frame bottom-left"></div>
-        <div class="box-frame bottom-right"></div>
-
-        <ul class="job-list">
-            <li class="job-item">
-                <a href="{% url 'director_register' %}">
-                    <div class="job">
-                        <span class="job-eng">DIRECTOR</span>
-                        <span class="job-kor">감독</span>
-                    </div>
-                </a>
-            </li>
-            <li class="job-item">
-                <a href="{% url 'actor_register' %}">
-                    <div class="job">
-                        <span class="job-eng">ACTOR</span>
-                        <span class="job-kor">배우</span>            
-                    </div>
-                </a>
-            </li>
-            <li class="job-item">
-                <a href="{% url 'staff_register' %}">
-                    <div class="job">
-                        <span class="job-eng">STAFF</span>
-                        <span class="job-kor">스탭</span>            
-                    </div>
-                </a>
-            </li>
-        </ul>
-        
-        
-        
+<form class="register-form" action="#" method="POST">
+    {% csrf_token %}
+    <div class="form-title font-xlg font-eb">
+        <a href="{% url 'home' %}">
+            DIRECTORY
+        </a>
     </div>
-</div>
+
+    <ul class="job-select-list">
+        <li class="job-select-label font-md font-b">가입 유형</li>
+        <li class="job-select-item"  name="director">
+            <div class="font-md font-b">감독</div>
+        </li>
+        <li class="job-select-item" name="actor">
+            <div class="font-md font-b">배우</div>
+        </li>
+        <li class="job-select-item" name="staff">
+            <div class=" font-md font-b">스텝</div>
+        </li>
+        <input class="type-input"name="type" type="hidden" value="">
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const type = urlParams.get('type');
+
+            const selectItems = document.querySelectorAll(".job-select-item");
+            const typeInput = document.querySelector(".type-input");
+
+            if (type) {
+                selectItems.forEach(selectItem => {
+                    if (selectItem.getAttribute("name") === type) {
+                        selectItem.classList.add("clicked");
+                        selectItem.setAttribute("selected", true);
+                        typeInput.setAttribute("value", type);
+                    }
+                })
+            }
+
+            selectItems.forEach(selectItem => {
+                selectItem.addEventListener("click", (e) => {
+                    selectItems.forEach(selectItem => {
+                        selectItem.classList.remove("clicked");
+                        selectItem.setAttribute("selected", false);
+                    })
+                    selectItem.classList.add("clicked");
+                    selectItem.setAttribute("selected", true);
+
+                    userType = selectItem.getAttribute("name");
+
+                    typeInput.setAttribute("value", userType);
+                })
+            })
+
+        </script>
+    </ul>
+    
+
+
+    {% for field in form %}
+
+    <div class=" register-field">
+        <!-- <div class="field-label">
+            {{field.label}}
+        </div> -->
+
+        {{field}}
+        <!-- {% if field.help_text %}
+        <div style="font-size: 12px; color: grey;">{{field.help_text}}</div>
+        {% endif %} -->
+    </div>
+
+    {% endfor %}
+    <button class="btn btn--submit" type="submit">가입하기</button>
+</form>
 
 {% endblock content %}

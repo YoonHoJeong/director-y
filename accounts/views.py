@@ -1,58 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from .forms import StaffRegistraionForm, ActorRegistraionForm, DirectorRegistraionForm, ProfileAuthenticationForm
 from django.views.generic import CreateView
 
+from .forms import ProfileAuthenticationForm, ImageForm, RegistrationForm
 
 from .models import Profile, Director, Actor, Staff, Like
 from main.models import Movie, ActorImage, ActorVideo, Filmography
 
-from .forms import ImageForm
-
 # Create your views here.
 
 def register(request):
-    return render(request, '../templates/register.html')
-
-
-class director_register(CreateView):
-    model = Profile
-    form_class = DirectorRegistraionForm
-    template_name = "../templates/director_register.html"
-
-    def form_valid(self, form):
-        profile = form.save()
-        login(self.request, profile)
-        return redirect('/')
-
-
-class actor_register(CreateView):
-    model = Profile
-    form_class = ActorRegistraionForm
-    template_name = "../templates/actor_register.html"
-
-    def form_valid(self, form):
-        profile = form.save()
-        login(self.request, profile)
-        return redirect('/')
-
-
-class staff_register(CreateView):
-    model = Profile
-    form_class = StaffRegistraionForm
-    template_name = "../templates/staff_register.html"
-
-    def form_valid(self, form):
-        profile = form.save()
-        login(self.request, profile)
-        return redirect('/')
-
-
-def registration_view(request):
-    context = {}
     if request.POST:
-        form = ActorRegistraionForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
 
@@ -61,13 +21,12 @@ def registration_view(request):
             raw_password = form.cleaned_data.get('password1')
             account = authenticate(email=email, password=raw_password)
             login(request, account)
-            return redirect('home')
         else:
             context['registration_form'] = form
-    else:  # GET request
-        form = ActorRegistraionForm()
-        context['registration_form'] = form
-    return render(request, 'accounts/register.html', context)
+
+    else: # GET method일 때,
+        form = RegistrationForm()
+        return render(request, '../templates/register.html', {'form':form})
 
 
 def logout_view(request):
