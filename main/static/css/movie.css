@@ -279,6 +279,10 @@
   margin-top: 10px;
 }
 
+.section-item {
+  position: relative;
+}
+
 .section-items .section-btn,
 .section-plus {
   width: 380px;
@@ -498,7 +502,7 @@
 .section-editing .section-delete {
   position: absolute;
   top:10%;
-  right:5%;
+  right:13%;
 }
 
 .section-editing .section-update {

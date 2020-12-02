@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const staffreviseBtn = document.querySelector(".staff-btn--revise");
     const staffdoneBtn = document.querySelector(".staff-btn--done");
     const staffEdits = document.querySelectorAll(".staff-editing");
+    const boxes = document.querySelectorAll(".portfolio-box-frame");
+    const staffPlus = document.querySelector(".staff-plus");
 
     const onClickStaffRevise = (e) => {
       staffreviseBtn.style.display = 'none';
@@ -15,6 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
       staffEdits.forEach(staffEdit => {
         staffEdit.style.display = 'block';
       })
+
+      boxes.forEach(box => {
+        box.style.display = 'none';
+      })
+
+      staffPlus.style.display = 'block';
     };
 
     const onClickStaffDone = (e) => {
@@ -24,6 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
       staffEdits.forEach(staffEdit => {
         staffEdit.style.display = 'none';
       })
+
+      boxes.forEach(box => {
+        box.style.display = 'block';
+      })
+
+      staffPlus.style.display = 'none';
     };
 
     const onClickRevise = (e) => {

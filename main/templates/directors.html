@@ -11,13 +11,24 @@ Directory - Directors
 {% endblock %}
 
 {% block upper-container %}
+<h1 class="directors-title font-lg">오늘의 감독</h1>
 
+<ul class="directors">
+    {% for director in random_directors %}
+    <li class="director">
+        <a href="{% url 'user_page' director.profile.id %}">
+            <div class="director-image" style="background-image: url('{{director.profile.avatar.url}}');"></div>
+        </a>
+        <div class="director-name font-md font-b">{{director.profile.name}}</div>
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}
 
 {% block lower-container %}
 
 <div class="lower-container">
-    <h2 class="lower-container__title">HOT DIRECTOR</h2>
+    <h2 class="lower-container__title">HOT MOVIE</h2>
     <ul class="lower-container__content">
         <ul class="movies">
             {% for portfolio in all_portfolio %}

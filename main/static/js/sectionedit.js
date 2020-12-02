@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const plusBtn = document.querySelector(".section-plus");
     const sectionEdits = document.querySelectorAll(".section-editing");
     const movieEdit = document.querySelector(".movie-editing");
+    const boxes = document.querySelectorAll(".section-box-frame");
 
     const onClickRevise = (e) => {
       e.preventDefault();
@@ -17,6 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
       sectionEdits.forEach(sectionEdit => {
         sectionEdit.style.display = "inline-flex";
       })
+
+      boxes.forEach(box => {
+        box.style.display = "none";
+      })
     };
     const onClickDone = (e) => {
       e.preventDefault();
@@ -28,6 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       sectionEdits.forEach(sectionEdit => {
         sectionEdit.style.display = "none";
+      })
+
+      boxes.forEach(box => {
+        box.style.display = "block";
       })
     };
     reviseBtn.addEventListener("click", onClickRevise);

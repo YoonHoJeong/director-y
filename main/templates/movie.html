@@ -19,18 +19,23 @@ DIRECTORY - Movie
 
 {% block upper-container %}
 
-<div class='font-lg font-eb'>
-    {{movie_obj.title}}
-</div>
-{% if movie_obj.title_eng %}
-<div class='font-sm'>
-    {{movie_obj.title_eng}}
-</div>
-{% endif %}
+<main class="movie-main">
+    <div class='font-lg font-eb'>
+        {{movie_obj.title}}
+    </div>
+    {% if movie_obj.title_eng %}
+    <div class='font-sm'>
+        {{movie_obj.title_eng}}
+    </div>
+    {% endif %}
+    {% if movie_obj.title_eng %}
+    <div class='font-sm'>
+        {{movie_obj.title_eng}}
+    </div>
+    {% endif %}
 
-<div class="movie-info">
-<!-- movie 자체 수정은 mypage에서 하도록? -->
-    {% if user == movie_obj.director %}
+    <div class="movie-info">
+        {% if user == movie_obj.director %}
         <div class="movie-editing">
             <form method="POST" class="movie-update" action="{% url 'update_movie' movie_obj.id %}"> {% csrf_token %}
                 <a href="javascript:{}" onclick="document.querySelector('form.movie-update').submit();">
@@ -43,32 +48,8 @@ DIRECTORY - Movie
                 </a>
             </form>      
         </div> 
-    {% endif %}
+        {% endif %}
     
-    <div class="movie__left-col">
-        <img class="movie-thumbnail" src='{{movie_obj.poster.url}}'>
-        <ul class="movie-summary font-md">
-            <li class="movie-summary__item">
-                <div class="item-title font-eb">감독</div>
-                <div class="font-b">{{movie_obj.director.name}}</div>
-            </li>
-            <li class="movie-summary__item">
-                <div class="item-title font-eb">장르</div>
-                <div class="font-b">{{movie_obj.genre}}</div>
-            </li>
-            <li class="movie-summary__item">
-                <div class="item-title font-eb">개봉연도</div>
-                <div class="font-b">{{movie_obj.production_year}}</div>
-            </li>
-        </ul>
-    </div>
-    {% if movie_obj.title_eng %}
-    <div class='font-sm'>
-        {{movie_obj.title_eng}}
-    </div>
-    {% endif %}
-
-    <div class="movie-info">
         <div class="like-btn-container font-lg font-b">
             {% if is_like %}
             <a href="{% url 'delete_like_movie' %}" onclick="return confirm('팔로우를 취소하시겠습니까?');">
@@ -140,11 +121,9 @@ DIRECTORY - Movie
             <div class="section-editing">
                 <form method="POST" class="section-update" action="{% url 'section_update' section.id %}"> {% csrf_token %}
                     <input type="submit" value="● 수정하기">
-                    <p>{{section.id}}</p>
                 </form>
                 <form method="POST" class="section-delete" action="{% url 'section_delete' section.id %}"> {% csrf_token %}
                     <input type="submit" value="● 삭제하기">
-                    <p>{{section.id}}</p>
                 </form>      
             </div> 
         </li>

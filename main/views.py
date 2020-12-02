@@ -64,14 +64,16 @@ def section_delete(request, section_id) :
 def home(request):
     movies = Movie.objects.all()
     actors = Actor.objects.all()
+    staffs = Staff.objects.all()
 
-    return render(request, "home.html", {"movies": movies, "actors":actors})
+    return render(request, "home.html", {"movies": movies, "actors":actors, "staffs":staffs})
 
 
 def staffs(request):
     staffs = SPortfolio.objects.all()
+    random_staffs = Staff.objects.all().order_by('?')[:4]
 
-    return render(request, "staffs.html", {"all_portfolio": staffs})
+    return render(request, "staffs.html", {"all_portfolio": staffs, "random_staffs" : random_staffs})
 
 def staff_detail(request, staff_profile_id):
     my_staff = get_object_or_404(Staff, pk=staff_profile_id)
@@ -91,7 +93,8 @@ def directors(request):
         return render(request, 'movie.html', {'movie_obj' : movie_obj, "sections":sections})
 
     all_portfolio = Movie.objects.all()
-    return render(request, "directors.html", {"all_portfolio": all_portfolio})
+    random_directors = Director.objects.all().order_by('?')[:4]
+    return render(request, "directors.html", {"all_portfolio": all_portfolio, "random_directors" : random_directors})
 
 def movie_detail(request, movie_id):
     movie_obj = get_object_or_404(Movie, pk=movie_id)

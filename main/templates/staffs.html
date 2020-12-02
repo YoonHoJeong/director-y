@@ -16,8 +16,23 @@ Directory - Staffs
 {% endblock %}
 
 {% block upper-container %}
-<iframe src="https://player.vimeo.com/video/76979871" width="300px" height="200px" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-{% endblock %}
+<h1 class="staffs-title font-lg">오늘의 스태프</h1>
+
+<ul class="staffs">
+    {% for staff in random_staffs %}
+    <li class="staff">
+        <a href="{% url 'user_page' staff.profile.id %}">
+            {% if staff.profile.avatar %}
+            <div class="staff-image" style="background-image: url('{{staff.profile.avatar.url}}');"></div>
+            {% else %}
+            <div class="staff-image" style="background-image: url('/static/images/default_user.jpg');"></div>
+            <!-- 왜 안되지.. -->
+            {% endif %}
+        </a>
+        <div class="staff-name font-md font-b">{{staff.profile.name}}</div>
+    </li>
+    {% endfor %}
+</ul>{% endblock %}
 
 {% block lower-container %}
 <h2 class="lower-container__title font-md">모든 Staff Portfolio 보기</h2>
