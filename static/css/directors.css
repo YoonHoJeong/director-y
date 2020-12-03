@@ -1,25 +1,7 @@
-.welcome-box {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 1300px;
-  height: 350px;
-}
-
 .welcome-box h1 {
   font-size: 20px;
   line-height: 30px;
 }
-
-/* .auth {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-} */
 
 /* lower container */
 
@@ -74,4 +56,41 @@
 
   top: 10px;
   right: 20px;
+}
+
+.directors {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  /* display: grid;
+  grid-template-columns: repeat(4, 1fr); */
+  margin-top: 20px;
+}
+
+.director {
+  width: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.director:not(:last-child) {
+  margin-right: 20px;
+}
+
+.directors-title {
+  font-weight: 800;
+}
+
+.director-image {
+  width: 265px;
+  height: 378px;
+
+  background: center / cover no-repeat;
+}
+
+.director-name {
+  margin-top: 7px;
 }

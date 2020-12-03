@@ -1,142 +1,133 @@
 .welcome-box {
-    position: relative;
-  
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 1300px;
-    height: 350px;
-  }
-  
-  .welcome-box h1 {
-    font-size: 20px;
-    line-height: 30px;
-  }
-  
-  .auth {
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-  }
-  
-  /* lower container */
-  
-  .movies {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .movies .movie {
-    margin-right: 20px;
-  }
-  
-  .movie .movie-info {
-    display: flex;
-    justify-content: center;
-    margin-top: 8px;
-  }
-  
-  .movie-thumbnail img {
-    /* 가로세로 1:1.3비율 */
-    width: 150px;
-    height: 195px;
-  }
-  
-  .movie-plus img {
-    /* 가로세로 1:1.3비율 */
-    width: 150px;
-    height: 195px;
-  }
-  
-  .complete {
-    position: absolute;
-    color: #D44242;
-    background: none;
-    border: none;
-    font-family: "NanumSquare";
-    font-size: 1rem;
-  
-    top : 10px;
-    right: 20px;
-  }
-  
-  .enroll-movies {
-    width: 100%;
-    display: flex;
-    text-align: center;
+  position: relative;
 
-    margin : 10px;
-    margin-top : 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1240px;
+  height: fit-content;
+}
 
-  .enroll-movie {
-    width: 30%;
-    margin-left: 30px;
-    margin-right: 30px;
-  }
+.welcome-box h1 {
+  font-size: 20px;
+  line-height: 30px;
+}
 
-  .enroll-smalls {
-    width: 100%;
-    display: flex;
-    margin-bottom: 30px;
-  }
+.auth {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
 
-  .enroll-small {
-    width: 50%;
-  }
+/* lower container */
 
-  .enroll-movie.left {
-    margin-left: 10%;
-  }
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+}
+.movies .movie {
+  margin-right: 20px;
+}
 
-  .enroll-movie.right {
-    margin-left: 10%;
-    margin-right: 10%;
-  }
+.movie .movie-info {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
 
-  .enroll-setting {
-    font-weight: 600;
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-  }
+.movie-thumbnail img {
+  /* 가로세로 1:1.3비율 */
+  width: 150px;
+  height: 195px;
+}
 
-  .enroll-setting-small {
-    font-weight: 600;
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-  }
+.movie-plus img {
+  /* 가로세로 1:1.3비율 */
+  width: 150px;
+  height: 195px;
+}
 
-  .enroll-own {
-    margin-bottom: 30px;
-    font-family: "NanumSquare";
-    font-weight: 500;
-    background-color: #fbf8f3;
-    border-width: 2px solid black;
-    border-radius: 10px;
-  }
+.complete {
+  font-family: "NanumSquare";
 
-  .enroll-own-small {
-    margin-bottom: 0px;
-    width: 80%;
-    background-color: #fbf8f3;
-    border-width: 2px solid black;
-    border-radius: 10px;
-  }
+  position: absolute;
+  top: 20px;
+  right: 20px;
 
-  .enroll-url {
-    margin-bottom: 30px;
-    font-family: "NanumSquare";
-    font-weight: 500;
-    text-align: center;
-    background-color: #fbf8f3;
-    border-width: 2px solid black;
-    border-radius: 10px;
-  }
+  border: none;
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: 700;
+  color: #d44242;
+  outline: none;
 
-  .enroll-img {
-    margin-bottom: 30px;
-    font-family: "NanumSquare";
-    font-weight: 500;
-    text-align: center;
-  }
+  width: fit-content;
+  height: fit-content;
+}
+
+.enroll-movie-form {
+  width: 100%;
+}
+
+.enroll-movies {
+  width: 100%;
+  display: flex;
+  text-align: center;
+}
+
+.enroll-movie {
+  width: 50%;
+}
+
+.enroll-smalls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.enroll-small {
+  width: 45%;
+}
+
+.enroll-setting {
+  margin-bottom: 15px;
+}
+
+.enroll-own,
+.enroll-url {
+  width: 100%;
+  margin-bottom: 30px;
+  background-color: #fbf8f3;
+  border-width: 2px solid black;
+  border-radius: 10px;
+
+  padding: 10px 20px;
+}
+
+.enroll-img {
+  margin-bottom: 30px;
+  font-family: "NanumSquare";
+  font-weight: 500;
+  text-align: center;
+}
+
+.enroll-movie-item {
+  width: 100%;
+  height: 105px;
+  padding: 0px 50px;
+}
+.enroll-movie-summary {
+  padding: 0px 50px;
+}
+
+.enroll-movie-summary input {
+  width: 100%;
+  height: 120px;
+  background-color: #fbf8f3;
+  border-width: 2px solid black;
+  border-radius: 10px;
+
+  padding: 10px 20px;
+}

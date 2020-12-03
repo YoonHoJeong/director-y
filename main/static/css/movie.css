@@ -265,6 +265,15 @@
   color: #474344;
 }
 
+.frame-container {
+  width: 80%;
+  height: 80%;
+  position: relative;
+}
+
+.section-btn {
+}
+
 .box-frame.movie-box {
   position: absolute;
 

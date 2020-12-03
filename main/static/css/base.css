@@ -249,6 +249,8 @@ button {
   min-height: 350px;
 
   padding: 40px;
+
+  transition: all 1s;
 }
 @media screen and (max-width: 1240px) {
   /* .welcome-box {
@@ -457,7 +459,7 @@ button {
   top: 0;
   left: 0;
 
-  transition: left 0.4s ease-in-out;
+  transition: left 0.4s ease-out;
   display: flex;
   flex-wrap: nowrap;
 }

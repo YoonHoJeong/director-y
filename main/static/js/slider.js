@@ -1,4 +1,4 @@
-window.addEventListener("load", function () {
+$(".slider-wrapper").ready(() => {
   const sliderWrappers = document.querySelectorAll(".slider-wrapper");
 
   sliderWrappers.forEach((sliderWrapper) => {
@@ -9,6 +9,8 @@ window.addEventListener("load", function () {
     const slides = sliderWrapper.querySelectorAll(".slide");
 
     const slideHeight = slides[0].offsetHeight;
+
+    console.log(slideHeight);
 
     slider.style.height = `${slideHeight}px`;
     sliderShowArea.style.height = `${slideHeight}px`;
@@ -21,6 +23,8 @@ window.addEventListener("load", function () {
     slides.forEach((slide) => {
       slideLengths.push(slide.offsetWidth);
     });
+
+    console.log(slideLengths);
 
     const sliderLength = slider.offsetWidth;
 

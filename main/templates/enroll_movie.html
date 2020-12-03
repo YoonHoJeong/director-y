@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_header.html' %}
 {% load static %}
 
 {% block title %}
@@ -17,120 +17,92 @@ DIRECTORY - Enroll-Movie
         <div class="box-frame bottom-left"></div>
         <div class="box-frame bottom-right"></div>
 
-        <form action="{% url 'enroll_movie' %}" method="POST">
+        <form class="enroll-movie-form" action="{% url 'enroll_movie' %}" method="POST">
             {% csrf_token %}
-            <input class="complete" type="submit" value="● 완료하기">
-            
-            <ul class="enroll-movies">
-                <li class="enroll-movie left">
-                    <p class="enroll-setting">영화 제목 (한글)</p>
-                    {% if movie_obj %}<input class="enroll-own" type='text' name='title-kr' value='{{movie_obj.title}}'>     
-                    {% else %}<input class="enroll-own" type='text' name='title-kr'>
-                    {% endif %}
-                    <p class="enroll-setting">영화 포스터</p>
-                    {% if movie_obj.poster %}<input class="enroll-img" type="file" name="img" value="{{movie_obj.poster}}">
-                    {% else %}<input class="enroll-img" type="file" name="img">
-                    {% endif %}
+            <input class="complete btn btn--done" type="submit" value="● 완료하기">
 
-                    <ul class="enroll-smalls">
-                        <li class="enroll-small">
-                            <p class="enroll-setting-small">장르</p>
-                            {% if movie_obj.genre %}<input class="enroll-own-small" type="text" name="genre" value="{{movie_obj.genre}}">
-                            {% else %}<input class="enroll-own-small" type="text" name="genre">
-                            {% endif %}
-                        </li>
-                        <li class="enroll-small">
-                            <p class="enroll-setting-small">제작년도</p>
-                            {% if movie_obj.production_year %}<input class="enroll-own-small" type="text" name="year" value="{{movie_obj.production_year}}">
-                            {% else %}<input class="enroll-own-small" type="text" name="year">
-                            {% endif %}        
-                        </li>
-                    </ul>
-                </li>
-                <li class="enroll-movie right">
-                    <p class="enroll-setting">영화 제목 (영어)</p>
-                    {% if movie_obj.title_eng %}<input class="enroll-own" type='text' name='title-en' value="{{movie_obj.title_eng}}">
-                    {% else %}<input class="enroll-own" type='text' name='title-en'>
-                    {% endif %}
+            <div class="enroll-movies">
+                <ul class="enroll-movie left">
+                    <li class="enroll-movie-item">
+                        <p class="enroll-setting font-md font-b">영화 제목 (한글)</p>
+                        {% if movie_obj %}<input class="enroll-own font-md font-b" type='text' name='title-kr'
+                            value='{{movie_obj.title}}'>
+                        {% else %}<input class="enroll-own font-md font-b" type='text' name='title-kr'>
+                        {% endif %}
+                    </li>
+                    <li class="enroll-movie-item">
+                        <p class="enroll-setting font-md font-b">영화 포스터</p>
+                        {% if movie_obj.poster %}<input class="enroll-img" type="file" name="img"
+                            value="{{movie_obj.poster}}">
+                        {% else %}<input class="enroll-img" type="file" name="img">
+                        {% endif %}
+                    </li>
+                    <li class="enroll-movie-item">
+                        <ul class="enroll-smalls">
+                            <li class="enroll-small">
+                                <p class="enroll-setting font-md font-b">장르</p>
+                                {% if movie_obj.genre %}<input class="enroll-own font-md font-b" type="text"
+                                    name="genre" value="{{movie_obj.genre}}">
+                                {% else %}<input class="enroll-own font-md font-b" type="text" name="genre">
+                                {% endif %}
+                            </li>
+                            <li class="enroll-small">
+                                <p class="enroll-setting font-md font-b">제작년도</p>
+                                {% if movie_obj.production_year %}<input class="enroll-own font-md font-b" type="text"
+                                    name="year" value="{{movie_obj.production_year}}">
+                                {% else %}<input class="enroll-own font-md font-b" type="text" name="year">
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="enroll-movie right">
+                    <li class="enroll-movie-item">
+                        <p class="enroll-setting font-md font-b">영화 제목 (영어)</p>
+                        {% if movie_obj.title_eng %}<input class="enroll-own font-md font-b" type='text' name='title-en'
+                            value="{{movie_obj.title_eng}}">
+                        {% else %}<input class="enroll-own font-md font-b" type='text' name='title-en'>
+                        {% endif %}
+                    </li>
+                    <li class="enroll-movie-item">
+                        <p class="enroll-setting font-md font-b">영화 예고편</p>
+                        {% if movie_obj.trailer %}<input class="enroll-url" type="link" name="trailer"
+                            value="{{movie_obj.trailer}}">
+                        {% else %}<input class="enroll-url font-md font-b" type="link" name="trailer">
+                        {% endif %}
+                    </li>
+                    <li class="enroll-movie-item">
+                        <p class="enroll-setting  font-md font-b">예고편 썸네일</p>
+                        {% if movie_obj.trailer_thumbnail %}<input class="enroll-img" type="file" name="trailer-thum"
+                            value="{{movie_obj.trailer_thumbnail}}">
+                        {% else %}<input class="enroll-img" type="file" name="trailer-thum">
+                        {% endif %}
+                    </li>
+                </ul>
 
-                    <p class="enroll-setting">영화 예고편</p>
-                    {% if movie_obj.trailer %}<input class="enroll-url" type="link" name="trailer" value="{{movie_obj.trailer}}">
-                    {% else %}<input class="enroll-url" type="link" name="trailer">
-                    {% endif %}
-
-                    <p class="enroll-setting">예고편 썸네일</p>
-                    {% if movie_obj.trailer_thumbnail %}<input class="enroll-img" type="file" name="trailer-thum" value="{{movie_obj.trailer_thumbnail}}">
-                    {% else %}<input class="enroll-img" type="file" name="trailer-thum">
-                    {% endif %}
-                </li>
-            </ul>
-
-            <div>
-                <p class="enroll-setting">영화 줄거리 </p>
-                {% if movie_obj.summary %}<input type="text" name="summary" value="{{movie_obj.summary}}">
-                {% else %}<input type="text" name="summary">
+            </div>
+            <div class = "enroll-movie-summary">
+                <p class="enroll-setting font-md font-b">영화 줄거리 </p>
+                {% if movie_obj.summary %}<input class="font-md font-b" type="text" name="summary" value="{{movie_obj.summary}}">
+                {% else %}<input class="font-md font-b" type="text" name="summary">
                 {% endif %}
             </div>
-
             {% if movie_obj %}<input type="hidden" name='movie-id' value="{{movie_obj.id}}">
             {% else %}<input type="hidden" value="None" name='movie-id'>
             {% endif %}
 
-            <!--<div>
-                영화 한글 제목 
-                {% if movie_obj %}<input type='text' name='title-kr' value='{{movie_obj.title}}'>     
-                {% else %}<input type='text' name='title-kr'>  
-                {% endif %}           
-                영화 영어 제목
-                {% if movie_obj.title_eng %}<input type='text' name='title-en' value="{{movie_obj.title_eng}}">
-                {% else %}<input type='text' name='title-en'>
-                {% endif %}
-            </div>
-            <div>
-                영화 포스터 
-                {% if movie_obj.poster %}<input type="file" name="img" value="{{movie_obj.poster}}">
-                {% else %}<input type="file" name="img">
-                {% endif %}
-            </div>
-            <div>
-                영화 예고편 썸네일 
-                {% if movie_obj.trailer_thumbnail %}<input type="file" name="trailer-thum" value="{{movie_obj.trailer_thumbnail}}">
-                {% else %}<input type="file" name="trailer-thum">
-                {% endif %}
-                영화 예고편 
-                {% if movie_obj.trailer %}<input type="link" name="trailer" value="{{movie_obj.trailer}}">
-                {% else %}<input type="link" name="trailer">
-                {% endif %}
-            </div>
-            <div>
-                영화 장르 
-                {% if movie_obj.genre %}<input type="text" name="genre" value="{{movie_obj.genre}}">
-                {% else %}<input type="text" name="genre">
-                {% endif %}
-                영화 제작년도 
-                {% if movie_obj.production_year %}<input type="text" name="year" value="{{movie_obj.production_year}}">
-                {% else %}<input type="text" name="year">
-                {% endif %}
-            </div>
-            <div>
-                영화 줄거리 
-                {% if movie_obj.summary %}<input type="text" name="summary" value="{{movie_obj.summary}}">
-                {% else %}<input type="text" name="summary">
-                {% endif %}
-            </div>   
-        -->         
-        </form> 
+        </form>
 
         {% if error %}
-            <script>
-                alert("필수 내용을 채우지 않으셨습니다!")
-            </script>
+        <script>
+            alert("필수 내용을 채우지 않으셨습니다!")
+        </script>
         {% endif %}
 
     </div>
 </div>
 
 <div class="lower-container">
-   
+
 </div>
 {% endblock %}

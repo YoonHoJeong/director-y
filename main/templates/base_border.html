@@ -1,4 +1,8 @@
 {% extends 'base_header.html' %}
+{% load static %}
+
+{% block js %}
+{% endblock %}
 
 {% block content %}
 
@@ -12,6 +16,7 @@
 
         {% endblock %}
     </div>
+
 </div>
 <div class="lower-container-wrapper">
     <div class="lower-container">
@@ -21,4 +26,16 @@
     </div>
 </div>
 
+<script>
+    $(".upper-container").ready(function () {
+    //     console.log("hihi");
+        $(".upper-container").hide(); //기본 fadeIn 메소드
+        $(".lower-container").hide(); //기본 fadeIn 메소드
+        $(".upper-container").fadeIn(2000); //기본 fadeIn 메소드
+        setTimeout(() => {
+            $(".lower-container").fadeIn(2000); //기본 fadeIn 메소드
+        }, 1300)
+
+    });
+</script>
 {% endblock %}
