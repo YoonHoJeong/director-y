@@ -105,6 +105,14 @@ DIRECTORY - Mypage
                 </div>
             </li>
             {% endfor %}
+
+            <a href="{% url 'enroll_movie' %}" class="director-plus">
+                <div class="movie-pf-frame top-left"></div>
+                <div class="movie-pf-frame top-right"></div>
+                <div class="movie-pf-frame bottom-left"></div>
+                <div class="movie-pf-frame bottom-right"></div>
+                <i class="fas fa-plus font-xlg font-eb"></i>
+            </a>
         </ul>
     </div>
     {% elif profile_user.u_type == 2 %}
