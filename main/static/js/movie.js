@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const sectionBG = document.querySelector(".section-background");
     const cancleBtn = document.querySelector(".section-cancle");
     const sectionThumb = document.querySelector(".section-thumbnail");
-    
 
     sectionBtns.forEach(sectionBtn => {
         sectionBtn.addEventListener("click", (e) => {

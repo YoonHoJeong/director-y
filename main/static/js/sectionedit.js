@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sectionEdits = document.querySelectorAll(".section-editing");
     const movieEdit = document.querySelector(".movie-editing");
     const boxes = document.querySelectorAll(".section-box-frame");
+    const likeBtn = document.querySelector(".like-btn-container");
 
     const onClickRevise = (e) => {
       e.preventDefault();
@@ -14,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       reviseBtn.style.display = "none";
       plusBtn.style.display = "block";
       movieEdit.style.display = "block";
+      likeBtn.style.display = "none";
 
       sectionEdits.forEach(sectionEdit => {
         sectionEdit.style.display = "inline-flex";
@@ -30,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       reviseBtn.style.display = "block";
       plusBtn.style.display = "none";
       movieEdit.style.display = "none";
+      likeBtn.style.display = "block";
 
       sectionEdits.forEach(sectionEdit => {
         sectionEdit.style.display = "none";

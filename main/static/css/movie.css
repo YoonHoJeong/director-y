@@ -547,14 +547,14 @@
 
 .movie-editing .movie-delete {
   position: absolute;
-  top:10%;
-  right:5%;
+  top:0%;
+  right:0%;
 }
 
 .movie-editing .movie-update {
   position: absolute;
-  top:10%;
-  left:5%;
+  top:0%;
+  left:0%;
 }
 
 .movie-editing {
