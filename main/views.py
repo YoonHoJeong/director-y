@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 # Create your views here.
+from django.contrib.auth.decorators import login_required
 
 from .models import Movie, Festival, Section, SPortfolio, ActorImage, ActorVideo
 from accounts.models import Actor, Staff, Director, Like
@@ -96,7 +97,10 @@ def movie_detail(request, movie_id):
     sections = Section.objects.filter(mid = movie_obj)
     director = Director.objects.filter(profile = movie_obj.director).first()
     likes = Like.objects.filter(movie = movie_obj).count()
-    is_like = Like.objects.filter(movie = movie_obj, user=request.user).count()
+
+    is_like = 0
+    if request.user.is_authenticated:
+        is_like = Like.objects.filter(movie = movie_obj, user=request.user).count()
 
     return render(request, "movie.html", {"is_like":is_like, "movie_obj":movie_obj, "sections":sections, "likes":likes, "director" : director})
 

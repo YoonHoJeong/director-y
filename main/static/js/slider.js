@@ -1,4 +1,4 @@
-window.addEventListener("load", function () {
+$(".slider-wrapper").ready(() => {
   const sliderWrappers = document.querySelectorAll(".slider-wrapper");
 
   sliderWrappers.forEach((sliderWrapper) => {
@@ -21,6 +21,8 @@ window.addEventListener("load", function () {
     slides.forEach((slide) => {
       slideLengths.push(slide.offsetWidth);
     });
+
+    console.log(slideLengths);
 
     const sliderLength = slider.offsetWidth;
 

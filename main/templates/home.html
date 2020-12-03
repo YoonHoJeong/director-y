@@ -33,6 +33,36 @@
     {{request.user.username}}
 </h2>
 {% else %}
+<ul class="promote-list">
+    <li id="promote-title1" class="promote-title font-xlg font-eb show">더 많은 영화인과 함께하고 싶다면,</li>
+    <li id="promote-title2" class="promote-title font-xlg font-eb">당신의 영화를 펼쳐가고 싶다면,</li>
+    <li id="promote-title3" class="promote-title font-xlg font-eb">영화로운 순간, 함께하고 싶다면,</li>
+    <li id="promote-title4" class="promote-title font-xlg font-eb">DIRECTORY에 당신을 알려주세요!</li>
+    <script>
+        const promotes = document.querySelectorAll(".promote-title");
+        let currentIdx = 1;
+        let pendingInterval;
+        const promoteInterval = async() => {
+            const elementShow = (idx) => {
+                const target = document.querySelector(`#promote-title${idx}`);
+                promotes.forEach((promote, index) => {
+                    promote.classList.remove("show");
+                })
+                target.classList.add("show");
+            }
+            currentIdx++;
+            elementShow(currentIdx);
+            currentIdx = currentIdx % 4;
+            if (currentIdx == 0) {
+                clearInterval(pendingInterval);
+                setTimeout(() => {
+                    pendingInterval = setInterval(promoteInterval, 3000);
+                }, 5000)
+            }
+        }
+        pendingInterval = setInterval(promoteInterval, 3000);
+    </script>
+</ul>
 <ul class="job-list">
     <li class="job-item">
         <a href="register/?type=director">
@@ -46,7 +76,7 @@
         <a href="register/?type=actor">
             <div class="job">
                 <span class="job-eng">ACTOR</span>
-                <span class="job-kor">배우</span>            
+                <span class="job-kor">배우</span>
             </div>
         </a>
     </li>
@@ -54,10 +84,29 @@
         <a href="register/?type=staff">
             <div class="job">
                 <span class="job-eng">STAFF</span>
-                <span class="job-kor">스탭</span>            
+                <span class="job-kor">스탭</span>
             </div>
         </a>
     </li>
+    <script>
+        const jobs = document.querySelectorAll(".job-item .job");
+        jobs.forEach(job => {
+            const jobEngElement = job.querySelector(".job-eng");
+            const jobKorElement = job.querySelector(".job-kor");
+            const prevEngTitle = jobEngElement.innerText; 
+            const prevKorTitle = jobKorElement.innerText;
+            job.addEventListener("mouseenter", () => {
+                jobEngElement.innerText = prevKorTitle;
+                jobEngElement.innerText += prevKorTitle === "배우" ? "로" : "으로";
+                jobKorElement.innerText = "가입하기";
+            });
+            job.addEventListener("mouseleave", () => {
+                jobEngElement.innerText = prevEngTitle;
+                jobKorElement.innerText = prevKorTitle;
+            });
+        })
+        
+    </script>
 </ul>
 
 {% endif %}
@@ -80,10 +129,13 @@
                         <a href="{% url 'movie_detail' movie.id %}">
                             <div class="image-thumbnail" style="background-image: url({{movie.poster.url}});"></div>
                         </a>
-                        <div class="image-name font-md font-b">
-                                <strong>{{movie.director.name}}</strong> -
-                                {{movie.title}}
+                        <div class="image-name font-md font-b" style="font-size: 20px">
+                            <{{movie.title}}>
                         </div>
+                        <div class="image-name font-md font-b" style="margin-top: 8px;">
+                            {{movie.director.name}}
+                        </div>
+
                     </li>
                     {% endfor %}
                 </ul>
@@ -101,7 +153,8 @@
                     {% for actor in actors %}
                     <li class="slide">
                         <a href="{% url 'user_page' actor.profile.id %}">
-                            <div class="image-thumbnail" style="background-image: url({{actor.favorite_image.url}});"></div>
+                            <div class="image-thumbnail" style="background-image: url({{actor.favorite_image.url}});">
+                            </div>
                         </a>
                         <div class="image-name font-md font-b">{{actor.profile.name}}</div>
                     </li>

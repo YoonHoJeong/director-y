@@ -42,4 +42,28 @@
 
 .image-name {
   text-align: center;
+  letter-spacing: 5px;
+}
+
+.promote-list {
+  position: relative;
+
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+.promote-title {
+  width: 100%;
+  text-align: center;
+
+  position: absolute;
+  top: 0;
+
+  opacity: 0;
+
+  transition: all 1s;
+}
+
+.show {
+  opacity: 1;
 }
