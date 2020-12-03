@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_header.html' %}
 {% load static %}
 
 {% block css %}
@@ -7,13 +7,11 @@
 
 {% block content %}
 
-
-    <div class="box-frame top-left"></div>
-    <div class="box-frame top-right"></div>
-    <div class="box-frame bottom-left"></div>
-    <div class="box-frame bottom-right"></div>
-
-    <form action="{% url 'section_create' %}" method="POST">{% csrf_token %}
+    <form class="section-create-form fomd-md font-b"action="{% url 'section_create' %}" method="POST">{% csrf_token %}
+        <div class="box-frame top-left"></div>
+        <div class="box-frame top-right"></div>
+        <div class="box-frame bottom-left"></div>
+        <div class="box-frame bottom-right"></div>
         <table style="width:100%;">
             {{section_form.as_table | safe}}
         </table>
@@ -25,7 +23,7 @@
         <input type="hidden" value="None" name="section_id">
         {% endif %}
         
-        <input class="complete" type="submit" value="● 완료하기">
+        <input class="complete font-lg font-b" type="submit" value="● 완료하기">
     </form>
 
 {% endblock %}

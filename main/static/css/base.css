@@ -470,7 +470,7 @@ button {
 .like-btn-container {
   position: absolute;
   top: 0px;
-  right: 30px;
+  right: 0px;
 
   display: flex;
   align-items: center;

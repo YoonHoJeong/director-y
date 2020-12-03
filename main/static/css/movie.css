@@ -185,7 +185,7 @@
 .section {
   display: none;
   width: 80%;
-  height: 80%;
+  height: 800px;
   background-color: #474344;
   color: white;
 
@@ -246,20 +246,23 @@
   margin-left: 10px;
   margin-right: 40px;
   margin-bottom: 20px;
+
+  position: relative;
 }
 
 .section-cancle {
   position: absolute;
   width: 10%;
-  font-size: large;
   background: none;
-  top: 0;
-  right: 0;
+  top: 7px;
+  right: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
   margin-right: 10px;
   text-align: right;
   font-weight: 400;
+
+  color: #474344;
 }
 
 .box-frame.movie-box {
@@ -397,38 +400,40 @@
 
 .director-setting {
   float: left;
-  font-weight: 500;
   margin-left: 10%;
 }
 
 .director-own {
   float: right;
-  font-weight: 100;
   margin-right: 10%;
 }
 
 .director-award {
   float: left;
-  font-weight: 100;
   margin-left: 10%;
 }
 
 .section-thumbnail {
   width: 80%;
+
+  background: center / cover no-repeat;
+
+  min-height: 350px;
+  max-height: 500px;
   margin-left: 10%;
   margin-right: 10%;
   margin-top: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 }
 
 .section-title {
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;
-  text-align: center;
-  font-size: large;
-  font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+
+  letter-spacing: 10px;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.25);
 }
 
 .section-main {
@@ -436,7 +441,8 @@
   margin-left: 10%;
   margin-right: 10%;
   text-align: left;
-  margin-bottom : 30px;
+  margin-bottom: 30px;
+  line-height: 23px;
 }
 
 .section-box-frame {
@@ -513,14 +519,14 @@
 
 .section-editing .section-delete {
   position: absolute;
-  top:10%;
-  right:13%;
+  top: 10%;
+  right: 13%;
 }
 
 .section-editing .section-update {
   position: absolute;
-  top:10%;
-  left:5%;
+  top: 10%;
+  left: 5%;
 }
 
 .section-editing .btn {
@@ -547,14 +553,14 @@
 
 .movie-editing .movie-delete {
   position: absolute;
-  top:0%;
-  right:0%;
+  top: 0%;
+  right: 0%;
 }
 
 .movie-editing .movie-update {
   position: absolute;
-  top:0%;
-  left:0%;
+  top: 0%;
+  left: 0%;
 }
 
 .movie-editing {
@@ -562,7 +568,7 @@
 }
 
 .section-editing .section-update input,
-.section-editing .section-delete input{
+.section-editing .section-delete input {
   font-family: "NanumSquare";
 
   border: none;
@@ -585,4 +591,3 @@
   padding-top: 71.5%;
   padding-bottom: 71.5%;
 }
-

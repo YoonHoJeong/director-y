@@ -7,7 +7,7 @@ DIRECTORY - Movie
 
 {% block css %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/movie.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'css/edit.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/edit.css' %}" />
 {% endblock %}
 
 
@@ -46,10 +46,10 @@ DIRECTORY - Movie
                 <a href="javascript:{}" onclick="document.querySelector('form.movie-delete').submit();">
                     <div class="btn"><i class="fas fa-circle"></i> 삭제하기</div>
                 </a>
-            </form>      
-        </div> 
+            </form>
+        </div>
         {% endif %}
-    
+
         <div class="like-btn-container font-lg font-b">
             {% if is_like %}
             <a href="{% url 'delete_like_movie' %}" onclick="return confirm('팔로우를 취소하시겠습니까?');">
@@ -62,7 +62,7 @@ DIRECTORY - Movie
             {% endif %}
             <span class="like-cnts">{{likes}}</span>
         </div>
-        
+
         <div class="movie__left-col">
             <img class="image-thumbnail" src='{{movie_obj.poster.url}}'>
             <ul class="movie-summary font-md">
@@ -97,37 +97,37 @@ DIRECTORY - Movie
 {% endblock %}
 
 {% block lower-container %}
-    {% if movie_obj.director == user %}
-    <div class="section-edit">
+{% if movie_obj.director == user %}
+<div class="section-edit">
     <button class="btn btn--revise"><i class="fas fa-circle"></i> 수정하기</button>
     <button class="btn btn--done"><i class="fas fa-circle"></i> 완료</button>
-    </div>
-    {% endif %}
-    <ul class="section-items">
+</div>
+{% endif %}
+<ul class="section-items">
     {% for section in sections %}
-        
-        <li class="section-item">      
-            <div class="section-btn">   
-                <div class='section-poster-div' style="background-image: url('{{section.thumbnail.url}}');">
-                    <!-- <img class='section-url' src='{{section.thumbnail.url}}'> -->
-                    <input class='section-url' type="hidden" value="{{section.thumbnail.url}}">
-                    <p class="section-content">{{section.content}}</p>                
-                </div>    
-                <div class="section-box-frame top-left"></div>
-                <div class="section-box-frame top-right"></div>
-                <div class="section-box-frame bottom-left"></div>
-                <div class="section-box-frame bottom-right"></div>
-                <p class="section-name"><strong>{{section.title}}</strong></p>  
-            </div>  
-            <div class="section-editing">
-                <form method="POST" class="section-update" action="{% url 'section_update' section.id %}"> {% csrf_token %}
-                    <input type="submit" value="● 수정하기">
-                </form>
-                <form method="POST" class="section-delete" action="{% url 'section_delete' section.id %}"> {% csrf_token %}
-                    <input type="submit" value="● 삭제하기">
-                </form>      
-            </div> 
-        </li>
+
+    <li class="section-item">
+        <div class="section-btn">
+            <div class='section-poster-div' style="background-image: url('{{section.thumbnail.url}}');">
+                <!-- <img class='section-url' src='{{section.thumbnail.url}}'> -->
+                <input class='section-url' type="hidden" value="{{section.thumbnail.url}}">
+                <p class="section-content">{{section.content}}</p>
+            </div>
+            <div class="section-box-frame top-left"></div>
+            <div class="section-box-frame top-right"></div>
+            <div class="section-box-frame bottom-left"></div>
+            <div class="section-box-frame bottom-right"></div>
+            <p class="section-name font-lg font-b">{{section.title}}</p>
+        </div>
+        <div class="section-editing">
+            <form method="POST" class="section-update" action="{% url 'section_update' section.id %}"> {% csrf_token %}
+                <input type="submit" value="● 수정하기">
+            </form>
+            <form method="POST" class="section-delete" action="{% url 'section_delete' section.id %}"> {% csrf_token %}
+                <input type="submit" value="● 삭제하기">
+            </form>
+        </div>
+    </li>
     {% endfor %}
     {% if user == movie_obj.director %}
     <form class="section-plus" action="{% url 'section_create' %}" method="POST">
@@ -142,14 +142,12 @@ DIRECTORY - Movie
         </a>
     </form>
     {% endif %}
-    </ul>
-</div> 
+</ul>
+</div>
 
 <div class='section-background'>
     <div class='section'>
-        <div class='section-cancle'>
-            X
-        </div>
+
 
         <div class='director-profile'>
             <p class="director-name-kr">{{movie_obj.director.name}}</p>
@@ -160,29 +158,32 @@ DIRECTORY - Movie
             </div>
             {% endif %}
             <div class="profile">
-                <p class="director-setting">나이</p>
-                <p class="director-own">{{movie_obj.director.age}}</p>
+                <p class="director-setting font-md font-b">나이</p>
+                <p class="director-own  font-md font-b">{{movie_obj.director.age}}</p>
             </div>
             <br></br>
             <div class="profile">
-                <p class="director-setting">학력</p>
-                <p class="director-own">{{movie_obj.director.education}}</p>
+                <p class="director-setting font-md font-b">학력</p>
+                <p class="director-own  font-md font-b">{{movie_obj.director.education}}</p>
             </div>
             <br></br>
             <div class="profile">
-                <p class="director-setting">수상</p>
+                <p class="director-setting font-md font-b">수상</p>
                 <br></br>
-                <span class="director-award">{{director.awards}}</span>
+                <span class="director-award  font-md font-b">{{director.awards}}</span>
             </div>
             <br></br>
         </div>
 
         <div class='section-detail'>
-            <img class="section-thumbnail">
-            <div class='section-title'>
+            <div class='section-cancle font-xlg'>
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="section-thumbnail"></div>
+            <div class='section-title font-xlg font-eb'>
 
             </div>
-            <div class='section-main'>
+            <div class='section-main font-md font-b'>
 
             </div>
         </div>
