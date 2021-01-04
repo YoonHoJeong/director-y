@@ -73,6 +73,7 @@ def home(request):
 def staffs(request):
     staffs = SPortfolio.objects.all()
     random_staffs = Staff.objects.all().order_by('?')[:4]
+    print(random_staffs)
 
     return render(request, "staffs.html", {"all_portfolio": staffs, "random_staffs" : random_staffs})
 
@@ -219,7 +220,7 @@ def movie(request):
 def actors(request):
     actors = Actor.objects.all()
 
-    random_actors = Actor.objects.all().order_by('?')[:4]
+    random_actors = Actor.objects.all().order_by('?')[:3]
     
     return render(request, "actors.html", {"actors": actors, "random_actors" : random_actors})
 

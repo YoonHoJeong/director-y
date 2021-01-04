@@ -41,10 +41,12 @@
   border: 3px solid white;
 }
 
-.portfolio-thumbnail{
+.portfolio-thumbnail {
   /* 3:2 비율 */
   width: 100%;
-  padding-top: 66%;
+  height: 100%;
+  border-radius: 60px;
+
   filter: brightness(50%);
   background-size: cover;
   background-position: center;
@@ -107,7 +109,7 @@
   width: 80%;
   height: 80%;
   background-color: #474344;
-  color : white;
+  color: white;
 
   flex-direction: row;
   align-items: left;
@@ -131,7 +133,7 @@
   justify-content: center;
   align-items: center;
 
-  background-color: rgba(0,0,0,0.24);
+  background-color: rgba(0, 0, 0, 0.24);
 }
 
 .staff-profile {
@@ -144,7 +146,7 @@
 }
 
 .portfolio-detail {
-  overflow:auto;
+  overflow: auto;
   width: 70%;
   background-color: white;
   color: black;
@@ -158,11 +160,11 @@
   position: absolute;
   width: 10%;
   font-size: large;
-  background : none;
-  top:0;
+  background: none;
+  top: 0;
   right: 0;
-  margin-top:10px;
-  margin-bottom:10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   margin-right: 10px;
   text-align: right;
   font-weight: 400;
@@ -184,7 +186,7 @@
   cursor: pointer;
 }
 
-.staff-avatar img{
+.staff-avatar img {
   width: 80%;
   margin-bottom: 20px;
 }
@@ -244,11 +246,11 @@
   margin-left: 10%;
   margin-right: 10%;
   text-align: left;
-  margin-bottom : 30px;
+  margin-bottom: 30px;
 }
 
 .staff-editing .staff-update input,
-.staff-editing .staff-delete input{
+.staff-editing .staff-delete input {
   font-family: "NanumSquare";
 
   border: none;
@@ -260,7 +262,7 @@
 }
 
 .staff-plus {
-  display : none;
+  display: none;
 }
 
 .staff-plus a {

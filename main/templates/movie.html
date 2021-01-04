@@ -118,15 +118,25 @@ DIRECTORY - Movie
             <div class="section-box-frame bottom-left"></div>
             <div class="section-box-frame bottom-right"></div>
             <p class="section-name font-lg font-b">{{section.title}}</p>
+
+            <div class="section-editing">
+                <form id="section-edit-form" method="POST" class="section-update"
+                    action="{% url 'section_update' section.id %}"> {% csrf_token %}
+                    <a href="javascript:{}" onclick="document.getElementById('section-edit-form').submit();">
+                        <i class="fas fa-pen font-xlg"></i>
+                        <span class="font-md font-b"> 수정하기 </span>
+                    </a>
+                </form>
+                <form id="section-delete-form" method="POST" class="section-delete"
+                    action="{% url 'section_delete' section.id %}"> {% csrf_token %}
+                    <a href="javascript:{}" onclick="document.getElementById('section-delete-form').submit();">
+                        <i class="far fa-trash-alt font-xlg"></i>
+                        <span class="font-md font-b"> 삭제하기 </span>
+                    </a>
+                </form>
+            </div>
         </div>
-        <div class="section-editing">
-            <form method="POST" class="section-update" action="{% url 'section_update' section.id %}"> {% csrf_token %}
-                <input type="submit" value="● 수정하기">
-            </form>
-            <form method="POST" class="section-delete" action="{% url 'section_delete' section.id %}"> {% csrf_token %}
-                <input type="submit" value="● 삭제하기">
-            </form>
-        </div>
+
     </li>
     {% endfor %}
     {% if user == movie_obj.director %}

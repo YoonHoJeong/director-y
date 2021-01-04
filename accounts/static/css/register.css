@@ -154,21 +154,3 @@ input[type="password"] {
   background-color: #474344;
   color: white;
 }
-
-.btn--done {
-  font-family: "NanumSquare";
-
-  position: absolute;
-  top: 0px;
-  right: 0px;
-
-  border: none;
-  background-color: transparent;
-  font-size: 18px;
-  font-weight: 700;
-  color: #d44242;
-  outline: none;
-
-  width: fit-content;
-  height: fit-content;
-}

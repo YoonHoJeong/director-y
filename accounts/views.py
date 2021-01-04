@@ -222,6 +222,7 @@ def likes_staff(request):
 
     return render(request, 'likes.html', {'likes':likes, 'type':3})
 
+@login_required(login_url='/login/')
 def add_like(request):
     # print(request.META.get('HTTP_REFERER'))
     prev_url = request.META.get('HTTP_REFERER')
@@ -242,6 +243,7 @@ def add_like(request):
 
     return redirect(prev_url)
 
+@login_required(login_url='/login/')
 def add_like_movie(request):
     prev_url = request.META.get('HTTP_REFERER')
     movie_id = int(prev_url.split("/")[-1])

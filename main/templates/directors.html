@@ -8,6 +8,12 @@ Directory - Directors
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 <link rel="stylesheet" href="{% static 'css/directors.css' %}">
+<link rel="stylesheet" href="{% static 'css/image.css' %}">
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/slider.js' %}"></script>
+
 {% endblock %}
 
 {% block upper-container %}
@@ -28,27 +34,34 @@ Directory - Directors
 {% block lower-container %}
 
 <div class="lower-container">
-    <h2 class="lower-container__title">HOT MOVIE</h2>
     <ul class="lower-container__content">
-        <ul class="movies">
-            {% for portfolio in all_portfolio %}
-            <li class="movie">
+        <li class="job-item">
+            <h2 class="lower-container__title font-lg">HOT MOVIE</h2>
+            <div class="slider-wrapper">
+                <div class="move-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
+                <div class="move-btn next-btn"><i class="fas fa-chevron-right"></i></div>
 
-                <a href="{% url 'movie_detail' portfolio.id %}">
-                    <div class="movie-thumbnail">
-                        <img src="{{portfolio.poster.url}}" />
-                    </div>
-                    <div class="movie-info">
-                        <p>
-                            {{portfolio.title}}
-                        </p>
-                    </div>
-                </a>
+                <div class="slider-show-area">
+                    <ul class="slider">
+                        {% for portfolio in all_portfolio %}
+                        <li class="slide">
+                            <a href="{% url 'movie_detail' portfolio.id %}">
+                                <div class="image-thumbnail" style="background-image: url('{{portfolio.poster.url}}');">
+                                </div>
+                            </a>
+                            <div class="image-name font-md font-b" style="font-size: 20px">
+                                <{{portfolio.title}}>
+                            </div>
+                            <div class="image-name font-md font-b" style="margin-top: 8px;">
+                                {{portfolio.director.name}}
+                            </div>
 
-            </li>
-            {% endfor %}
-            
-        </ul>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </li>
     </ul>
 </div>
 {% endblock %}
