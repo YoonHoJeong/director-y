@@ -1,3 +1,7 @@
+# publish (pythonAnyWhere)
+
+- [test 웹 페이지](http://unoj95.pythonanywhere.com/)
+
 # 환경
 
 - pip-requirements.txt : 필요한 패키지 작성.
