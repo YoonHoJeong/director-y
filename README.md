@@ -3,6 +3,9 @@
 짧게는 몇 개월에서 길게는 몇 년이 걸린 영화들이 한 번의 평가로 잊혀지지 않도록, 결과와 과정까지 아카이빙 할 수 있도록 'Directory'를 제작했습니다.   
 영화 제작에 참여하는 1) 감독 2) 배우 3) 스태프들이 각각의 필요에 맞춰 자신만의 필모그래피를 만들 수 있습니다.
 
+# Project Snapshot
+![archive1](https://user-images.githubusercontent.com/22267559/155932255-41c1248a-2768-4f34-9bee-2564eb069b6a.png)
+![archive2](https://user-images.githubusercontent.com/22267559/155932265-10cee754-27f0-44b3-8fca-503bb9a7f869.png)
 
 # Project Status
 - 2021.03 ~ 현재 : **배포 중단**
