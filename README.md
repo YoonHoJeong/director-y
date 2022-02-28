@@ -1,8 +1,16 @@
-# publish (pythonAnyWhere)
+# Intro
+영화제에서 수상하지 못한 대다수의 영화들은 그 누구에게도 공개되지 않고 버려지게 됩니다.   
+짧게는 몇 개월에서 길게는 몇 년이 걸린 영화들이 한 번의 평가로 잊혀지지 않도록, 결과와 과정까지 아카이빙 할 수 있도록 'Directory'를 제작했습니다.   
+영화 제작에 참여하는 1) 감독 2) 배우 3) 스태프들이 각각의 필요에 맞춰 자신만의 필모그래피를 만들 수 있습니다.
 
-- [test 웹 페이지](http://unoj95.pythonanywhere.com/)
 
-# 환경
+# Project Status
+- 2021.03 ~ 현재 : **배포 중단**
+- 2020.12 ~ 2021.02 : 테스트 서버 배포(pythonAnywhere 배포 환경)
+- 2020.10 ~ 2020.12 : 서비스 개발 및 테스트 서버 배포
+
+
+# Development Enviroments
 
 - pip-requirements.txt : 필요한 패키지 작성.
 
@@ -10,11 +18,6 @@
 2. 패키지 설치 - "pip install pip-requirements.txt"
 3. 패키지 추가 설치 or 패키지 업데이트를 했을 경우,
    "pip freeze > pip-requirements.txt"
-
-# 진행 상황
-
-- register 페이지에서 회원가입 가능
-- 모델 기본 구조 생성
 
 # Apps
 
